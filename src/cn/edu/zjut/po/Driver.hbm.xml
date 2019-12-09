@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="cn.edu.zjut.po.Driver" table="driver" catalog="hibernatedb">
+		<id name="driverID" type="int">
+			<column name="driverID"/>
+			<generator class="foreign">
+				<param name="property">car</param>
+			</generator>
+		</id>
+		<property name="name" type="string">
+			<column name="name" length="20"/>
+		</property>
+		<property name="gender" type="java.lang.Boolean">
+			<column name="gender"/>
+		</property>
+		<property name="age" type="int">
+			<column name="age"/>
+		</property>
+		<property name="idnumber" type="string">
+			<column name="idnumber" length="18" unique="true"/>
+		</property>
+		<property name="license" type="string">
+			<column name="license" length="20" unique="true"/>
+		</property>
+		<property name="experience" type="int">
+			<column name="experience"/>
+		</property>
+		<property name="account" type="string">
+			<column name="account" length="20" unique="true"/>
+		</property>
+		<property name="password" type="string">
+			<column name="password" length="20"/>
+		</property>
+		<!--  <property name="carID" type="int">
+			<column name="carID"/>
+		</property>-->
+		<one-to-one  name="car" constrained="true"/>
+	</class>
+</hibernate-mapping>

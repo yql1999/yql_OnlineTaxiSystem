@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="cn.edu.zjut.po.Passenger" table="passenger" catalog="hibernatedb">
+		<id name="passengerID" type="int">
+			<column name="passengerID"/>
+			<generator class="increment"/>
+		</id>
+		<property name="name" type="string">
+			<column name="name" length="20"/>
+		</property>
+		<property name="nickname" type="string">
+			<column name="nickname" length="20"/>
+		</property>
+		<property name="gender" type="java.lang.Boolean">
+			<column name="gender"/>
+		</property>
+		<property name="age" type="int">
+			<column name="age"/>
+		</property>
+		<property name="idnumber" type="string">
+			<column name="idnumber" length="18" unique="true"/>
+		</property>
+		<property name="account" type="string">
+			<column name="account" length="20" unique="true"/>
+		</property>
+		<property name="password" type="string">
+			<column name="password" length="20"/>
+		</property>
+		<property name="remain" type="double">
+			<column name="remain"/>
+		</property>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="cn.edu.zjut.po.Order" table="order1" catalog="hibernatedb">
+		<id name="orderID" type="int">
+			<column name="orderID"/>
+			<generator class="increment"/>
+		</id>
+		<property name="start" type="string">
+			<column name="start" length="100"/>
+		</property>
+		<property name="destination" type="string">
+			<column name="destination" length="100"/>
+		</property>
+		<property name="starttime" type="java.util.Date">
+			<column name="starttime"/>
+		</property>
+		<property name="endtime" type="java.util.Date">
+			<column name="endtime"/>
+		</property>
+		<!--<property name="passengerID" type="int">
+			<column name="passengerID"/>
+		</property>-->
+		<!--<property name="driverID" type="int">
+			<column name="driverID"/>
+		</property>-->
+		<property name="passnum" type="int">
+			<column name="passnum"/>
+		</property>
+		<property name="type" type="string">
+			<column name="type" length="20"/>
+		</property>
+		<property name="sum" type="double">
+			<column name="sum"/>
+		</property>
+		<many-to-one column="passengerID" name="passenger" unique="true" cascade="none"/>
+		<many-to-one column="driverID" name="driver" unique="true" cascade="none"/>
+		<!--<one-to-one name="driver" class="cn.edu.zjut.po.Driver" cascade="none" constrained="true"/>-->
+		<!--<one-to-one name="passenger" class="cn.edu.zjut.po.Passenger" cascade="none" constrained="true"/>-->
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="cn.edu.zjut.po.Car" table="car" catalog="hibernatedb">
+		<id name="carID" type="int">
+			<column name="carID"/>
+			<generator class="increment"/>
+		</id>
+		<property name="seats" type="int">
+			<column name="seats"/>
+		</property>
+		<property name="color" type="string">
+			<column name="color" length="20"/>
+		</property>
+		<property name="plate" type="string">
+			<column name="plate" length="20"/>
+		</property>
+		<property name="type" type="string">
+			<column name="type" length="20"/>
+		</property>
+		<property name="location" type="string">
+			<column name="location" length="20"/>
+		</property>
+	</class>
+</hibernate-mapping>

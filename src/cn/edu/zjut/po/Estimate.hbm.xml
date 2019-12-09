@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="cn.edu.zjut.po.Estimate" table="estimate" catalog="hibernatedb">
+		<id name="estimateID" type="int">
+			<column name="estimateID"/>
+			<generator class="assigned"/>
+		</id>
+		<property name="passengerID" type="int">
+			<column name="passengerID"/>
+		</property>
+		<property name="driverID" type="int">
+			<column name="driverID"/>
+		</property>
+		<property name="orderID" type="int">
+			<column name="orderID"/>
+		</property>
+		<property name="content" type="string">
+			<column name="content" length="100"/>
+		</property>
+		<many-to-one name="driver" class="Driver">
+			<column name="driverID" not-null="true"/>
+		</many-to-one>
+		<many-to-one name="passenger" class="Passenger">
+			<column name="passengerID" not-null="true"/>
+		</many-to-one>
+	</class>
+</hibernate-mapping>

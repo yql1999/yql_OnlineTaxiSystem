@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+"http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<package name="strutsBean" extends="struts-default" namespace="/">
+		<action name="register" class="passengerAction">
+			<result name="success">/regSuccess.jsp</result>
+			<result name="fail">/regFail.jsp</result>
+		</action>
+		<action name="carsave" class="carAction" method="save">
+			<result name="success">/regSuccess.jsp</result>
+			<result name="fail">/regFail.jsp</result>
+		</action>
+		<action name="driversave" class="driverAction" method="register">
+			<result name="success">/regSuccess.jsp</result>
+			<result name="fail">/regFail.jsp</result>
+		</action>
+		<action name="ordersave" class="orderAction" method="save">
+			<result name="success">/orderSuccess.jsp</result>
+		</action>
+		<action name="getPassenger" class="orderAction" method="save">
+			<result name="success">/GotodestinationMap.jsp</result>
+		</action>
+	</package>
+</struts>
