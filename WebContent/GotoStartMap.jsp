@@ -178,16 +178,31 @@
     resizeEnable: true,
     zoom: 13
   });
+  var options={
+		  	'zoomToAccuracy': true,   //定位成功后是否自动调整地图视野到定位点
+		  	'timeout': 10000,          //超过10秒后停止定位，默认：5s
+		 	'showButton': true,//是否显示定位按钮
+			'buttonPosition': 'LB',//定位按钮的位置
+			/* LT LB RT RB */
+			'buttonOffset': new AMap.Pixel(10, 20),//定位按钮距离对应角落的距离
+			'showMarker': true,//是否显示定位点
+			'markerOptions':{//自定义定位点样式，同Marker的Options
+			  'offset': new AMap.Pixel(-18, -33),
+			  'content':'<img src="./css/car.png" style="width:65px;height:65px"/>'
+			},
+			'showCircle': false,//是否显示定位精度圈
+			'circleOptions': {//定位精度圈的样式
+				'strokeColor': '#0093FF',
+				'noSelect': true,
+				'strokeOpacity': 0.5,
+				'strokeWeight': 1,
+				'fillColor': '#02B0FF',
+				'fillOpacity': 0.25
+			}
+}
   AMap.plugin('AMap.Geolocation', function() {
-    var geolocation = new AMap.Geolocation({
-      enableHighAccuracy: true,//是否使用高精度定位，默认:true
-      timeout: 10000,          //超过10秒后停止定位，默认：5s
-      buttonPosition:'RB',    //定位按钮的停靠位置
-      buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
-      zoomToAccuracy: true,   //定位成功后是否自动调整地图视野到定位点
-
-    });
-    //map.addControl(geolocation);
+    var geolocation = new AMap.Geolocation(options);
+    map.addControl(geolocation);
     geolocation.getCurrentPosition(function(status,result){
       if(status=='complete'){
     	  
@@ -201,14 +216,7 @@
   
   setTimeout(function () {
 	  AMap.plugin('AMap.Geolocation', function() {
-		    var geolocation = new AMap.Geolocation({
-		      enableHighAccuracy: true,//是否使用高精度定位，默认:true
-		      timeout: 10000,          //超过10秒后停止定位，默认：5s
-		      buttonPosition:'RB',    //定位按钮的停靠位置
-		      buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
-		      zoomToAccuracy: true,   //定位成功后是否自动调整地图视野到定位点
-
-		    });
+		    var geolocation = new AMap.Geolocation(options);
 		    //map.addControl(geolocation);
 		    geolocation.getCurrentPosition(function(status,result){
 		      if(status=='complete'){
@@ -317,15 +325,8 @@
 	    });
 	    setTimeout(function () {
 	  	  AMap.plugin('AMap.Geolocation', function() {
-	  		    var geolocation = new AMap.Geolocation({
-	  		      enableHighAccuracy: true,//是否使用高精度定位，默认:true
-	  		      timeout: 10000,          //超过10秒后停止定位，默认：5s
-	  		      buttonPosition:'RB',    //定位按钮的停靠位置
-	  		      buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
-	  		      zoomToAccuracy: true,   //定位成功后是否自动调整地图视野到定位点
-
-	  		    });
-	  		    //map.addControl(geolocation);
+	  		    var geolocation = new AMap.Geolocation(options);
+	  		    map.addControl(geolocation);
 	  		    geolocation.getCurrentPosition(function(status,result){
 	  		      if(status=='complete'){
 	  		    	  

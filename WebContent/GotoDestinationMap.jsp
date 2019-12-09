@@ -137,6 +137,7 @@
     zoom: 13
   });
   var options={
+		  	'timeout': 10000,          //超过10秒后停止定位，默认：5s
 		 	'showButton': true,//是否显示定位按钮
 			'buttonPosition': 'LB',//定位按钮的位置
 			/* LT LB RT RB */
