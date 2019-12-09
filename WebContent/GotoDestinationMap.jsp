@@ -239,13 +239,14 @@
     
   }
   function onComplete1(data) {
-	  	map = new AMap.Map("container", {
+	  	//map.removeControl(geolocation);
+	  	/*map = new AMap.Map("container", {
 		    resizeEnable: true,
 		    zoom: 13
-		  });
-	  	var geolocation = new AMap.Geolocation(options);
-	    map.addControl(geolocation);
-	    geolocation.getCurrentPosition();
+		  });*/
+	  	//var geolocation = new AMap.Geolocation(options);
+	    //map.addControl(geolocation);
+	    //geolocation.getCurrentPosition();
 	    document.getElementById('status').innerHTML='定位成功'
 	    var str = [];
 	    console.log(data);
@@ -280,6 +281,8 @@
     		'showMarker': false,
     		'visible':false
 	    };
+	    route.destroy();
+	    map.removeControl(route);
 	    map.plugin("AMap.DragRoute", function() {
 	      route = new AMap.DragRoute(map, path, AMap.DrivingPolicy.LEAST_FEE,{
 	    	  'startMarkerOptions':drag
