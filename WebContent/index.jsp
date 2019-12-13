@@ -128,10 +128,16 @@
                         </a>
                     </li>
                     <li>
-                        <a _href="GotostartMap.jsp">
+                        <a _href="GotoStartMap.jsp">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>前往始发地</cite>
                         </a>
+                    </li>
+                    <li>
+                    	<a _href="GotoDestinationMap.jsp">
+                    		<i class="iconfont">&#xe6a7;</i>
+                    		<cite>前往目的地</cite>
+                    	</a>
                     </li>
                 </ul>
             </li>

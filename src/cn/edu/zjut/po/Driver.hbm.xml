@@ -4,9 +4,7 @@
 	<class name="cn.edu.zjut.po.Driver" table="driver" catalog="hibernatedb">
 		<id name="driverID" type="int">
 			<column name="driverID"/>
-			<generator class="foreign">
-				<param name="property">car</param>
-			</generator>
+			<generator class="increment"/>
 		</id>
 		<property name="name" type="string">
 			<column name="name" length="20"/>
@@ -35,6 +33,10 @@
 		<!--  <property name="carID" type="int">
 			<column name="carID"/>
 		</property>-->
-		<one-to-one  name="car" constrained="true"/>
+		 <set name="orders" lazy="false" cascade="all" inverse="true">
+		 	<key column="driverID" not-null="true"/>
+		 	<one-to-many class="cn.edu.zjut.po.Order"/>
+		 </set>
+		<one-to-one name="car" constrained="true"/>
 	</class>
 </hibernate-mapping>
