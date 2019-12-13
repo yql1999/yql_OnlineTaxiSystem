@@ -1,5 +1,8 @@
 package cn.edu.zjut.po;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Driver {
 	private int driverID;
 	private String name;
@@ -12,6 +15,9 @@ public class Driver {
 	private String password;
 	//private int carID;
 	private Car car;
+	private Order order;
+	private int orderID;
+	private Set<Order> orders = new HashSet<Order>();
 	
 	public Driver() {}
 	
@@ -111,6 +117,30 @@ public class Driver {
 
 	public void setCar(Car car) {
 		this.car = car;
+	}
+
+	public Order getOrder() {
+		return order;
+	}
+
+	public void setOrder(Order order) {
+		this.order = order;
+	}
+
+	public int getOrderID() {
+		return orderID;
+	}
+
+	public void setOrderID(int orderID) {
+		this.orderID = orderID;
+	}
+
+	public Set<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(Set<Order> orders) {
+		this.orders = orders;
 	}
 
 //	public int getCarID() {

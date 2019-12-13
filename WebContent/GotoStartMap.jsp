@@ -279,10 +279,10 @@
     
   }
   function onComplete1(data) {
-	  	map = new AMap.Map("container", {
-		    resizeEnable: true,
-		    zoom: 13
-		  });
+	  	//map = new AMap.Map("container", {
+		//   resizeEnable: true,
+		//    zoom: 13
+		//  });
 	    document.getElementById('status').innerHTML='定位成功'
 	    var str = [];
 	    console.log(data);
