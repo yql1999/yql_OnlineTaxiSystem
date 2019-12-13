@@ -43,14 +43,14 @@
   }
   .connection{
   	position:absolute;
-  	bottom:80px;
+  	bottom:40px;
   	right:10px;
   }
   
   .cancel{
   	position:absolute;
-  	bottom:55px;
-  	right:10px;
+  	bottom:40px;
+  	left:10px;
   }
 </style>
 <%@ taglib prefix="s" uri="/struts-tags" %>
@@ -75,10 +75,10 @@
 <s:text var="start" name="xxxx.start"/>
 <s:text var="destination" name="xxxx.destination"/>
 <!-- Button trigger modal -->
-<button type="button" class="layui-btn layui-btn-xs connection" data-toggle="modal" data-target="#myModal">
+<button type="button" class="layui-btn connection" data-toggle="modal" data-target="#myModal">
 联系用户
 </button>
-<button type="button" class="layui-btn layui-btn-xs layui-btn-danger cancel" data-toggle="modal" data-target="#myModal1">
+<button type="button" class="layui-btn layui-btn-danger cancel" data-toggle="modal" data-target="#myModal1">
 取消订单
 </button>
  
@@ -179,7 +179,6 @@
     zoom: 13
   });
   var options={
-		  	'zoomToAccuracy': true,   //定位成功后是否自动调整地图视野到定位点
 		  	'timeout': 10000,          //超过10秒后停止定位，默认：5s
 		 	'showButton': true,//是否显示定位按钮
 			'buttonPosition': 'LB',//定位按钮的位置
@@ -204,12 +203,11 @@
     var geolocation = new AMap.Geolocation(options);
     map.addControl(geolocation);
     geolocation.getCurrentPosition(function(status,result){
-      if(status=='complete'){
-    	  
-        onComplete(result)
-      }else{
-        onError(result)
-      }
+    	if(status=='complete'){
+        	onComplete(result)
+        }else{
+            onError(result)
+    	}
     });
   });
 //定时器30s一次重新定位
@@ -217,7 +215,7 @@
   setTimeout(function () {
 	  AMap.plugin('AMap.Geolocation', function() {
 		    var geolocation = new AMap.Geolocation(options);
-		    //map.addControl(geolocation);
+		    map.addControl(geolocation);
 		    geolocation.getCurrentPosition(function(status,result){
 		      if(status=='complete'){
 		    	  
@@ -259,8 +257,14 @@
     //绘制初始路径
     //path.push([116.303843, 39.983412]);
     //path.push([116.321354, 39.896436]);
+    var drag={
+    		'showMarker': false,
+    		'visible':false
+    };
     map.plugin("AMap.DragRoute", function() {
-      route = new AMap.DragRoute(map, path, AMap.DrivingPolicy.LEAST_FEE); //构造拖拽导航类
+      route = new AMap.DragRoute(map, path, AMap.DrivingPolicy.LEAST_FEE,{
+    	  'startMarkerOptions':drag
+      }); //构造拖拽导航类
       route.search(); //查询导航路径并开启拖拽导航
     });
     //console.log(path[0].Q+"   "+path[0].P);
@@ -309,8 +313,16 @@
 	    //绘制初始路径
 	    //path.push([116.303843, 39.983412]);
 	    //path.push([116.321354, 39.896436]);
+	    var drag={
+    		'showMarker': false,
+    		'visible':false
+	    };
+	    route.destroy();
+	    map.removeControl(route);
 	    map.plugin("AMap.DragRoute", function() {
-	      route = new AMap.DragRoute(map, path, AMap.DrivingPolicy.LEAST_FEE); //构造拖拽导航类
+	      route = new AMap.DragRoute(map, path, AMap.DrivingPolicy.LEAST_FEE,{
+	    	  'startMarkerOptions':drag
+		  }); //构造拖拽导航类
 	      route.search(); //查询导航路径并开启拖拽导航
 	    });
 	    //console.log(path[0].Q+"   "+path[0].P);
