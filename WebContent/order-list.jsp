@@ -21,8 +21,8 @@
 <body>
 <body>
 	<div class="x-nav">
-		<span class="layui-breadcrumb"> <a href="">首页</a> <a href="">演示</a>
-			<a> <cite>导航元素</cite></a>
+		<span class="layui-breadcrumb"> <a href="index.jsp">首页</a> <a href="">订单列表</a>
+			
 		</span> <a class="layui-btn layui-btn-small"
 			style="line-height: 1.6em; margin-top: 3px; float: right"
 			href="javascript:location.replace(location.href);" title="刷新"> <i
@@ -42,21 +42,25 @@
 		<table class="layui-table">
 			<thead>
 				<tr>
-					<th>
-						<div class="layui-unselect header layui-form-checkbox" lay-skin="primary">
-							<i class="layui-icon">&#xe605;</i>
-						</div>
-					</th>
 					<th>订单编号</th>
 					<th>乘客姓名</th>
 					<th>性别</th>
 					<th>出发时间</th>
 					<th>出发地</th>
 					<th>目的地</th>
+					<th>
+						<div class="layui-unselect header layui-form-checkbox" lay-skin="primary">
+							<i class="layui-icon">&#xe605;</i>
+						</div>
+					</th>
 				</tr>
 			</thead>
 			<tbody>
                <tr>
+               
+               
+               
+               
                    <td>
                        <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
                    </td>
@@ -65,7 +69,7 @@
 			
 		</table>
 		<div style=" text-align:center">
-		<button  class="btn btn-primary btn-lg" data-toggle="modal" data-target="#接单Modal">确认接单</button>
+		<button style="background-color:#009688;" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#接单Modal">确认接单</button>
 			<!-- 模态框（Modal） -->
 			<div class="modal fade" id="接单Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-dialog">
@@ -78,7 +82,7 @@
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default"
 								data-dismiss="modal">取消</button>
-							<button type="button" class="btn btn-primary">确认</button>
+							<button type="button" class="btn btn-primary" style="background-color:#009688;">确认</button>
 						</div>
 					</div>
 					<!-- /.modal-content -->
