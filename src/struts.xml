@@ -18,8 +18,14 @@
 		<action name="ordersave" class="orderAction" method="save">
 			<result name="success">/orderSuccess.jsp</result>
 		</action>
-		<action name="getPassenger" class="orderAction" method="save">
-			<result name="success">/GotodestinationMap.jsp</result>
+		<action name="driverdelete" class="driverAction" method="delete">
+			<result name="deletesuccess">/driver-save-test.jsp</result>
+		</action>
+		<action name="ordertaking" class="orderAction" method="ordertake">
+			<result name="success">/GotoStartMap.jsp</result>
+		</action>
+		<action name="findorders" class="orderAction" method="findorders">
+			<result name="success">/order-list.jsp</result>
 		</action>
 	</package>
 </struts>

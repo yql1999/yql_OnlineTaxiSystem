@@ -1,22 +1,45 @@
 package cn.edu.zjut.action;
 
+import java.util.Iterator;
 import java.util.List;
 
+import cn.edu.zjut.po.Driver;
 import cn.edu.zjut.po.Order;
 import cn.edu.zjut.service.IOrderService;
+import cn.edu.zjut.service.DriverService;
+import cn.edu.zjut.service.PassengerService;
 
 public class OrderAction {
 	private Order order;
 	private IOrderService orderService;
-	private List orderlist;
-	private String longitude;
-	private String latitude;
+	private List orders;
 	public String save() {
 		orderService.save(order);
 		return "success";
 	}
-	public void all() {
-		setOrderlist(orderService.all(longitude,latitude));
+	
+	public String ordertake() {
+		orderService.ordertake(order);
+		return "success";
+	}
+	
+	public String findorders() {
+		orders=orderService.findorders();
+		System.out.println("Item Action executed!");
+		Iterator<List> it=orders.iterator();
+		Order t=new Order();
+		t=(Order)it.next();
+		order=t;
+		while(it.hasNext()) {
+			t=(Order)it.next();
+
+			System.out.println(t.getOrderID());
+			System.out.println(t.getStart());
+			System.out.println(t.getDestination());
+
+			
+		}
+		return "success";
 	}
 
 	public Order getOrder() {
@@ -35,12 +58,12 @@ public class OrderAction {
 		this.orderService = orderService;
 	}
 
-	public List getOrderlist() {
-		return orderlist;
+	public List getOrders() {
+		return orders;
 	}
 
-	public void setOrderlist(List orderlist) {
-		this.orderlist = orderlist;
+	public void setOrders(List orders) {
+		this.orders = orders;
 	}
 	
 	

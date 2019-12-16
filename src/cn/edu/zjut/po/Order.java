@@ -15,13 +15,15 @@ public class Order {
 	private Driver driver;
 	private int passnum;
 	private String type;
-	private double sum;
+	private Double sum;
+	private Double estimateptod;
+	private Double estimatedtop;
 	
-	public double getSum() {
+	public Double getSum() {
 		return sum;
 	}
 
-	public void setSum(double sum) {
+	public void setSum(Double sum) {
 		this.sum = sum;
 	}
 
@@ -31,7 +33,7 @@ public class Order {
 		this.setOrderID(orderID);
 	}
 	
-	public Order(int orderID, String start, String destination, Date starttime, Date endtime, int passnum, String type, double sum, Driver driver, Passenger passenger) {
+	public Order(int orderID, String start, String destination, Date starttime, Date endtime, int passnum, String type, double sum, Driver driver, Passenger passenger, double estimateptod, double estimatedtop) {
 		this.setOrderID(orderID);
 		this.setStart(start);
 		this.setDestination(destination);
@@ -45,6 +47,8 @@ public class Order {
 		this.sum = sum;
 		this.setDriver(driver);
 		this.setPassenger(passenger);
+		this.setEstimatedtop(estimatedtop);
+		this.setEstimateptod(estimateptod);
 	}
 
 	public int getOrderID() {
@@ -118,5 +122,22 @@ public class Order {
 	public void setType(String type) {
 		this.type = type;
 	}
+
+	public Double getEstimateptod() {
+		return estimateptod;
+	}
+
+	public void setEstimateptod(Double estimateptod) {
+		this.estimateptod = estimateptod;
+	}
+
+	public Double getEstimatedtop() {
+		return estimatedtop;
+	}
+
+	public void setEstimatedtop(Double estimatedtop) {
+		this.estimatedtop = estimatedtop;
+	}
+
 	
 }

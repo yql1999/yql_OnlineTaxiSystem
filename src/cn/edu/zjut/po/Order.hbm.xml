@@ -30,11 +30,20 @@
 		<property name="type" type="string">
 			<column name="type" length="20"/>
 		</property>
-		<property name="sum" type="double">
+		<property name="sum" type="java.lang.Double">
 			<column name="sum"/>
 		</property>
+		<property name="estimateptod" type="java.lang.Double">
+			<column name="estimateptod"/>
+		</property>
+		<property name="estimatedtop" type="java.lang.Double">
+			<column name="estimatedtop"/>
+		</property>
 		<many-to-one column="passengerID" name="passenger" unique="true" cascade="none"/>
-		<many-to-one column="driverID" name="driver" unique="true" cascade="none"/>
+		<!--<many-to-one column="driverID" name="driver" inverse="true" unique="true" cascade="none"/>-->
+		<many-to-one name="driver" class="cn.edu.zjut.po.Driver" fetch="select" unique="true">
+			<column name="driverID" not-null="true"/>
+		</many-to-one>
 		<!--<one-to-one name="driver" class="cn.edu.zjut.po.Driver" cascade="none" constrained="true"/>-->
 		<!--<one-to-one name="passenger" class="cn.edu.zjut.po.Passenger" cascade="none" constrained="true"/>-->
 	</class>

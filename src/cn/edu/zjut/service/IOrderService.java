@@ -6,6 +6,7 @@ import cn.edu.zjut.po.Order;
 
 public interface IOrderService {
 	public void save(Order transientInstance);
-	public List all(String longitude,String latitude);
+	public void ordertake(Order transientInstance);
+	public List findorders();
 	
 }

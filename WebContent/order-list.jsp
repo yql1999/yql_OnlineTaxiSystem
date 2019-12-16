@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,12 +18,29 @@
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <%!int idNum=0; 
+	int i = 0;%>
+    <script type="text/javascript" language="JavaScript">
+    $(document).ready(function(){
+			<%for(i=0;i<100;i++){%>
+				$("#btn<%=i%>").click(function(){
+					console.log("kaishi "+<%=i%>+"anniu ");
+					document.getElementById("i1").value=$("#<%="td1"+i%>").html();
+					document.getElementById("i2").value=$(<%="td3"+i%>).html();
+					document.getElementById("i3").value=$(<%="td4"+i%>).html();
+					document.getElementById("i4").value=$(<%="td5"+i%>).html();
+					$("#orderModal").modal("show");
+					return false;
+				});
+			<%}%>
+		});
+    </script>
 </head>
 <body>
 <body>
 	<div class="x-nav">
-		<span class="layui-breadcrumb"> <a href="index.jsp">首页</a> <a href="">订单列表</a>
-			
+		<span class="layui-breadcrumb"> <a href="">首页</a> <a href="">演示</a>
+			<a> <cite>导航元素</cite></a>
 		</span> <a class="layui-btn layui-btn-small"
 			style="line-height: 1.6em; margin-top: 3px; float: right"
 			href="javascript:location.replace(location.href);" title="刷新"> <i
@@ -42,48 +60,77 @@
 		<table class="layui-table">
 			<thead>
 				<tr>
-					<th>订单编号</th>
-					<th>乘客姓名</th>
-					<th>性别</th>
-					<th>出发时间</th>
-					<th>出发地</th>
-					<th>目的地</th>
-					<th>
+					<!--<th>
 						<div class="layui-unselect header layui-form-checkbox" lay-skin="primary">
 							<i class="layui-icon">&#xe605;</i>
 						</div>
-					</th>
+					</th>  -->
+					<th>订单编号</th>
+					<th>乘客编号</th>
+					<th>出发地</th>
+					<th>目的地</th>
+					<th>乘客人数</th>
+					<th>订单类型</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
-               <tr>
-               
-               
-               
-               
-                   <td>
+			<s:iterator value="orders" var="object">
+               <tr id="<%="tr"+idNum%>">
+                   <!--<td>
                        <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
-                   </td>
+                   </td>  -->
+                   <td id="<%="td1"+idNum%>"><s:property value="#object.orderID"/></td>
+                   <td id="<%="td2"+idNum%>"><s:property value="#object.passenger.passengerID"/></td>
+                   <td id="<%="td3"+idNum%>"><s:property value="#object.start"/></td>
+                   <td id="<%="td4"+idNum%>"><s:property value="#object.destination"/></td>
+                   <td id="<%="td5"+idNum%>"><s:property value="#object.passnum"/></td>
+                   <td id="<%="td6"+idNum%>"><s:property value="#object.type"/></td>
+                   <td><button id="<%="btn"+idNum%>" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#orderModal">确认接单</button></td>
                </tr>
+            <% idNum++; %>
+            </s:iterator>
             </tbody>
 			
 		</table>
 		<div style=" text-align:center">
-		<button style="background-color:#009688;" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#接单Modal">确认接单</button>
 			<!-- 模态框（Modal） -->
-			<div class="modal fade" id="接单Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal fade" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-dialog">
 					<div class="modal-content">
+					<s:form method="post" action="ordertaking">
 						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal"
-								aria-hidden="true">&times;</button>
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 							<h4 class="modal-title" id="myModalLabel">请确认是否接单</h4>
 						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default"
-								data-dismiss="modal">取消</button>
-							<button type="button" class="btn btn-primary" style="background-color:#009688;">确认</button>
+						<div class="modal-body">
+								<div class="form-group">
+									<label>订单编号</label>
+									<input type="text" class="form-control" name="orderID" readonly="readonly" id="i1">
+								</div>
+								<div class="form-group">
+									<label>出发地</label>
+									<input type="text" class="form-control" name="start" readonly="readonly" id="i2">
+								</div>
+								<div class="form-group">
+									<label>目的地</label>
+									<input type="text" class="form-control" name="destination" readonly="readonly" id="i3">
+								</div>
+								<div class="form-group">
+									<label>乘客人数</label>
+									<input type="text" class="form-control" name="passnum" readonly="readonly" id="i4">
+								</div>
+								<div class="form-group">
+									<label>司机编号</label>
+									<s:property value="1"/>
+									<!--<s:property value="loginUser.driverID"/>-->
+								</div>
 						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+							<button type="submit" class="btn btn-primary">确认</button>
+						</div>
+						</s:form>
 					</div>
 					<!-- /.modal-content -->
 				</div>

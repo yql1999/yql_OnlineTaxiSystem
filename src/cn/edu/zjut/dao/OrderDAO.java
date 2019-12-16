@@ -1,9 +1,7 @@
 package cn.edu.zjut.dao;
 
-import java.util.List;
-
 import javax.persistence.Query;
-
+import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -14,6 +12,7 @@ public class OrderDAO extends BaseHibernateDAO implements IOrderDAO {
 		System.out.println("create OrderDao.");
 	}
 	public void save(Order transientInstance){
+		System.out.println(transientInstance.getPassenger().getPassengerID());
 		Transaction tran=null;
 		Session session=null;
 		try {
@@ -39,13 +38,31 @@ public class OrderDAO extends BaseHibernateDAO implements IOrderDAO {
 			throw re;
 		}
 	}
-	public List all() {
-		
+	public void update(Order transientInstance) {
+		Transaction tran=null;
+		Session session=null;
 		try {
-			String queryString ="from Order as user";
-			Query queryObject =getSession().createQuery(queryString);
+			session=getSession();
+			tran=session.beginTransaction();
+			session.update(transientInstance);
+			tran.commit();
+		}catch(RuntimeException re)
+		{
+			if(tran!=null)tran.rollback();
+			throw re;
+		}finally {
+			session.close();
+		}
+	}
+	
+	public List findorders(String hql) {
+		try {
+			System.out.println("finding orders by hql");
+			String queryString = hql;
+			Query queryObject = getSession().createQuery(queryString); 
 			return queryObject.getResultList();
-		}catch(RuntimeException re) {
+		} catch (RuntimeException re) {
+			System.out.println("finding orders by hql failed");
 			throw re;
 		}
 	}
