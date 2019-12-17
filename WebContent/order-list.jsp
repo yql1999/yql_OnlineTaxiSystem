@@ -23,12 +23,22 @@
     <script type="text/javascript" language="JavaScript">
     $(document).ready(function(){
 			<%for(i=0;i<100;i++){%>
+			//console.log("11111");
 				$("#btn<%=i%>").click(function(){
 					console.log("kaishi "+<%=i%>+"anniu ");
 					document.getElementById("i1").value=$("#<%="td1"+i%>").html();
 					document.getElementById("i2").value=$(<%="td3"+i%>).html();
 					document.getElementById("i3").value=$(<%="td4"+i%>).html();
 					document.getElementById("i4").value=$(<%="td5"+i%>).html();
+					document.getElementById("i5").value=$(<%="td6"+i%>).html();
+					document.getElementById("i6").value=$(<%="td7"+i%>).html();
+					document.getElementById("i7").value=$(<%="td8"+i%>).html();
+					document.getElementById("i8").value=$(<%="td9"+i%>).html();
+					document.getElementById("i9").value=$(<%="td10"+i%>).html();
+					document.getElementById("i10").value=$(<%="td11"+i%>).html();
+					document.getElementById("i11").value=$(<%="td12"+i%>).html();
+					document.getElementById("i12").value=$(<%="td13"+i%>).html();
+					document.getElementById("i13").value=$(<%="td2"+i%>).html();
 					$("#orderModal").modal("show");
 					return false;
 				});
@@ -76,19 +86,29 @@
 			</thead>
 			<tbody>
 			<s:iterator value="orders" var="object">
+			   <s:if test="#object.isCompleted==0">
                <tr id="<%="tr"+idNum%>">
                    <!--<td>
                        <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
                    </td>  -->
+                   
                    <td id="<%="td1"+idNum%>"><s:property value="#object.orderID"/></td>
                    <td id="<%="td2"+idNum%>"><s:property value="#object.passenger.passengerID"/></td>
                    <td id="<%="td3"+idNum%>"><s:property value="#object.start"/></td>
                    <td id="<%="td4"+idNum%>"><s:property value="#object.destination"/></td>
                    <td id="<%="td5"+idNum%>"><s:property value="#object.passnum"/></td>
                    <td id="<%="td6"+idNum%>"><s:property value="#object.type"/></td>
+                   <td id="<%="td7"+idNum%>" style="visibility: hidden; display: none;"><s:property value="#object.starttime"/></td>
+                   <td id="<%="td8"+idNum%>" style="visibility: hidden; display: none;"><s:property value="#object.endtime"/></td>
+                   <td id="<%="td9"+idNum%>" style="visibility: hidden; display: none;"><s:property value="#object.sum"/></td>
+                   <td id="<%="td10"+idNum%>" style="visibility: hidden; display: none;"><s:property value="#object.estimateptod"/></td>
+                   <td id="<%="td11"+idNum%>" style="visibility: hidden; display: none;"><s:property value="#object.estimatedtop"/></td>
+                   <td id="<%="td12"+idNum%>" style="visibility: hidden; display: none;"><s:property value="#object.isEstimated"/></td>
+                   <td id="<%="td13"+idNum%>" style="visibility: hidden; display: none;"><s:property value="#object.isCompleted"/></td>
                    <td><button id="<%="btn"+idNum%>" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#orderModal">确认接单</button></td>
                </tr>
             <% idNum++; %>
+            </s:if>
             </s:iterator>
             </tbody>
 			
@@ -106,25 +126,34 @@
 						<div class="modal-body">
 								<div class="form-group">
 									<label>订单编号</label>
-									<input type="text" class="form-control" name="orderID" readonly="readonly" id="i1">
+									<input type="text" class="form-control" name="order.orderID" readonly="readonly" id="i1"/>
 								</div>
 								<div class="form-group">
 									<label>出发地</label>
-									<input type="text" class="form-control" name="start" readonly="readonly" id="i2">
+									<input type="text" class="form-control" name="order.start" readonly="readonly" id="i2"/>
 								</div>
 								<div class="form-group">
 									<label>目的地</label>
-									<input type="text" class="form-control" name="destination" readonly="readonly" id="i3">
+									<input type="text" class="form-control" name="order.destination" readonly="readonly" id="i3"/>
 								</div>
 								<div class="form-group">
 									<label>乘客人数</label>
-									<input type="text" class="form-control" name="passnum" readonly="readonly" id="i4">
+									<input type="text" class="form-control" name="order.passnum" readonly="readonly" id="i4"/>
 								</div>
 								<div class="form-group">
 									<label>司机编号</label>
-									<s:property value="1"/>
+									<input type="text" class="form-control" name ="order.driver.driverID" readonly="readonly" value="1"/>
 									<!--<s:property value="loginUser.driverID"/>-->
 								</div>
+								<input type="text" class="form-control" name="order.type" readonly="readonly" style="visibility: hidden; display: none;" id="i5"/>
+								<input type="text" class="form-control" name="order.starttime" readonly="readonly" style="visibility: hidden; display: none;" id="i6"/>
+								<input type="text" class="form-control" name="order.endtime" readonly="readonly" style="visibility: hidden; display: none;" id="i7"/>
+								<input type="text" class="form-control" name="order.sum" readonly="readonly" style="visibility: hidden; display: none;" id="i8"/>
+								<input type="text" class="form-control" name="order.estimateptod" readonly="readonly" style="visibility: hidden; display: none;" id="i9"/>
+								<input type="text" class="form-control" name="order.estimatedtop" readonly="readonly" style="visibility: hidden; display: none;" id="i10"/>
+								<input type="text" class="form-control" name="order.isEstimated" readonly="readonly" style="visibility: hidden; display: none;" id="i11"/>
+								<input type="text" class="form-control" name="order.isCompleted" readonly="readonly" style="visibility: hidden; display: none;" id="i12"/>
+								<input type="text" class="form-control" name="order.passenger.passengerID" readonly="readonly" style="visibility: hidden; display: none;" id="i13"/>
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>

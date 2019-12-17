@@ -30,13 +30,12 @@
 		<property name="password" type="string">
 			<column name="password" length="20"/>
 		</property>
+		<property name="telephone" type="string">
+			<column name="telephone" length="20"/>
+		</property>
 		<!--  <property name="carID" type="int">
 			<column name="carID"/>
 		</property>-->
-		 <set name="orders" lazy="false" cascade="all" inverse="true">
-		 	<key column="driverID" not-null="true"/>
-		 	<one-to-many class="cn.edu.zjut.po.Order"/>
-		 </set>
 		<one-to-one name="car" constrained="true"/>
 	</class>
 </hibernate-mapping>

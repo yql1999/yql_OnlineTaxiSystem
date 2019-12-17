@@ -24,6 +24,7 @@ public class OrderAction {
 	}
 	
 	public String findorders() {
+		System.out.println("findorders method start");
 		orders=orderService.findorders();
 		System.out.println("Item Action executed!");
 		Iterator<List> it=orders.iterator();

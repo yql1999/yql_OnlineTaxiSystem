@@ -10,14 +10,14 @@ public class Passenger {
 	private String account;
 	private String password;
 	private double remain;
-	
+	private String telephone;
 	public Passenger() {}
 	
 	public Passenger(int passengerID) {
 		this.setPassengerID(passengerID);
 	}
 	
-	public Passenger(int passengerID, String name, String nickname, boolean gender, int age, String idnumber, String account, String password, double remain) {
+	public Passenger(int passengerID, String name, String nickname, boolean gender, int age, String idnumber, String account, String password, double remain,String telephone) {
 		this.setPassengerID(passengerID);
 		this.setName(name);
 		this.setNickname(nickname);
@@ -27,6 +27,7 @@ public class Passenger {
 		this.setAccount(account);
 		this.setPassword(password);
 		this.setRemain(remain);
+		this.setTelephone(telephone);
 	}
 
 	public int getPassengerID() {
@@ -99,6 +100,14 @@ public class Passenger {
 
 	public void setRemain(double remain) {
 		this.remain = remain;
+	}
+
+	public String getTelephone() {
+		return telephone;
+	}
+
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
 	}
 	
 }

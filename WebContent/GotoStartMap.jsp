@@ -88,13 +88,13 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        <h4 class="modal-title" id="myModalLabel">乘客信息</h4>
       </div>
       <div class="modal-body">
                 <form id="updateform" action="getPassenger" >
                     <div class="form-group">
                         <label for="loginname" class="control-label">用户名:</label>
-                        <input type="text" class="form-control" id="loginname" name="loginname">
+                        <input type="text" class="form-control" id="loginname" name="order.passenger.nickname">
                     </div>
                     <div class="form-group">
                         <label for="email" class="control-label">联系方式:</label>
@@ -106,7 +106,7 @@
                     </div>
                     <div class="form-group">
                         <label for="address" class="control-label">终点:</label>
-                        <textarea class="form-control" id="address" name="address"></textarea>
+                        <input class="form-control" id="address" name="address"></textarea>
                     </div>
                     <div class="text-right">
                         <span id="returnMessage" class="glyphicon"> </span>

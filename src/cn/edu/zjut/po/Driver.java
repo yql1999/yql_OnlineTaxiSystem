@@ -13,11 +13,8 @@ public class Driver {
 	private int experience;
 	private String account;
 	private String password;
-	//private int carID;
 	private Car car;
-	private Order order;
-	private int orderID;
-	private Set<Order> orders = new HashSet<Order>();
+	private String telephone;
 	
 	public Driver() {}
 	
@@ -25,7 +22,7 @@ public class Driver {
 		this.setDriverID(driverID);
 	}
 	
-	public Driver(int driverID, String name, boolean gender, int age, String idnumber, String license, int experience, String account, String password, Car car) {
+	public Driver(int driverID, String name, boolean gender, int age, String idnumber, String license, int experience, String account, String password, Car car,String telephone) {
 		this.setDriverID(driverID);
 		this.setName(name);
 		this.setGender(gender);
@@ -36,6 +33,7 @@ public class Driver {
 		this.setAccount(account);
 		this.setPassword(password);
 		this.setCar(car);
+		this.setTelephone(telephone);
 		//this.setCarID(carID);
 	}
 
@@ -119,35 +117,12 @@ public class Driver {
 		this.car = car;
 	}
 
-	public Order getOrder() {
-		return order;
+	public String getTelephone() {
+		return telephone;
 	}
 
-	public void setOrder(Order order) {
-		this.order = order;
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
 	}
 
-	public int getOrderID() {
-		return orderID;
-	}
-
-	public void setOrderID(int orderID) {
-		this.orderID = orderID;
-	}
-
-	public Set<Order> getOrders() {
-		return orders;
-	}
-
-	public void setOrders(Set<Order> orders) {
-		this.orders = orders;
-	}
-
-//	public int getCarID() {
-//		return carID;
-//	}
-//
-//	public void setCarID(int carID) {
-//		this.carID = carID;
-//	}
 }

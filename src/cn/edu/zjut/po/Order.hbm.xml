@@ -39,6 +39,12 @@
 		<property name="estimatedtop" type="java.lang.Double">
 			<column name="estimatedtop"/>
 		</property>
+		<property name="isEstimated" type="java.lang.Boolean">
+			<column name="isEstimated"/>
+		</property>
+		<property name="isCompleted" type="int">
+			<column name="isCompleted"/>
+		</property>
 		<many-to-one column="passengerID" name="passenger" unique="true" cascade="none"/>
 		<!--<many-to-one column="driverID" name="driver" inverse="true" unique="true" cascade="none"/>-->
 		<many-to-one name="driver" class="cn.edu.zjut.po.Driver" fetch="select" unique="true">

@@ -30,5 +30,8 @@
 		<property name="remain" type="double">
 			<column name="remain"/>
 		</property>
+		<property name="telephone" type="string">
+			<column name="telephone" length="20"/>
+		</property>
 	</class>
 </hibernate-mapping>

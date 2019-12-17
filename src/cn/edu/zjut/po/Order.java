@@ -18,6 +18,8 @@ public class Order {
 	private Double sum;
 	private Double estimateptod;
 	private Double estimatedtop;
+	private Boolean isEstimated;
+	private int isCompleted;
 	
 	public Double getSum() {
 		return sum;
@@ -33,7 +35,7 @@ public class Order {
 		this.setOrderID(orderID);
 	}
 	
-	public Order(int orderID, String start, String destination, Date starttime, Date endtime, int passnum, String type, double sum, Driver driver, Passenger passenger, double estimateptod, double estimatedtop) {
+	public Order(int orderID, String start, String destination, Date starttime, Date endtime, int passnum, String type, double sum, Driver driver, Passenger passenger, double estimateptod, double estimatedtop,Boolean isEstimated,int isCompleted) {
 		this.setOrderID(orderID);
 		this.setStart(start);
 		this.setDestination(destination);
@@ -49,6 +51,8 @@ public class Order {
 		this.setPassenger(passenger);
 		this.setEstimatedtop(estimatedtop);
 		this.setEstimateptod(estimateptod);
+		this.setIsEstimated(isEstimated);
+		this.setIsCompleted(isCompleted);
 	}
 
 	public int getOrderID() {
@@ -139,5 +143,21 @@ public class Order {
 		this.estimatedtop = estimatedtop;
 	}
 
+	public Boolean getIsEstimated() {
+		return isEstimated;
+	}
+
+	public void setIsEstimated(Boolean isEstimated) {
+		this.isEstimated = isEstimated;
+	}
+
+	public int getIsCompleted() {
+		return isCompleted;
+	}
+
+	public void setIsCompleted(int isCompleted) {
+		this.isCompleted = isCompleted;
+	}
 	
+		
 }
