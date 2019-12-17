@@ -23,6 +23,12 @@ public class PassengerService implements IPassengerService{
 		}
 		return false;
 	}
+	public Passenger findbyId(int id) {
+		System.out.println("before Passenger findbyId");
+		Passenger temp=passengerDAO.findbyId(id);
+		System.out.println("after Passenger findbyId");
+		return temp;
+	}
 	public IPassengerDAO getPassengerDAO() {
 		return passengerDAO;
 	}

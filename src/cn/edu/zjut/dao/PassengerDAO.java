@@ -41,10 +41,10 @@ public class PassengerDAO extends BaseHibernateDAO implements IPassengerDAO {
 				throw re;
 			}
 		}
-		public Passenger findbyId(Passenger transientInstance) {
+		public Passenger findbyId(int id) {
 			try {
 				String hql="from Passenger as user where passengerID=";
-				String queryString=hql+transientInstance.getPassengerID();
+				String queryString=hql+id;
 				Query queryObject=getSession().createQuery(queryString);
 				return (Passenger)queryObject.getResultList().get(0);
 			}catch(RuntimeException re) {

@@ -9,4 +9,5 @@ public interface IOrderDAO {
 	public Order findbyId(Order transientInstance);
 	public void update(Order transientInstance);
 	public List findorders(String hql);
+	
 }

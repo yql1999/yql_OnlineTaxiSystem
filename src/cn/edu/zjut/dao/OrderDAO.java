@@ -30,7 +30,7 @@ public class OrderDAO extends BaseHibernateDAO implements IOrderDAO {
 	}
 	public Order findbyId(Order transientInstance) {
 		try {
-			String hql="from Order as user where account=";
+			String hql="from Order as user where orderID=";
 			String queryString=hql+transientInstance.getOrderID();
 			Query queryObject=getSession().createQuery(queryString);
 			return (Order)queryObject.getResultList().get(0);

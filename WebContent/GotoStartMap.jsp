@@ -67,6 +67,7 @@
   <p id='result' style="visibility:hidden"></p><hr>
   <p style="visibility:hidden">由于众多浏览器已不再支持非安全域的定位请求，为保位成功率和精度，请升级您的站点到HTTPS。</p>
 </div>
+<s:property  value="order.passenger.nickname"/>
 <form style="absolute">
 	<input type="text" id="minute" name="minute">
 	<input type="text" id="distance" name="distance">
@@ -91,29 +92,30 @@
         <h4 class="modal-title" id="myModalLabel">乘客信息</h4>
       </div>
       <div class="modal-body">
-                <form id="updateform" action="getPassenger" >
+                <s:form id="updateform" action="getPassenger" >
+                	<s:property  value="#order.passenger.nickname"/>
                     <div class="form-group">
                         <label for="loginname" class="control-label">用户名:</label>
-                        <input type="text" class="form-control" id="loginname" name="order.passenger.nickname">
+                        <input type="text" class="form-control" id="nickname" name="order.passenger.nickname">
                     </div>
                     <div class="form-group">
                         <label for="email" class="control-label">联系方式:</label>
-                        <input type="text" class="form-control" id="email" name="email">
+                        <input type="text" class="form-control" id="telephone" name="order.passenger.telephone">
                     </div>
                     <div class="form-group">
                         <label for="phone" class="control-label">起点:</label>
-                        <input type="text" class="form-control" id="phone" name="phone">
+                        <input type="text" class="form-control" id="phone" name="order.start">
                     </div>
                     <div class="form-group">
                         <label for="address" class="control-label">终点:</label>
-                        <input class="form-control" id="address" name="address"></textarea>
+                        <input class="form-control" id="address" name="order.destination"></textarea>
                     </div>
                     <div class="text-right">
                         <span id="returnMessage" class="glyphicon"> </span>
                         <button type="button" class="btn btn-default right" data-dismiss="modal">关闭</button>
                         <button id="submitBtn" type="submit" class="btn btn-primary"" >已接到乘客</button>
                     </div>
-                </form>
+                </s:form>
       </div>
     </div>
   </div>

@@ -45,7 +45,10 @@
 		<property name="isCompleted" type="int">
 			<column name="isCompleted"/>
 		</property>
-		<many-to-one column="passengerID" name="passenger" unique="true" cascade="none"/>
+		<!--  <many-to-one column="passengerID" name="passenger" unique="true" cascade="none"/>-->
+		<many-to-one name="passenger" class="cn.edu.zjut.po.Passenger" fetch="select" unique="true">
+			<column name="passengerID" not-null="true"/>
+		</many-to-one>
 		<!--<many-to-one column="driverID" name="driver" inverse="true" unique="true" cascade="none"/>-->
 		<many-to-one name="driver" class="cn.edu.zjut.po.Driver" fetch="select" unique="true">
 			<column name="driverID" not-null="true"/>

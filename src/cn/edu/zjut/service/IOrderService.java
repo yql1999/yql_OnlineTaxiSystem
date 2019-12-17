@@ -8,5 +8,6 @@ public interface IOrderService {
 	public void save(Order transientInstance);
 	public void ordertake(Order transientInstance);
 	public List findorders();
+	public Order findbyId(Order transientInstance);
 	
 }

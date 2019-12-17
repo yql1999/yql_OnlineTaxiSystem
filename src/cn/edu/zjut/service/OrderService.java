@@ -27,6 +27,10 @@ public class OrderService implements IOrderService {
 		return list;
 	}
 	
+	public Order findbyId(Order transientInstance) {
+		Order temp=orderDAO.findbyId(transientInstance);
+		return temp;
+	}
 	public IOrderDAO getOrderDAO() {
 		return orderDAO;
 	}
