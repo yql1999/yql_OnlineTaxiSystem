@@ -28,8 +28,8 @@ public class OrderAction {
 		Passenger p=new Passenger();
 		p=passengerService.findbyId(i);
 		order.setPassenger(p);
-
-		orderService.ordertake(order);
+		order.setIsCompleted(1);
+		orderService.update(order);
 		System.out.println("ordertake"+" "+order.getPassenger().getNickname());
 		return "success";
 	}
@@ -38,27 +38,28 @@ public class OrderAction {
 		System.out.println("findorders method start");
 		orders=orderService.findorders();
 		System.out.println("Item Action executed!");
-		/*for(Order a : (List<Order>)orders) {
-			Passenger temp=passengerService.findbyId(a.getPassenger());
-			a.setPassenger(temp);
-		}*/
-		Iterator<List> it=orders.iterator();
+
+		/*Iterator<List> it=orders.iterator();
 		Order t=new Order();
-		//t=(Order)it.next();
-		//order=t;
 		while(it.hasNext()) {
 			t=(Order)it.next();
-			//it->passenger=passengerService.findbyId(t.getPassenger());
 			System.out.println(t.getOrderID());
 			System.out.println(t.getStart());
 			System.out.println(t.getDestination());
-			System.out.println(t.getPassenger().getNickname());
-
-			
-		}
+			System.out.println(t.getPassenger().getNickname());		
+		}*/
 		return "success";
 	}
-
+	
+	public String getpassenger() {
+		//仔细想了想，好像不用改什么，先放着
+		return "success";
+	}
+	public String cancelorder() {
+		order.setIsCompleted(0);
+		orderService.update(order);
+		return "success";
+	}
 	public Order getOrder() {
 		return order;
 	}

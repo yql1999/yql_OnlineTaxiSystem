@@ -17,7 +17,7 @@ public class OrderService implements IOrderService {
 		orderDAO.save(transientInstance);
 	}
 	
-	public void ordertake(Order transientInstance) {
+	public void update(Order transientInstance) {
 		orderDAO.update(transientInstance);
 	}
 	

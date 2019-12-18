@@ -19,7 +19,7 @@ public class Order {
 	private Double estimateptod;
 	private Double estimatedtop;
 	private Boolean isEstimated;
-	private int isCompleted;
+	private int isCompleted;//0代表未接单，1代表已接单，2代表已完成
 	
 	public Double getSum() {
 		return sum;

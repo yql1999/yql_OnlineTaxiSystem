@@ -67,19 +67,28 @@
   <p id='result' style="visibility:hidden"></p><hr>
   <p style="visibility:hidden">由于众多浏览器已不再支持非安全域的定位请求，为保位成功率和精度，请升级您的站点到HTTPS。</p>
 </div>
-<s:property  value="order.passenger.nickname"/>
+<!--<s:property  value="order.passenger.nickname"/>
 <form style="absolute">
 	<input type="text" id="minute" name="minute">
 	<input type="text" id="distance" name="distance">
 	<input type="submit" value="提交">
-</form>
-<s:text var="start" name="xxxx.start"/>
-<s:text var="destination" name="xxxx.destination"/>
+</form>-->
+<table>
+	<tr>
+		<td id="td1"><s:property value="order.passenger.nickname"/></td>
+		<td id="td2"><s:property value="order.passenger.telephone"/></td>
+		<td id="td3"><s:property value="order.start"/></td>
+		<td id="td4"><s:property value="order.destination"/></td>
+		<td id="td5"></td>
+		<td id="td6"></td>
+
+	</tr>
+</table>
 <!-- Button trigger modal -->
-<button type="button" class="layui-btn connection" data-toggle="modal" data-target="#myModal">
+<button type="button" id="btn1" class="layui-btn connection" data-toggle="modal" data-target="#myModal">
 联系用户
 </button>
-<button type="button" class="layui-btn layui-btn-danger cancel" data-toggle="modal" data-target="#myModal1">
+<button type="button" id="btn2" class="layui-btn layui-btn-danger cancel" data-toggle="modal" data-target="#myModal1">
 取消订单
 </button>
  
@@ -92,30 +101,30 @@
         <h4 class="modal-title" id="myModalLabel">乘客信息</h4>
       </div>
       <div class="modal-body">
-                <s:form id="updateform" action="getPassenger" >
+                <form id="updateform" action="getpassenger" >
                 	<s:property  value="#order.passenger.nickname"/>
                     <div class="form-group">
                         <label for="loginname" class="control-label">用户名:</label>
-                        <input type="text" class="form-control" id="nickname" name="order.passenger.nickname">
+                        <input type="text" class="form-control" id="nickname" name="nickname" readonly="readonly">
                     </div>
                     <div class="form-group">
                         <label for="email" class="control-label">联系方式:</label>
-                        <input type="text" class="form-control" id="telephone" name="order.passenger.telephone">
+                        <input type="text" class="form-control" id="telephone" name="telephone" readonly="readonly">
                     </div>
                     <div class="form-group">
                         <label for="phone" class="control-label">起点:</label>
-                        <input type="text" class="form-control" id="phone" name="order.start">
+                        <input type="text" class="form-control" id="start" name="start" readonly="readonly">
                     </div>
                     <div class="form-group">
                         <label for="address" class="control-label">终点:</label>
-                        <input class="form-control" id="address" name="order.destination"></textarea>
+                        <input class="form-control" id="destination" name="destination" readonly="readonly">
                     </div>
                     <div class="text-right">
                         <span id="returnMessage" class="glyphicon"> </span>
                         <button type="button" class="btn btn-default right" data-dismiss="modal">关闭</button>
                         <button id="submitBtn" type="submit" class="btn btn-primary"" >已接到乘客</button>
                     </div>
-                </s:form>
+               </form>
       </div>
     </div>
   </div>
@@ -125,25 +134,25 @@
     <div class="modal-content">
       <div class="modal-header btn-danger">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-        <h4 class="modal-title " id="myModalLabel">确认要取消订单吗！！！</h4>
+        <h4 class="modal-title " id="myModalLabel">确认要取消订单吗！！！(无故取消会被给予低评分)</h4>
       </div>
       <div class="modal-body">
-                <form id="updateform" action="getPassenger" >
+                <form id="cancelorder" action="cancelorder" >
                     <div class="form-group">
                         <label for="loginname" class="control-label">用户名:</label>
-                        <input type="text" class="form-control" id="loginname" name="loginname">
+                        <input type="text" class="form-control" id="nickname1" name="loginname" readonly="readonly">
                     </div>
                     <div class="form-group">
                         <label for="email" class="control-label">联系方式:</label>
-                        <input type="text" class="form-control" id="email" name="email">
+                        <input type="text" class="form-control" id="telephone1" name="email" readonly="readonly">
                     </div>
                     <div class="form-group">
                         <label for="phone" class="control-label">起点:</label>
-                        <input type="text" class="form-control" id="phone" name="phone">
+                        <input type="text" class="form-control" id="start1" name="phone" readonly="readonly">
                     </div>
                     <div class="form-group">
                         <label for="address" class="control-label">终点:</label>
-                        <textarea class="form-control" id="address" name="address"></textarea>
+                        <input type="text" class="form-control" id="destination1" name="phone" readonly="readonly">
                     </div>
                     <div class="text-right">
                         <span id="returnMessage" class="glyphicon"> </span>
@@ -274,10 +283,12 @@
       // result 即是对应的驾车导航信息，相关数据结构文档请参考  https://lbs.amap.com/api/javascript-api/reference/route-search#m_DrivingResult
       if (status === 'complete') {
         log.success('绘制驾车路线完成')
+        get();
       } else {
         log.error('获取驾车数据失败：' + result)
       }
     });
+    
     
   }
   function onComplete1(data) {
@@ -363,7 +374,7 @@
 	  driving.search(new AMap.LngLat(path[0].Q,path[0].P),new AMap.LngLat(path[1].Q,path[1].P),function(status, result) {
 	      // result 即是对应的驾车导航信息，相关数据结构文档请参考  https://lbs.amap.com/api/javascript-api/reference/route-search#m_DrivingResult
 	      if (status === 'complete') {
-	    	  get()
+	    	  get();
 	        log.success('绘制驾车路线完成')
 	      } else {
 	        log.error('获取驾车数据失败：' + result)
@@ -373,8 +384,8 @@
   }
   function get(){
 	  var blank="";
-	  document.getElementById("minute").value=blank;
-	  document.getElementById("distance").value=blank;
+	  document.getElementById("td5").value=blank;
+	  document.getElementById("td6").value=blank;
 	  //获取panel上的时间距离，并更新时间和距离的隐藏表单
 	  var demo = document.getElementsByClassName("planTitle");
 	  var p=demo[0].getElementsByTagName("p");
@@ -385,10 +396,22 @@
 	  console.log(minute);
 	  var distancelocation=text.indexOf(")");
 	  var distance=text.substring(minutelocation+1,distancelocation);
-	  document.getElementById("minute").value=minute;
-	  document.getElementById("distance").value=distance;
+	  document.getElementById("td5").innerHTML=minute;
+	  document.getElementById("td6").innerHTML=distance;
 	  console.log(distance);
 	  console.log(AMap.GeometryUtil.distance(path[0], path[1]));
+  }
+  $("#btn1").click(function(){console.log("btn1");set();});
+  $("#btn2").click(function(){console.log("btn2");set();});
+  function set(){
+	  document.getElementById("nickname").value=document.getElementById("td1").innerHTML;
+	  document.getElementById("telephone").value=document.getElementById("td2").innerHTML;
+	  document.getElementById("start").value=document.getElementById("td3").innerHTML;
+	  document.getElementById("destination").value=document.getElementById("td4").innerHTML;
+	  document.getElementById("nickname1").value=document.getElementById("td1").innerHTML;
+	  document.getElementById("telephone1").value=document.getElementById("td2").innerHTML;
+	  document.getElementById("start1").value=document.getElementById("td3").innerHTML;
+	  document.getElementById("destination1").value=document.getElementById("td4").innerHTML;
   }
 </script>
 </body>

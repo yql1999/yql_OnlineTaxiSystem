@@ -6,7 +6,7 @@ import cn.edu.zjut.po.Order;
 
 public interface IOrderService {
 	public void save(Order transientInstance);
-	public void ordertake(Order transientInstance);
+	public void update(Order transientInstance);
 	public List findorders();
 	public Order findbyId(Order transientInstance);
 	

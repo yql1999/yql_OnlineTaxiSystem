@@ -27,5 +27,11 @@
 		<action name="findorders" class="orderAction" method="findorders">
 			<result name="success">/order-list.jsp</result>
 		</action>
+		<action name="getpassenger" class="orderAction" method="getpassenger">
+			<result name="success">/GotoDestinationMap.jsp</result>
+		</action>
+		<action name="cancelorder" class="orderAction" method="cancelorder">
+			<result name="success">/order-list.jsp</result>
+		</action>
 	</package>
 </struts>
