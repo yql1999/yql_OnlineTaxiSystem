@@ -15,6 +15,9 @@ public class Driver {
 	private String password;
 	private Car car;
 	private String telephone;
+	private Double score;
+	private Double longitude;
+	private Double latitude;
 	
 	public Driver() {}
 	
@@ -22,7 +25,7 @@ public class Driver {
 		this.setDriverID(driverID);
 	}
 	
-	public Driver(int driverID, String name, boolean gender, int age, String idnumber, String license, int experience, String account, String password, Car car,String telephone) {
+	public Driver(int driverID, String name, boolean gender, int age, String idnumber, String license, int experience, String account, String password, Car car,String telephone,Double score,Double longitude,Double latitude) {
 		this.setDriverID(driverID);
 		this.setName(name);
 		this.setGender(gender);
@@ -34,6 +37,9 @@ public class Driver {
 		this.setPassword(password);
 		this.setCar(car);
 		this.setTelephone(telephone);
+		this.setScore(score);
+		this.setLongitude(longitude);
+		this.setLatitude(latitude);
 		//this.setCarID(carID);
 	}
 
@@ -125,4 +131,28 @@ public class Driver {
 		this.telephone = telephone;
 	}
 
+	public Double getScore() {
+		return score;
+	}
+
+	public void setScore(Double score) {
+		this.score = score;
+	}
+
+	public Double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(Double longitude) {
+		this.longitude = longitude;
+	}
+
+	public Double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(Double latitude) {
+		this.latitude = latitude;
+	}
+	
 }

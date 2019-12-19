@@ -33,6 +33,15 @@
 		<property name="telephone" type="string">
 			<column name="telephone" length="20"/>
 		</property>
+		<property name="score" type="java.lang.Double">
+			<column name="score"/>
+		</property>
+		<property name="longitude" type="java.lang.Double">
+			<column name="longitude"/>
+		</property>
+		<property name="latitude" type="java.lang.Double">
+			<column name="latitude"/>
+		</property>
 		<!--  <property name="carID" type="int">
 			<column name="carID"/>
 		</property>-->
