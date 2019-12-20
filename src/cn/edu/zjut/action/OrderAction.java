@@ -9,7 +9,7 @@ import cn.edu.zjut.po.Passenger;
 import cn.edu.zjut.service.IOrderService;
 import cn.edu.zjut.service.IPassengerService;
 import cn.edu.zjut.service.DriverService;
-import cn.edu.zjut.service.PassengerService;
+import cn.edu.zjut.service.ManagerService;
 
 public class OrderAction {
 	private Order order;

@@ -52,7 +52,7 @@
 						<a onclick="x_admin_show('修改个人信息','passenger_update.jsp',800,600)">修改个人信息</a>
 					</dd>
 					<dd>
-						<a href="login.jsp">退出登录</a>
+						<a href="Login.jsp">退出登录</a>
 					</dd>
 				</dl></li>
 			<li class="layui-nav-item to-index"><a

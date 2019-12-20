@@ -49,10 +49,10 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 		<property name="carDAO" ref="carDAO"/>
 	</bean>
 	<bean id="driverService" class="cn.edu.zjut.service.DriverService">
-		<property name="driverDAO" ref="driverDAO"/>
+		<property name="DriverDAO" ref="driverDAO"/>
 	</bean>
 	<bean id="passengerService" class="cn.edu.zjut.service.PassengerService">
-		<property name="passengerDAO" ref="passengerDAO"/>
+		<property name="PassengerDAO" ref="passengerDAO"/>
 	</bean>
 	<bean id="managerService" class="cn.edu.zjut.service.ManagerService">
 		<property name="managerDAO" ref="managerDAO"/>

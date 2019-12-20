@@ -4,20 +4,20 @@ import cn.edu.zjut.dao.IPassengerDAO;
 import cn.edu.zjut.po.Passenger;
 
 public class PassengerService implements IPassengerService{
-	private IPassengerDAO passengerDAO=null;
+	private IPassengerDAO PassengerDAO=null;
 	public PassengerService() {
 		System.out.println("create UserService.");
 	}
 	public void setCustomerDAO(IPassengerDAO passengerDAO) {
 		System.out.println("--setCustomerDAO--");
-		this.passengerDAO=passengerDAO;
+		this.PassengerDAO=passengerDAO;
 	}
 	public void register(Passenger transientInstance) {
 		System.out.println("execute--register()--method.");
-		passengerDAO.save(transientInstance);
+		PassengerDAO.save(transientInstance);
 	}
 	public Boolean login(Passenger transientInstance) {
-		Passenger temp=passengerDAO.findbyaccount(transientInstance);
+		Passenger temp=PassengerDAO.findbyaccount(transientInstance);
 		if(transientInstance.getPassword().equals(temp.getPassword())) {
 			return true;
 		}
@@ -25,15 +25,15 @@ public class PassengerService implements IPassengerService{
 	}
 	public Passenger findbyId(int id) {
 		System.out.println("before Passenger findbyId");
-		Passenger temp=passengerDAO.findbyId(id);
+		Passenger temp=PassengerDAO.findbyId(id);
 		System.out.println("after Passenger findbyId");
 		return temp;
 	}
 	public IPassengerDAO getPassengerDAO() {
-		return passengerDAO;
+		return PassengerDAO;
 	}
 	public void setPassengerDAO(IPassengerDAO passengerDAO) {
-		this.passengerDAO = passengerDAO;
+		this.PassengerDAO = passengerDAO;
 	}
 	
 }
