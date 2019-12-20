@@ -66,21 +66,28 @@
   <p id='result' style="visibility:hidden"></p><hr>
   <p style="visibility:hidden">由于众多浏览器已不再支持非安全域的定位请求，为保位成功率和精度，请升级您的站点到HTTPS。</p>
 </div>
-<form style="absolute">
+<!-- <form style="absolute">
 	<input type="text" id="minute" name="minute">
 	<input type="text" id="distance" name="distance">
 	<input type="submit" value="提交">
-</form>
-<s:text var="start" name="xxxx.start"/>
-<s:text var="destination" name="xxxx.destination"/>
-
+</form> -->
+<table>
+	<tr>
+		<td id="td1"><s:property value="order.passenger.nickname"/></td>
+		<td id="td2"><s:property value="order.passenger.telephone"/></td>
+		<td id="td3"><s:property value="order.start"/></td>
+		<td id="td4"><s:property value="order.destination"/></td>
+		<td id="td5"></td>
+		<td id="td6"></td>
+	</tr>
+</table>
 <form action="warning" method="post">
 	<input type="text" id="location" name="location" style="visibility:hidden">
 	<input type="text" id="destination" name="destination" style="visibility:hidden">
-	<button type="submit" class="alert1 layui-btn layui-btn-danger">报警</button>
+	<button type="submit" id="btn1" class="alert1 layui-btn layui-btn-danger">报警</button>
 </form>
 
-<button type="button" class="layui-btn  connection" data-toggle="modal" data-target="#myModal">
+<button type="button" id="btn2" class="layui-btn  connection" data-toggle="modal" data-target="#myModal">
 确认送达
 </button>
  
@@ -90,15 +97,29 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        <h4 class="modal-title" id="myModalLabel">确认送达客户?<br>擅自结束订单可能会收到低星评价！</h4>
       </div>
       <div class="modal-body">
                 <form id="updateform" action="arrive" >
                     <div class="form-group">
-                        <label for="loginname" class="control-label">确认送达客户?<br>擅自结束订单可能会收到低星评价！</label>
-                       
+                        <label for="loginname" class="control-label">用户名:</label>
+                        <input type="text" class="form-control" id="nickname" name="nickname" readonly="readonly">
                     </div>
-                    
+                    <div class="form-group">
+                        <label for="email" class="control-label">联系方式:</label>
+                        <input type="text" class="form-control" id="telephone" name="telephone" readonly="readonly">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone" class="control-label">起点:</label>
+                        <input type="text" class="form-control" id="start" name="start" readonly="readonly">
+                    </div>
+                    <div class="form-group">
+                        <label for="address" class="control-label">终点:</label>
+                        <input class="form-control" id="destination" name="destination" readonly="readonly">
+                    </div>
+                   	<div class="form-group" style="visibility: hidden; display: none;">
+                   		<input class="form-control" id="isCompleted" name="isCompleted" value="2">
+                   	</div> 
                     <div class="text-right">
                         <span id="returnMessage" class="glyphicon"> </span>
                         <button type="button" class="btn btn-default right" data-dismiss="modal">关闭</button>
@@ -234,6 +255,7 @@
       // result 即是对应的驾车导航信息，相关数据结构文档请参考  https://lbs.amap.com/api/javascript-api/reference/route-search#m_DrivingResult
       if (status === 'complete') {
         log.success('绘制驾车路线完成')
+        get();
       } else {
         log.error('获取驾车数据失败：' + result)
       }
@@ -328,7 +350,7 @@
 	  driving.search(new AMap.LngLat(path[0].Q,path[0].P),new AMap.LngLat(path[1].Q,path[1].P),function(status, result) {
 	      // result 即是对应的驾车导航信息，相关数据结构文档请参考  https://lbs.amap.com/api/javascript-api/reference/route-search#m_DrivingResult
 	      if (status === 'complete') {
-	    	  get()
+	    	  get();
 	        log.success('绘制驾车路线完成')
 	      } else {
 	        log.error('获取驾车数据失败：' + result)
@@ -338,8 +360,8 @@
   }
   function get(){
 	  var blank="";
-	  document.getElementById("minute").value=blank;
-	  document.getElementById("distance").value=blank;
+	  document.getElementById("td5").value=blank;
+	  document.getElementById("td6").value=blank;
 	  //获取panel上的时间距离，并更新时间和距离的隐藏表单
 	  var demo = document.getElementsByClassName("planTitle");
 	  var p=demo[0].getElementsByTagName("p");
@@ -350,10 +372,22 @@
 	  console.log(minute);
 	  var distancelocation=text.indexOf(")");
 	  var distance=text.substring(minutelocation+1,distancelocation);
-	  document.getElementById("minute").value=minute;
-	  document.getElementById("distance").value=distance;
+	  document.getElementById("td5").value=minute;
+	  document.getElementById("td6").value=distance;
 	  console.log(distance);
 	  console.log(AMap.GeometryUtil.distance(path[0], path[1]));
+  }
+  $("#btn1").click(function(){console.log("btn1");set();});
+  $("#btn2").click(function(){console.log("btn2");set();});
+  function set(){
+	  document.getElementById("nickname").value=document.getElementById("td1").innerHTML;
+	  document.getElementById("telephone").value=document.getElementById("td2").innerHTML;
+	  document.getElementById("start").value=document.getElementById("td3").innerHTML;
+	  document.getElementById("destination").value=document.getElementById("td4").innerHTML;
+	  document.getElementById("nickname1").value=document.getElementById("td1").innerHTML;
+	  document.getElementById("telephone1").value=document.getElementById("td2").innerHTML;
+	  document.getElementById("start1").value=document.getElementById("td3").innerHTML;
+	  document.getElementById("destination1").value=document.getElementById("td4").innerHTML;
   }
 </script>
 </body>
