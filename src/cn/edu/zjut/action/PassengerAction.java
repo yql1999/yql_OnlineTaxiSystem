@@ -4,30 +4,32 @@ import cn.edu.zjut.po.Passenger;
 import cn.edu.zjut.service.IPassengerService;
 
 public class PassengerAction {
-	private Passenger loginUser;
-	private IPassengerService userService=null;
-	
+	private Passenger loginPassenger;
+	private IPassengerService passengerService=null;
+	public PassengerAction() {
+		System.out.println("create PassengerAction.");
+	}
 	
 	public String register() {
-		userService.register(loginUser);
+		passengerService.register(loginPassenger);
 		return "success";
 	}
 	public String login() {
-		if(userService.login(loginUser))
+		if(passengerService.login(loginPassenger))
 			return "success";
 		return "fail";
 	}
 	public Passenger getLoginUser() {
-		return loginUser;
+		return loginPassenger;
 	}
 	public void setLoginUser(Passenger loginUser) {
-		this.loginUser = loginUser;
+		this.loginPassenger = loginUser;
 	}
-	public IPassengerService getUserService() {
-		return userService;
+	public IPassengerService getPassengerService() {
+		return passengerService;
 	}
-	public void setUserService(IPassengerService userService) {
-		this.userService=userService;
+	public void setPassengerService(IPassengerService userService) {
+		this.passengerService=userService;
 	}
 	
 }

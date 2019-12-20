@@ -5,32 +5,32 @@ import cn.edu.zjut.po.Driver;
 
 
 public class DriverService implements IDriverService{
-	private IDriverDAO DriverDAO=null;
+	private IDriverDAO driverDAO=null;
 	public DriverService() {
 		System.out.println("create DriverService.");
 	}
 
 	public void register(Driver transientInstance) {
 		System.out.println("execute--register()--method.");
-		DriverDAO.save(transientInstance);
+		driverDAO.save(transientInstance);
 	}
 	public Boolean login(Driver transientInstance) {
-		Driver temp=DriverDAO.findbyaccount(transientInstance);
+		Driver temp=driverDAO.findbyaccount(transientInstance);
 		if(transientInstance.getPassword().equals(temp.getPassword())) {
 			return true;
 		}
 		return false;
 	}
 	public Driver findbyId(Driver transientInstance) {		
-		return DriverDAO.findbyId(transientInstance);
+		return driverDAO.findbyId(transientInstance);
 	}
 
 	public IDriverDAO getDriverDAO() {
-		return DriverDAO;
+		return driverDAO;
 	}
 
 	public void setDriverDAO(IDriverDAO driverDAO) {
-		DriverDAO = driverDAO;
+		this.driverDAO = driverDAO;
 	}
 	
 }

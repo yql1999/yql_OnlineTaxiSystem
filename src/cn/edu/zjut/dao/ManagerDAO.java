@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import cn.edu.zjut.po.Manager;
+import cn.edu.zjut.po.Passenger;
 
 
 public class ManagerDAO extends BaseHibernateDAO implements IManagerDAO{
@@ -30,18 +31,18 @@ public class ManagerDAO extends BaseHibernateDAO implements IManagerDAO{
 	}
 	public Manager findbyaccount(Manager transientInstance) {
 		try {
-			String hql="from Manager as user where account=";
-			String queryString=hql+transientInstance.getAccount();
-			Query queryObject=getSession().createQuery(queryString);
+			String account = transientInstance.getAccount();
+			String hql="from Manager as user where account='"+account+"'";
+			Query queryObject=getSession().createQuery(hql);
 			return (Manager)queryObject.getResultList().get(0);
 		}catch(RuntimeException re) {
 			throw re;
 		}
 	}
-	public Manager findbyId(Manager transientInstance) {
+	public Manager findbyId(int id) {
 		try {
-			String hql="from Passenger as user where managerID=";
-			String queryString=hql+transientInstance.getManagerID();
+			String hql="from Manager as user where managerID=";
+			String queryString=hql+id;
 			Query queryObject=getSession().createQuery(queryString);
 			return (Manager)queryObject.getResultList().get(0);
 		}catch(RuntimeException re) {

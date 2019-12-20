@@ -30,9 +30,9 @@ public class DriverDAO extends BaseHibernateDAO implements IDriverDAO{
 	}
 	public Driver findbyaccount(Driver transientInstance) {
 		try {
-			String hql="from Driver as user where account=";
-			String queryString=hql+transientInstance.getAccount();
-			Query queryObject=getSession().createQuery(queryString);
+			String account = transientInstance.getAccount();
+			String hql="from Driver as user where account='"+account+"'";
+			Query queryObject=getSession().createQuery(hql);
 			return (Driver)queryObject.getResultList().get(0);
 		}catch(RuntimeException re) {
 			throw re;

@@ -2,20 +2,14 @@ function login() {
 	
 	
         var v=document.getElementById("logintype").value;
+        var form=document.getElementById("form1");
 		if (v == 0) {
-			window.location.href="passenger";
+			form.action = "passengerlogin";
 		} 
 		else if (v == 1) {
-			window.location.href="driver";
+			form.action ="driverlogin";
 		} 
 		else if (v == 2) {
-			window.location.href="manager";
+			form.action ="managerlogin";
 		} 
-		else {
-			alert("请输入正确的类型");
-			window.location.href="Login.jsp";
-			
-		}
 }
-
-

@@ -33,6 +33,7 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 				<value>cn/edu/zjut/po/Driver.hbm.xml</value>
 				<value>cn/edu/zjut/po/Passenger.hbm.xml</value>
 				<value>cn/edu/zjut/po/Order.hbm.xml</value>
+				<value>cn/edu/zjut/po/Manager.hbm.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -42,15 +43,19 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 	<bean id="carDAO" class="cn.edu.zjut.dao.CarDAO" parent="baseDAO"/>
 	<bean id="driverDAO" class="cn.edu.zjut.dao.DriverDAO" parent="baseDAO"/>
 	<bean id="passengerDAO" class="cn.edu.zjut.dao.PassengerDAO" parent="baseDAO"/>
+	<bean id="managerDAO" class="cn.edu.zjut.dao.ManagerDAO" parent="baseDAO"/>
 	<bean id="orderDAO" class="cn.edu.zjut.dao.OrderDAO" parent="baseDAO"/>
 	<bean id="carService" class="cn.edu.zjut.service.CarService">
 		<property name="carDAO" ref="carDAO"/>
 	</bean>
 	<bean id="driverService" class="cn.edu.zjut.service.DriverService">
-		<property name="DriverDAO" ref="driverDAO"/>
+		<property name="driverDAO" ref="driverDAO"/>
 	</bean>
 	<bean id="passengerService" class="cn.edu.zjut.service.PassengerService">
-		<property name="PassengerDAO" ref="passengerDAO"/>
+		<property name="passengerDAO" ref="passengerDAO"/>
+	</bean>
+	<bean id="managerService" class="cn.edu.zjut.service.ManagerService">
+		<property name="managerDAO" ref="managerDAO"/>
 	</bean>
 	<bean id="orderService" class="cn.edu.zjut.service.OrderService">
 		<property name="orderDAO" ref="orderDAO"/>
@@ -63,6 +68,9 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 	</bean>
 	<bean id="passengerAction" class="cn.edu.zjut.action.PassengerAction" scope="prototype">
 		<property name="passengerService" ref="passengerService"/>
+	</bean>
+	<bean id="managerAction" class="cn.edu.zjut.action.ManagerAction" scope="prototype">
+		<property name="managerService" ref="managerService"/>
 	</bean>
 	<bean id="orderAction" class="cn.edu.zjut.action.OrderAction" scope="singleton">
 		<property name="orderService" ref="orderService"/>

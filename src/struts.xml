@@ -7,6 +7,18 @@
 			<result name="success">/regSuccess.jsp</result>
 			<result name="fail">/regFail.jsp</result>
 		</action>
+		<action name="passengerlogin" class="passengerAction" method="login">
+			<result name="success">/passenger_head.jsp</result>
+			<result name="fail">/LoginFail.jsp</result>
+		</action>
+		<action name="driverlogin" class="driverAction" method="login">
+			<result name="success">/manager_index.jsp</result>
+			<result name="fail">/LoginFail.jsp</result>
+		</action>
+		<action name="managerlogin" class="managerAction" method="login">
+			<result name="success">/manager_index.jsp</result>
+			<result name="fail">/LoginFail.jsp</result>
+		</action>
 		<action name="carsave" class="carAction" method="save">
 			<result name="success">/regSuccess.jsp</result>
 			<result name="fail">/regFail.jsp</result>
