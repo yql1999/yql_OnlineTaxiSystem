@@ -3,6 +3,8 @@ package cn.edu.zjut.po;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.apache.struts2.json.annotations.JSON;
+
 public class Driver {
 	private int driverID;
 	private String name;
@@ -114,7 +116,7 @@ public class Driver {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
+	@JSON(serialize=false)
 	public Car getCar() {
 		return car;
 	}

@@ -75,6 +75,7 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 	<bean id="orderAction" class="cn.edu.zjut.action.OrderAction" scope="singleton">
 		<property name="orderService" ref="orderService"/>
 		<property name="passengerService" ref="passengerService"/>
+		<property name="driverService" ref="driverService"/>
 	</bean>
 	<!--
 	<bean id="baseDAO" class="cn.edu.zjut.dao.BaseHibernateDAO">

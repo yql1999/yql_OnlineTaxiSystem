@@ -105,7 +105,9 @@
                    <td id="<%="td11"+idNum%>" style="visibility: hidden; display: none;"><s:property value="#object.estimatedtop"/></td>
                    <td id="<%="td12"+idNum%>" style="visibility: hidden; display: none;"><s:property value="#object.isEstimated"/></td>
                    <td id="<%="td13"+idNum%>" style="visibility: hidden; display: none;"><s:property value="#object.isCompleted"/></td>
-                   <td><button id="<%="btn"+idNum%>" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#orderModal">确认接单</button></td>
+                   <td>
+                   <button id="<%="btn"+idNum%>" class="layui-btn layui-btn-sm" data-toggle="modal" data-target="#orderModal">确认接单</button>
+                   </td>
                </tr>
             <% idNum++; %>
             </s:if>

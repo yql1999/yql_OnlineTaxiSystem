@@ -2,6 +2,8 @@ package cn.edu.zjut.po;
 
 import java.util.Date;
 
+import org.apache.struts2.json.annotations.JSON;
+
 public class Order {
 	private int orderID;
 	private String start;
@@ -94,15 +96,15 @@ public class Order {
 	public void setEndtime(Date endtime) {
 		this.endtime = endtime;
 	}
-
+	@JSON(serialize=false)
 	public Passenger getPassenger() {
 		return passenger;
 	}
-
+	
 	public void setPassenger(Passenger passenger) {
 		this.passenger = passenger;
 	}
-
+	
 	public Driver getDriver() {
 		return driver;
 	}

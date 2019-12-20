@@ -3,19 +3,26 @@ package cn.edu.zjut.action;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.struts2.json.annotations.JSON;
+
 import cn.edu.zjut.po.Driver;
 import cn.edu.zjut.po.Order;
 import cn.edu.zjut.po.Passenger;
 import cn.edu.zjut.service.IOrderService;
 import cn.edu.zjut.service.IPassengerService;
 import cn.edu.zjut.service.DriverService;
+import cn.edu.zjut.service.IDriverService;
 import cn.edu.zjut.service.ManagerService;
 
 public class OrderAction {
+	//private int testid;
 	private Order order;
 	private IOrderService orderService;
 	private IPassengerService passengerService;
+	private IDriverService driverService;
 	private List orders;
+	private Double longitude;
+	private Double latitude;
 	public String save() {
 		orderService.save(order);
 		return "success";
@@ -60,6 +67,24 @@ public class OrderAction {
 		orderService.update(order);
 		return "success";
 	}
+	public String findbyId() {
+		//System.out.println(testid);
+		//为ajax试验多的代码，可删去
+		//order=new Order();
+		//order.setOrderID(testid);
+		//到此为止
+		order=orderService.findbyId(order);
+		System.out.println(order.getDriver().getDriverID());
+		return "success";
+	}
+	public String setlocation() {
+		order.setDriver(driverService.findbyId(order.getDriver()));
+		order.getDriver().setLatitude(latitude);
+		order.getDriver().setLongitude(longitude);
+		System.out.println(order.getDriver().getAccount());
+		driverService.update(order.getDriver());
+		return "success";
+	}
 	public Order getOrder() {
 		return order;
 	}
@@ -92,6 +117,28 @@ public class OrderAction {
 		this.passengerService = passengerService;
 	}
 	
-	
+	public IDriverService getDriverService() {
+		return driverService;
+	}
+
+	public void setDriverService(IDriverService driverService) {
+		this.driverService = driverService;
+	}
+
+	public Double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(Double longitude) {
+		this.longitude = longitude;
+	}
+
+	public Double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(Double latitude) {
+		this.latitude = latitude;
+	}
 	
 }

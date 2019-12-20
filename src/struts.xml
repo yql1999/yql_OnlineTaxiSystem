@@ -45,5 +45,15 @@
 		<action name="cancelorder" class="orderAction" method="cancelorder">
 			<result name="success">/order-list.jsp</result>
 		</action>
+		
+	</package>
+	<package name="ajax" extends="json-default" namespace="/">
+        <action name="ajaxRequest" class="orderAction" method="setlocation">
+            <result name="success" type="json">
+            	<param name="root">order</param> 
+            	<!--  <param name="root">order.driver.longitude</param> 
+				<param name="root">order.isCompleted</param> -->
+            </result>
+       </action>
 	</package>
 </struts>

@@ -228,8 +228,7 @@
 		    var geolocation = new AMap.Geolocation(options);
 		    map.addControl(geolocation);
 		    geolocation.getCurrentPosition(function(status,result){
-		      if(status=='complete'){
-		    	  
+		      if(status=='complete'){		    	  
 		        onComplete1(result)
 		      }else{
 		        onError(result)
@@ -296,6 +295,7 @@
 		//   resizeEnable: true,
 		//    zoom: 13
 		//  });
+	  	cli(data);
 	    document.getElementById('status').innerHTML='定位成功'
 	    var str = [];
 	    console.log(data);
@@ -311,7 +311,7 @@
 	    //var str=tempdestination.split(',');
 	    //path.push([str[0],str[1]]);
 	   
-	    console.log(path);
+	    //console.log(path);
 	    //path.push([left, right]);
 	    //console.log(path[0]);
 	    //console.log(path[1]);
@@ -413,6 +413,27 @@
 	  document.getElementById("start1").value=document.getElementById("td3").innerHTML;
 	  document.getElementById("destination1").value=document.getElementById("td4").innerHTML;
   }
+  function cli(data){
+		
+		var url='ajaxRequest';
+		var params={
+					longitude:data.position.Q,
+					latitude:data.position.P
+		};
+		console.log(params);
+		jQuery.post(url,params,callbackFun);
+		/*$.ajax({
+			type:"POST",
+			url:url,
+			dataType:"json",
+			success:callbackFun(data)
+		});*/
+	}
+	function callbackFun(data)
+	{
+		console.log(data);
+		//alert(data);
+	} 
 </script>
 </body>
 </html>

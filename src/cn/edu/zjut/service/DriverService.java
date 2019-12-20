@@ -2,6 +2,7 @@ package cn.edu.zjut.service;
 
 import cn.edu.zjut.dao.IDriverDAO;
 import cn.edu.zjut.po.Driver;
+import cn.edu.zjut.po.Order;
 
 
 public class DriverService implements IDriverService{
@@ -24,7 +25,9 @@ public class DriverService implements IDriverService{
 	public Driver findbyId(Driver transientInstance) {		
 		return DriverDAO.findbyId(transientInstance);
 	}
-
+	public void update(Driver transientInstance) {
+		DriverDAO.update(transientInstance);
+	}
 	public IDriverDAO getDriverDAO() {
 		return DriverDAO;
 	}
