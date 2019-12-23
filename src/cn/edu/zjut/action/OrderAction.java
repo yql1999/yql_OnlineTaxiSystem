@@ -1,5 +1,6 @@
 package cn.edu.zjut.action;
 
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -29,15 +30,15 @@ public class OrderAction {
 	}
 	
 	public String ordertake() {
-		System.out.println(order.getPassenger());
-		System.out.println("ordertake  "+order.getPassenger().getPassengerID());
+		//System.out.println(order.getPassenger());
+		//System.out.println("ordertake  "+order.getPassenger().getPassengerID());
 		int i=order.getPassenger().getPassengerID();
 		Passenger p=new Passenger();
 		p=passengerService.findbyId(i);
 		order.setPassenger(p);
 		order.setIsCompleted(1);
 		orderService.update(order);
-		System.out.println("ordertake"+" "+order.getPassenger().getNickname());
+		//System.out.println("ordertake"+" "+order.getPassenger().getNickname());
 		return "success";
 	}
 	
@@ -63,8 +64,13 @@ public class OrderAction {
 		return "success";
 	}
 	public String cancelorder() {
+		order=orderService.findbyId(order);
 		order.setIsCompleted(0);
 		orderService.update(order);
+		orders=orderService.findorders();
+		for(Order a:(List<Order>)orders) {
+			System.out.println(a.getIsCompleted());
+		}
 		return "success";
 	}
 	public String findbyId() {
@@ -85,6 +91,19 @@ public class OrderAction {
 		driverService.update(order.getDriver());
 		return "success";
 	}
+	//获取精确到秒的时间戳  
+	public static int getSecondTimestamp(Date date){  
+	    if (null == date) {  
+	        return 0;  
+	    }  
+	    String timestamp = String.valueOf(date.getTime());  
+	    int length = timestamp.length();  
+	    if (length > 3) {  
+	        return Integer.valueOf(timestamp.substring(0,length-3));  
+	    } else {  
+	        return 0;  
+	    }  
+	} 
 	public Order getOrder() {
 		return order;
 	}

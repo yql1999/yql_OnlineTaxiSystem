@@ -25,6 +25,10 @@ public class DriverService implements IDriverService{
 	public Driver findbyId(Driver transientInstance) {		
 		return DriverDAO.findbyId(transientInstance);
 	}
+	public Driver findbyAccount(Driver transientInstance) {
+		Driver temp=DriverDAO.findbyaccount(transientInstance);
+		return temp;
+	}
 	public void update(Driver transientInstance) {
 		DriverDAO.update(transientInstance);
 	}
