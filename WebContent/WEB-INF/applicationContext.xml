@@ -72,7 +72,7 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 	<bean id="managerAction" class="cn.edu.zjut.action.ManagerAction" scope="prototype">
 		<property name="managerService" ref="managerService"/>
 	</bean>
-	<bean id="orderAction" class="cn.edu.zjut.action.OrderAction" scope="singleton">
+	<bean id="orderAction" class="cn.edu.zjut.action.OrderAction" scope="prototype">
 		<property name="orderService" ref="orderService"/>
 		<property name="passengerService" ref="passengerService"/>
 		<property name="driverService" ref="driverService"/>

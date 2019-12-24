@@ -26,7 +26,7 @@
 	src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 <script src="./lib/layui/layui.js" charset="utf-8"></script>
 <script type="text/javascript" src="./js/xadmin.js"></script>
-<title>地点关键字 + 驾车路线规划</title>
+<title>司机接单成功</title>
 <style type="text/css">
 html, body, #container {
 	width: 100%;
@@ -101,7 +101,7 @@ html, body, #container {
 					style="position: relatives; left: 400px; top: 35px; height: 70px; width: 70px;">
 			</div>
 			<a
-				onclick="x_admin_show('订单详情','passenger_currentorder.jsp',600,400)"
+				href="driverInformation.action" onclick="x_admin_show('订单详情','passenger_currentorder.jsp',600,500)" 
 				class="x-a" target="_blank"><h3>点击获取订单详情...</h3></a> <br>
 				<input type="submit" data-toggle="modal" data-target="#myModal"
 				class="layui-btn" value="取消订单"

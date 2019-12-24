@@ -7,6 +7,22 @@
 			<result name="success">/regSuccess.jsp</result>
 			<result name="fail">/regFail.jsp</result>
 		</action>
+		
+		<action name="update" class="passengerAction" method="update">
+			<result name="success">/success_test.jsp</result>
+			<result name="fail">/fail_test.jsp</result>
+		</action>
+		<action name="allOrder" class="passengerAction" method="allOrder">
+			<result name="success">/passenger_orderlist.jsp</result>
+		</action>
+		<action name="driverInformation" class="passengerAction" method="driverInformation">
+			<result name="success">/passenger_currentorder.jsp</result>
+		</action>
+		<!-- <action name="passenger_*" class="passengerAction" method="{1}">
+			<result name="success">/success_test.jsp</result>
+			<result name="fail">/fail_test.jsp</result>
+		</action> -->
+		
 		<action name="passengerlogin" class="passengerAction" method="login">
 			<result name="success">/passenger_head.jsp</result>
 			<result name="fail">/LoginFail.jsp</result>

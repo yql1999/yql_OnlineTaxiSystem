@@ -33,5 +33,11 @@
 		<property name="telephone" type="string">
 			<column name="telephone" length="20"/>
 		</property>
+		<property name="longitude" type="java.lang.Double">
+			<column name="longitude"/>
+		</property>
+		<property name="latitude" type="java.lang.Double">
+			<column name="latitude"/>
+		</property>
 	</class>
 </hibernate-mapping>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="cn.edu.zjut.po.Driver"%>
 <!DOCTYPE html>
 <html>
 
@@ -18,49 +19,78 @@
 <script type="text/javascript" src="./lib/layui/layui.js"
 	charset="utf-8"></script>
 <script type="text/javascript" src="./js/xadmin.js"></script>
+<!-- <script type="text/javascript"> 
+  setTimeout("window.opener=null;window.location.href='driverInformation.action'",100);
+</script> -->
 </head>
 
 <body>
 	<div class="x-body">
+		<%
+			Driver driver = (Driver) request.getSession().getAttribute("driver");
+		%>
 		<form class="layui-form" action="#">
 			<div class="layui-form-item">
 				<label for="name" class="layui-form-label"> 司机姓名 </label>
 				<div class="layui-input-inline">
-					<input type="text" id="name" class="layui-input" value="driver01">
+					<input type="text" id="name" name="name" id="name" required=""
+						autocomplete="off" class="layui-input"
+						value="<%=driver.getName()%>">
 				</div>
 			</div>
 			<div class="layui-form-item">
 				<label for="gender" class="layui-form-label"> 司机性别 </label>
 				<div class="layui-input-inline">
-					<input type="text" id="gender" class="layui-input" value="男">
+					<input type="text" id="gender" class="layui-input"
+						autocomplete="off" value="<%=driver.isGender() == true ? "男" : "女"%>">
 				</div>
 			</div>
 			<div class="layui-form-item">
 				<label for="type" class="layui-form-label"> 车辆类别 </label>
 				<div class="layui-input-inline">
-					<input type="text" id="type" class="layui-input" value="宾利">
+					<input type="text" id="type" class="layui-input" autocomplete="off"
+						value="<%=driver.getCar().getType()%>">
 				</div>
 			</div>
 			<div class="layui-form-item">
 				<label for="type" class="layui-form-label"> 汽车牌号 </label>
 				<div class="layui-input-inline">
-					<input type="text" id="plate" class="layui-input" value="1111">
+					<input type="text" id="plate" class="layui-input"
+						autocomplete="off" value="<%=driver.getCar().getPlate()%>">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label for="color" class="layui-form-label"> 汽车颜色 </label>
+				<div class="layui-input-inline">
+					<input type="text" id="color" class="layui-input"
+						autocomplete="off" value="<%=driver.getCar().getColor()%>">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label for="age" class="layui-form-label"> 司机年龄 </label>
+				<div class="layui-input-inline">
+					<input type="text" id="age" class="layui-input" autocomplete="off"
+						value="<%=driver.getAge()%>">
 				</div>
 			</div>
 			<div class="layui-form-item">
 				<label for="estimate" class="layui-form-label"> 司机评价 </label>
 				<div class="layui-input-inline">
-					<input type="text" id="estimate" class="layui-input" value="">
+					<input type="text" id="estimate" class="layui-input"
+						autocomplete="off" value="<%=driver.getScore()%>">
 				</div>
 			</div>
 		</form>
 	</div>
-	<script>var _hmt = _hmt || []; (function() {
-        var hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-      })();</script>
+	<script>
+		var _hmt = _hmt || [];
+		(function() {
+			var hm = document.createElement("script");
+			hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
+			var s = document.getElementsByTagName("script")[0];
+			s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
 </body>
 
 </html>

@@ -11,6 +11,8 @@ public class Passenger {
 	private String password;
 	private double remain;
 	private String telephone;
+	private Double longitude;
+	private Double latitude;
 	public Passenger() {}
 	
 	public Passenger(int passengerID) {
@@ -109,5 +111,23 @@ public class Passenger {
 	public void setTelephone(String telephone) {
 		this.telephone = telephone;
 	}
+	
+	public Double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(Double longitude) {
+		this.longitude = longitude;
+	}
+
+	public Double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(Double latitude) {
+		this.latitude = latitude;
+	}
+	
+	
 	
 }

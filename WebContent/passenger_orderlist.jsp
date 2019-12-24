@@ -1,6 +1,9 @@
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="cn.edu.zjut.po.Order"%>
 <!DOCTYPE html>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <html>
 
 <head>
@@ -37,8 +40,9 @@
 			<button class="layui-btn layui-btn-danger" onclick="delAll()">
 				<i class="layui-icon"></i>批量删除
 			</button>
-			<span class="x-right" style="line-height: 40px">共有数据：88 条</span> </xblock>
+			<!-- <span class="x-right" style="line-height: 40px">共有数据：88 条</span> </xblock> -->
 			<table class="layui-table">
+			<%int num=1;%>
 				<thead>
 					<tr>
 						<th>
@@ -58,7 +62,9 @@
 						<th>操作</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody><%-- <s:set name="orders" var="#session['orders']"/> --%>
+				<%-- <s:iterator value="#session.orders" var='order'> --%>
+				<s:iterator value="#session.orders">
 					<tr>
 						<td>
 							<div class="layui-unselect layui-form-checkbox"
@@ -66,14 +72,14 @@
 								<i class="layui-icon">&#xe605;</i>
 							</div>
 						</td>
-						<td>01</td>
-						<td>浙江工业大学屏风校区</td>
-						<td>杭州东站</td>
-						<td>2019-12-07 12:00:00</td>
-						<td>2019-12-07 13:00:00</td>
-						<td>2</td>
-						<td>已完成</td>
-						<td>92.00</td>
+						<td><%=num++ %></td>
+						<td><s:property value='start'/></td>
+						<td><s:property value='destination'/></td>
+						<td><s:property value='starttime'/></td>
+						<td><s:property value='endtime'/></td>
+						<td><s:property value='passnum'/></td>
+						<td><s:property value='isCompleted!=0 ? "已完成" : "未完成"'/></td>
+						<td><s:property value='sum'/></td>
 						<td class="td-manage">
 							<!-- 
               <a title="查看"  onclick="x_admin_show('编辑','order-view.html')" href="javascript:;">
@@ -83,6 +89,7 @@
 						</a>
 						</td>
 					</tr>
+					</s:iterator>
 				</tbody>
 			</table>
 			<div class="page">

@@ -46,10 +46,10 @@
 					<!-- 二级菜单 -->
 					<dd>
 						<a
-							onclick="x_admin_show('个人信息','passenger_information.jsp',600,300)">查看个人信息</a>
+							onclick="x_admin_show('个人信息','passenger_information.jsp',600,400)">查看个人信息</a>
 					</dd>
 					<dd>
-						<a onclick="x_admin_show('修改个人信息','passenger_update.jsp',800,600)">修改个人信息</a>
+						<a onclick="x_admin_show('修改个人信息','passenger_update.jsp',600,400)">修改个人信息</a>
 					</dd>
 					<dd>
 						<a href="Login.jsp">退出登录</a>
@@ -75,7 +75,7 @@
 				</li>
 				
 				<li>
-					<a href="passenger_orderlist.jsp"> 
+					<a href="allOrder.action"> 
 						<i class="iconfont">&#xe723;</i>
 						<cite>我的订单</cite> 
 					</a>
