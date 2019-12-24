@@ -8,4 +8,5 @@ public interface IDriverService {
 	public Boolean login(Driver transientInstance);
 	public void update(Driver transientInstance);
 	public Driver findbyId(Driver transientInstance);
+	public Driver findbyAccount(Driver transientInstance);
 }

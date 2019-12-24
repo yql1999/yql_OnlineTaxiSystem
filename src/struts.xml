@@ -28,7 +28,7 @@
 			<result name="fail">/LoginFail.jsp</result>
 		</action>
 		<action name="driverlogin" class="driverAction" method="login">
-			<result name="success">/manager_index.jsp</result>
+			<result name="success">/driver_index.jsp</result>
 			<result name="fail">/LoginFail.jsp</result>
 		</action>
 		<action name="managerlogin" class="managerAction" method="login">

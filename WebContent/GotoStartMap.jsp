@@ -81,6 +81,7 @@
 		<td id="td4"><s:property value="order.destination"/></td>
 		<td id="td5"></td>
 		<td id="td6"></td>
+		<td id="td7"><s:property value="order.orderID"/></td>
 
 	</tr>
 </table>
@@ -102,7 +103,7 @@
       </div>
       <div class="modal-body">
                 <form id="updateform" action="getpassenger" >
-                	<s:property  value="#order.passenger.nickname"/>
+                	
                     <div class="form-group">
                         <label for="loginname" class="control-label">用户名:</label>
                         <input type="text" class="form-control" id="nickname" name="nickname" readonly="readonly">
@@ -119,6 +120,8 @@
                         <label for="address" class="control-label">终点:</label>
                         <input class="form-control" id="destination" name="destination" readonly="readonly">
                     </div>
+                    <input type="hidden" class="form-control" id="id" name="order.orderID" readonly="readonly">
+                    <input type="text" class="form-control" id="start" name="order.starttime" readonly="readonly">
                     <div class="text-right">
                         <span id="returnMessage" class="glyphicon"> </span>
                         <button type="button" class="btn btn-default right" data-dismiss="modal">关闭</button>
@@ -137,7 +140,7 @@
         <h4 class="modal-title " id="myModalLabel">确认要取消订单吗！！！(无故取消会被给予低评分)</h4>
       </div>
       <div class="modal-body">
-                <form id="cancelorder" action="cancelorder" >
+                <s:form id="cancelorder" action="cancelorder" >
                     <div class="form-group">
                         <label for="loginname" class="control-label">用户名:</label>
                         <input type="text" class="form-control" id="nickname1" name="loginname" readonly="readonly">
@@ -154,12 +157,13 @@
                         <label for="address" class="control-label">终点:</label>
                         <input type="text" class="form-control" id="destination1" name="phone" readonly="readonly">
                     </div>
+                    <input type="hidden" class="form-control" id="id1" name="order.orderID" readonly="readonly">
                     <div class="text-right">
                         <span id="returnMessage" class="glyphicon"> </span>
                         <button type="button" class="btn btn-default right" data-dismiss="modal">关闭</button>
                         <button id="submitBtn" type="submit" class="btn btn-danger"  >确认取消</button>
                     </div>
-                </form>
+                </s:form>
       </div>
     </div>
   </div>
@@ -408,10 +412,12 @@
 	  document.getElementById("telephone").value=document.getElementById("td2").innerHTML;
 	  document.getElementById("start").value=document.getElementById("td3").innerHTML;
 	  document.getElementById("destination").value=document.getElementById("td4").innerHTML;
+	  document.getElementById("id").value=document.getElementById("td7").innerHTML;
 	  document.getElementById("nickname1").value=document.getElementById("td1").innerHTML;
 	  document.getElementById("telephone1").value=document.getElementById("td2").innerHTML;
 	  document.getElementById("start1").value=document.getElementById("td3").innerHTML;
 	  document.getElementById("destination1").value=document.getElementById("td4").innerHTML;
+	  document.getElementById("id1").value=document.getElementById("td7").innerHTML;
   }
   function cli(data){
 		

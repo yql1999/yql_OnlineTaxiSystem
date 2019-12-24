@@ -14,7 +14,10 @@ public class DriverAction {
 	}
 	public String login() {
 		if(driverService.login(loginUser))
+		{
+			loginUser=driverService.findbyAccount(loginUser);
 			return "success";
+		}
 		return "fail";
 	}
 	//public String query()
