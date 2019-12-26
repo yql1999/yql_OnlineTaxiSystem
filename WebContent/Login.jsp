@@ -41,6 +41,7 @@
 			</ul>
 			<s:textfield name="loginUser.account" placeholder="账号"  lay-verify="required" class="layui-input" style="width: 340px; margin-bottom: 10px;"/>
 			<s:password name="loginUser.password" lay-verify="required" placeholder="密码"  class="layui-input" style="width: 340px; margin-bottom: 10px;"/>
+
 			<s:submit value="登录" style="width: 340px; margin-bottom: 10px;" />
 		</s:form>
 		<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" style="background-color:#009688; width: 100%;">注册</button>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,36 +36,56 @@ html, body, #container {
 </head>
 <body>
 	<%@ include file="passenger_head.jsp"%>
+	
 	<div class="page-content">
 		<div id="container"></div>
 		<div class="input-card" style="width: 28rem; bottom: 500px;">
 			<div class="input-item">
-				<input id='lnglat' type="text" value='116.39,39.9'
-					style="display: none">
+				<input id='lnglat' type="text" 
+					style="display:none">
 			</div>
-			<form action="route.jsp">
+			<s:form action="addorder">
+			
 				<div class="input-item">
 					<div class="input-item-prepend">
 						<span class="input-item-text">起始位置</span>
 					</div>
-					<input id='address' name='address' type="text">
+					<div id="n1" style="visibility:hidden"><s:property value="loginUser.passengerID"/></div>
+					<input id='address' name='order.start' type="text">
 				</div>
 				<hr class="hr15">
 				<div class="input-item-prepend">
 					<span class="input-item-text" style="width: 8rem;">请输入目的地</span>
 				</div>
-				<input id='tipinput' name='tipinput' type="text"> 
+				<input id='tipinput' name='order.destination' type="text"> 
 				<hr class="hr15">
-				<input
-					type="button" value="确认地点" onclick="f()" class="layui-btn"> 
-				<input
-					type="submit" value="叫车" class="layui-btn" style="float:right">
-			</form>
+				<span class="input-item-text" style="width: 8rem;">输入乘客人数</span>
+				<select name="order.passnum">
+				<option value=1>1</option>
+				<option value=2>2</option>
+				<option value=3>3</option>
+				<option value=4>4</option>
+				</select>
+				<input id="slng" name="order.slng" type="hidden">
+				<input id="slat" name="order.slat" type="hidden">
+				<input id="elng" name="order.elng" type="hidden">
+				<input id="elat" name="order.elat" type="hidden">
+				<input type="button" id="btn1" value="确认地点" onclick="f()" class="layui-btn"> 
+				<input type="submit" id="btn" value="叫车" class="layui-btn" style="float:right">
+				<input type="hidden" id="spassenger"  name ="order.passenger.passengerID" readonly="readonly"/>
+				<input type="hidden" id="spassenger2"  name ="loginUser.passengerID" readonly="readonly"/>
+			</s:form>
 			<input id="regeo" type="button" class="btn" value="经纬度 -> 地址"
-				style="display: none">
+				style="display:none">
 		</div>
 	</div>
-
+	<script>
+	//document.getElementById("btn1").onclick(get());
+	function get(){
+		document.getElementById("spassenger").value=document.getElementById("n1").innerHTML;
+		document.getElementById("spassenger2").value=document.getElementById("n1").innerHTML;
+	}
+	</script>
 	<script
 		src="https://a.amap.com/jsapi_demos/static/demo-center/js/demoutils.js"></script>
 	<script type="text/javascript"
@@ -114,7 +135,10 @@ html, body, #container {
 				// 将创建的点标记添加到已有的地图实例：
 				map.add(marker);
 				map.setFitView();
+				document.getElementById("elng").value=marker.getPosition().getLng();
+				document.getElementById("elat").value=marker.getPosition().getLat();
 			})
+			get();
 
 		}
 		AMap.plugin('AMap.Geolocation', function() {
@@ -143,6 +167,8 @@ html, body, #container {
 				position : data.position,
 				draggable : true
 			});
+			document.getElementById("slng").value=marker.getPosition().getLng();
+			document.getElementById("slat").value=marker.getPosition().getLat();
 			var geocoder = new AMap.Geocoder({
 				city : "010", //城市设为北京，默认：“全国”
 				radius : 1000
@@ -173,6 +199,8 @@ html, body, #container {
 
 			marker.on('dragend', function(e) {
 				document.getElementById('lnglat').value = e.lnglat;
+				document.getElementById('slng').value=e.lnglat.getLng();
+				document.getElementById('slat').value=e.lnglat.getLat();
 				regeoCode();
 			})
 			document.getElementById("regeo").onclick = regeoCode;

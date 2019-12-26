@@ -11,6 +11,7 @@ public class Passenger {
 	private String password;
 	private double remain;
 	private String telephone;
+	private double score;
 	private Double longitude;
 	private Double latitude;
 	public Passenger() {}
@@ -19,7 +20,7 @@ public class Passenger {
 		this.setPassengerID(passengerID);
 	}
 	
-	public Passenger(int passengerID, String name, String nickname, boolean gender, int age, String idnumber, String account, String password, double remain,String telephone) {
+	public Passenger(int passengerID, String name, String nickname, boolean gender, int age, String idnumber, String account, String password, double remain,String telephone,double score) {
 		this.setPassengerID(passengerID);
 		this.setName(name);
 		this.setNickname(nickname);
@@ -30,6 +31,7 @@ public class Passenger {
 		this.setPassword(password);
 		this.setRemain(remain);
 		this.setTelephone(telephone);
+		this.setScore(score);
 	}
 
 	public int getPassengerID() {
@@ -110,6 +112,14 @@ public class Passenger {
 
 	public void setTelephone(String telephone) {
 		this.telephone = telephone;
+	}
+
+	public double getScore() {
+		return score;
+	}
+
+	public void setScore(double score) {
+		this.score = score;
 	}
 	
 	public Double getLongitude() {

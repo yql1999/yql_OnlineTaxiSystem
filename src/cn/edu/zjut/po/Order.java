@@ -22,7 +22,43 @@ public class Order {
 	private Double estimatedtop;
 	private Boolean isEstimated;
 	private int isCompleted;//0代表未接单，1代表已接单，2代表已完成
+	private double slng;
+	private double slat;
+	private double elng;
+	private double elat;
 	
+	public double getSlng() {
+		return slng;
+	}
+
+	public double getSlat() {
+		return slat;
+	}
+
+	public double getElng() {
+		return elng;
+	}
+
+	public double getElat() {
+		return elat;
+	}
+
+	public void setSlng(double slng) {
+		this.slng = slng;
+	}
+
+	public void setSlat(double slat) {
+		this.slat = slat;
+	}
+
+	public void setElng(double elng) {
+		this.elng = elng;
+	}
+
+	public void setElat(double elat) {
+		this.elat = elat;
+	}
+
 	public Double getSum() {
 		return sum;
 	}
@@ -37,7 +73,7 @@ public class Order {
 		this.setOrderID(orderID);
 	}
 	
-	public Order(int orderID, String start, String destination, Date starttime, Date endtime, int passnum, String type, double sum, Driver driver, Passenger passenger, double estimateptod, double estimatedtop,Boolean isEstimated,int isCompleted) {
+	public Order(int orderID, String start, String destination, Date starttime, Date endtime, int passnum, String type, double sum, Driver driver, Passenger passenger, double estimateptod, double estimatedtop,Boolean isEstimated,int isCompleted,double slng,double slat,double elng,double elat) {
 		this.setOrderID(orderID);
 		this.setStart(start);
 		this.setDestination(destination);
@@ -55,6 +91,10 @@ public class Order {
 		this.setEstimateptod(estimateptod);
 		this.setIsEstimated(isEstimated);
 		this.setIsCompleted(isCompleted);
+		this.elat=elat;
+		this.elng=elng;
+		this.slat=slat;
+		this.slng=slng;
 	}
 
 	public int getOrderID() {

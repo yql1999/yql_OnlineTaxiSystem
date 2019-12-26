@@ -1,5 +1,10 @@
 package cn.edu.zjut.service;
 
+
+import javax.persistence.Query;
+
+import cn.edu.zjut.dao.IPassengerDAO;
+
 import java.util.ArrayList;
 
 import javax.transaction.Transactional;
@@ -43,6 +48,12 @@ public class PassengerService implements IPassengerService {
 		System.out.println("before Passenger findbyId");
 		Passenger temp = PassengerDAO.findbyId(id);
 		System.out.println("after Passenger findbyId");
+		return temp;
+	}
+	public Passenger findbyaccount(Passenger transientInstance) {
+		System.out.println("before Passenger findbyaccount");
+		Passenger temp=PassengerDAO.findbyaccount(transientInstance);
+		System.out.println("after Passenger findbyaccount");
 		return temp;
 	}
 
@@ -92,5 +103,4 @@ public class PassengerService implements IPassengerService {
 	public void setPassengerDAO(IPassengerDAO passengerDAO) {
 		this.PassengerDAO = passengerDAO;
 	}
-
 }

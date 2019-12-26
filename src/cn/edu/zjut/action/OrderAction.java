@@ -1,5 +1,7 @@
 package cn.edu.zjut.action;
 
+import java.text.SimpleDateFormat;
+
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
@@ -18,6 +20,7 @@ import cn.edu.zjut.service.ManagerService;
 
 public class OrderAction {
 	//private int testid;
+	private Passenger loginUser;
 	private Order order;
 	private IOrderService orderService;
 	private IPassengerService passengerService;
@@ -156,6 +159,42 @@ public class OrderAction {
 		driverService.update(order.getDriver());
 		return "success";
 	}
+	public String addorder() {
+		System.out.println("action");
+		Date t = new Date();
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		java.sql.Date sqld=new java.sql.Date(t.getTime());
+		order.setStarttime(sqld);
+		order.setIsEstimated(false);
+		orderService.save(order);
+		return"success";
+	}
+	public String deleteorder() {
+		System.out.println("deleteaction");
+		orderService.deleteorder(order);
+		return "success";
+	}
+	public String appraise() {
+		System.out.println("appraise action");
+		orderService.appraise(order);
+		order=orderService.findbyId(order);
+		return "success";
+	}
+	public String toappraise() {
+		System.out.println(order.getOrderID());
+		order=orderService.findbyId(order);
+		return "success";
+	}
+	public String torun() {
+		order=orderService.findbyId(order);
+		return "success";
+	}
+	public String cancel() {
+		loginUser=passengerService.findbyId(order.getPassenger().getPassengerID());
+		orderService.cancel(order);
+		return "success";
+	}
+
 	//获取精确到秒的时间戳  
 	public static int getSecondTimestamp(Date date){  
 	    if (null == date) {  
@@ -223,6 +262,14 @@ public class OrderAction {
 
 	public void setLatitude(Double latitude) {
 		this.latitude = latitude;
+	}
+
+	public Passenger getLoginUser() {
+		return loginUser;
+	}
+
+	public void setLoginUser(Passenger loginUser) {
+		this.loginUser = loginUser;
 	}
 	
 }

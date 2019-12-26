@@ -55,6 +55,8 @@
 	<div class="page-content">
 		
 			<div class="x-body">
+			<div id="n1" style="visibility:hidden"><s:property value="order.passenger.passengerID"/></div>
+			<s:form action="finish" >
 			<s:form action="passenger_pay.action" method="post">
 				<table class="layui-table">
 					<thead>
@@ -66,19 +68,26 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td><s:property value="order.start" />浙江工业大学屏峰校区</td>
-							<td><s:property value="order.destination" />西溪印象城</td>
-							<td><s:property value="order.sum" />30.00</td>
+							<td><s:property value="order.start" /></td>
+							<td><s:property value="order.destination" /></td>
+							<td><s:property value="order.sum" /></td>
+
 						</tr>
 					</tbody>
 				</table>
 			
 			<!-- <input type="submit" class="layui-btn" value="提交评价" onclick="f1()"> -->
-			<input type="submit" class="layui-btn" value="支付" 
-				style="display:block;margin:0 auto">
+			<input type="hidden" id="spassenger"  name ="loginUser.passengerID" readonly="readonly"/>
+			<input type="submit" class="layui-btn" value="回到主页" onclick="get()">
 		</s:form>
 		<img src="images/pay.png" height="250" width="210" style="display:block;margin:0 auto">
 		</div>
+	</div>
+	<script>
+	function get(){
+		document.getElementById("spassenger").value=document.getElementById("n1").innerHTML;
+	}
+	</script>
 		
 		<%-- <script type="text/javascript">
 			function f1() {

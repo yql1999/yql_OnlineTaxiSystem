@@ -52,6 +52,8 @@
 </head>
 <body class="layui-anim layui-anim-up">
 	<%@ include file="passenger_head.jsp"%>
+	<div id="n1"style="visibility:hidden" ><s:property value="order.orderID"/></div>
+	<div id="n2"style="visibility:hidden" ><s:property value="order.passenger.passengerID"/></div>
 	<div class="page-content">
 		
 			<div class="x-nav">
@@ -64,55 +66,64 @@
 				</a>
 			</div>
 			<div class="x-body">
-			<s:form action="passenger_index.jsp" method="post">
+			<s:form action="appraise" method="post">
 				<table class="layui-table">
 					<thead>
 						<tr>
 							<th>司机ID</th>
 							<th>乘客ID</th>
-							<th>行程时长</th>
-							<th>行程距离</th>
+							<th>起始时间</th>
+							<th>终止时间</th>
+							<th>费用</th>
 							<th>起点</th>
 							<th>终点</th>
 							<th>是否中途更换路线</th>
 							<th>评价</th>
-							<th>反馈内容</th>
+							
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td><s:property value="order.driverID" />1</td>
-							<td><s:property value="order.passengerID" />1</td>
-							<td>18:11</td>
-							<td>6.4km</td>
-							<td><s:property value="order.start" />浙江工业大学屏峰校区</td>
-							<td><s:property value="order.destination" />西溪印象城</td>
+							<td><s:property value="order.driver.driverID" /></td>
+							<td><s:property value="order.passenger.passengerID" /></td>
+							<td><s:property value="order.starttime" /></td>
+							<td><s:property value="order.endtime" /></td>
+							<td><s:property value="order.sum" /></td>
+							<td><s:property value="order.start" /></td>
+							<td><s:property value="order.destination" /></td>
 							<td>否</td>
 							<td class="es"><span class="box"> <span>★</span> <span>★</span>
 									<span>★</span> <span>★</span> <span>★</span>
-							</span> <span><s:property value="order.estimatedtop" />0</span>分</td>
-							<td><input type="text" /></td>
+							</span>
+							<span id="2">0</span>分</td>
 						</tr>
 					</tbody>
 				</table>
-			
+		        <input type="hidden" name="order.driver.driverID" value="1">
+		        <input id="orderid" type="hidden" name="order.orderID">
+		        <input id="passengerid" type="hidden" name="loginUser.passengerID">
+				<input type="hidden"  id="1" name ="order.estimateptod" readonly="readonly" "/>
 			<!-- <input type="submit" class="layui-btn" value="提交评价" onclick="f1()"> -->
-			<input type="submit" class="layui-btn" value="提交评价"  onclick="f1()"
+			<input type="submit" class="layui-btn" value="提交评价并去支付"  onclick="get()"
 				style="display:block;margin:0 auto">
 		</s:form>
 		</div>
 		
 		<script type="text/javascript">
-			function f1() {
-				alert("评价成功，点击确定跳转主页面");
-			}
 			$(function() {
 				$(".box span").click(function(event) {
 					$(this).parent().find("span").addClass("sel");
 					$(this).nextAll().removeClass("sel");
 					$(this).parent().next().text($(this).index() + 1);
+					var i=document.getElementById("2").innerHTML;
+					document.getElementById("1").value=i;
+					
 				});
 			});
+			 function get(){
+					document.getElementById("orderid").value=document.getElementById("n1").innerHTML;
+					document.getElementById("passengerid").value=document.getElementById("n2").innerHTML;
+				}
 		</script>
 	</div>
 </body>

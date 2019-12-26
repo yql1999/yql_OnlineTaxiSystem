@@ -26,6 +26,7 @@ public class OrderService implements IOrderService {
 		List list = orderDAO.findorders(hql);
 		return list;
 	}
+
 	
 	public Order findbyId(Order transientInstance) {
 		Order temp=orderDAO.findbyId(transientInstance);
@@ -39,5 +40,16 @@ public class OrderService implements IOrderService {
 		System.out.println("create orderDAO");
 		this.orderDAO = orderDAO;
 	}
-
+    public void deleteorder(Order order) {
+    	System.out.println("删除订单");
+        orderDAO.deleteorder(order);
+    }
+    public void appraise(Order order) {
+    	System.out.println("评价完成");
+    	orderDAO.appraise(order);
+    }
+    public void cancel(Order order) {
+    	System.out.println("cancel");
+    	orderDAO.cancel(order);
+    }
 }

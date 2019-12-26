@@ -1,5 +1,7 @@
 package cn.edu.zjut.service;
 
+
+
 import java.util.ArrayList;
 
 import cn.edu.zjut.po.Driver;
@@ -10,6 +12,10 @@ public interface IPassengerService {
 	public void register(Passenger transientInstance);
 	public Boolean login(Passenger transientInstance);
 	public Passenger findbyId(int id);
+
+	public Passenger findbyaccount(Passenger loginPassenger);
+
+
 	
 	public void update(String nickname,String password);//更改乘客信息
 	public Passenger select(Passenger passenger);//查询个人信息

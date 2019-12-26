@@ -79,15 +79,10 @@ html, body, #container {
 			<hr>
 			<p style="visibility: hidden">由于众多浏览器已不再支持非安全域的定位请求，为保位成功率和精度，请升级您的站点到HTTPS。</p>
 		</div>
-		<form action="#">
-			<input type="button" value="支付" onclick="x_admin_show('支付','pay.jsp',400,600)"
-			 data-toggle="modal" class="layui-btn" 
-				style="height:50px;width:260px;position: absolute; bottom: 100px; right: 20px;display:block;margin:0 auto;">
-		</form>
-		
-		<form action="appraise.jsp">
-			<input type="submit" value="对此次行程完成评价" data-toggle="modal" class="layui-btn" 
-				style="height:50px;width:260px;position: absolute; bottom: 30px; right: 20px;display:block;margin:0 auto;">
+		<div id="n1"style="visibility:hidden" ><s:property value="order.orderID"/></div>
+		<form action="toappraise">
+		<input id="orderid" type="hidden" name="order.orderID">
+			<input type="submit" value="对此次行程完成评价" data-toggle="modal" class="layui-btn" style="height:50px;width:260px;position: absolute; bottom: 100px; right: 20px;display:block;margin:0 auto;" onclick="get()">
 		</form>
 		<script>
 			function add_info() {
@@ -340,6 +335,9 @@ html, body, #container {
 				document.getElementById("distance").value = distance;
 				console.log(distance);
 				console.log(AMap.GeometryUtil.distance(path[0], path[1]));
+			}
+		    function get(){
+				document.getElementById("orderid").value=document.getElementById("n1").innerHTML;
 			}
 		</script>
 	</div>

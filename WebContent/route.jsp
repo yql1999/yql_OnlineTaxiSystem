@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+		<%@ taglib prefix="s" uri="/struts-tags" %>
 <!doctype html>
 <html>
 <head>
@@ -56,19 +57,26 @@ html, body, #container {
 			<p style="color: white; font-size: 1.2em; cellspacing: 0">请耐心等待，系统正在为你加速派车</p>
 			<br>
 			<br>
-			<form action="intime_call.jsp">
+			<div id="n1" style="visibility:hidden"><s:property value="order.passenger.passengerID"/></div>
+			<form action="cancel">
 				<input type="submit" data-toggle="modal" class="layui-btn"
-					value="停止叫车" style="merge-top: 10px; merge-left: 20px;">
+					value="停止叫车" style="merge-top: 10px; merge-left: 20px;" onclick="get()">
+					<input type="hidden" name="order.passenger.passengerID" id="spassenger">
+					<input type="hidden" name="loginUser.passengerID" id="spassenger2">
 			</form>
 			<img src="images/timg.gif"
 				style="width: 100px; height: 100px; margin: -56px 0px 0px 284px;">
 		</div>
 	</div>
 	<%
-		String address = request.getParameter("address");
-		String tipinput = request.getParameter("tipinput");
+		String address = request.getParameter("order.start");
+		String tipinput = request.getParameter("order.destination");
 	%>
 	<script type="text/javascript">
+	function get(){
+		document.getElementById("spassenger").value=document.getElementById("n1").innerHTML;
+		document.getElementById("spassenger2").value=document.getElementById("n1").innerHTML;
+	}
     //基本地图加载
     var map = new AMap.Map("container", {
         resizeEnable: true,

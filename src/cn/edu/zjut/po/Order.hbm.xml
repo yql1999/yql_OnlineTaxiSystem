@@ -45,13 +45,25 @@
 		<property name="isCompleted" type="int">
 			<column name="isCompleted"/>
 		</property>
+		<property name="slng" type="java.lang.Double">
+			<column name="slng"/>
+		</property>
+		<property name="slat" type="java.lang.Double">
+			<column name="slat"/>
+		</property>
+		<property name="elng" type="java.lang.Double">
+			<column name="elng"/>
+		</property>
+		<property name="elat" type="java.lang.Double">
+			<column name="elat"/>
+			</property>
 		<!--  <many-to-one column="passengerID" name="passenger" unique="true" cascade="none"/>-->
 		<many-to-one name="passenger" class="cn.edu.zjut.po.Passenger" fetch="select" unique="true" lazy="false">
-			<column name="passengerID" not-null="true"/>
+			<column name="passengerID" not-null="false"/>
 		</many-to-one>
 		<!--<many-to-one column="driverID" name="driver" inverse="true" unique="true" cascade="none"/>-->
 		<many-to-one name="driver" class="cn.edu.zjut.po.Driver" fetch="select" unique="true" lazy="false">
-			<column name="driverID" not-null="true"/>
+			<column name="driverID" not-null="false"/>
 		</many-to-one>
 		<!--<one-to-one name="driver" class="cn.edu.zjut.po.Driver" cascade="none" constrained="true"/>-->
 		<!--<one-to-one name="passenger" class="cn.edu.zjut.po.Passenger" cascade="none" constrained="true"/>-->

@@ -1,5 +1,7 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +28,7 @@
 	src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 <script src="./lib/layui/layui.js" charset="utf-8"></script>
 <script type="text/javascript" src="./js/xadmin.js"></script>
-<title>司机接单成功</title>
+<title>地点关键字 + 驾车路线规划</title>
 <style type="text/css">
 html, body, #container {
 	width: 100%;
@@ -69,6 +71,22 @@ html, body, #container {
 	color: black;
 	font-size: 1.5em;
 }
+.box {
+	color: #999;
+}
+.box .sel {
+	color: #F00;
+}
+
+.icon {
+	width: 70px;
+	height: 70px;
+}
+
+.es {
+	width: 200px;
+	margin: 0px auto;
+}
 </style>
 <link rel="stylesheet"
 	href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css" />
@@ -82,6 +100,11 @@ html, body, #container {
 <body>
 	<%@ include file="passenger_head.jsp"%>
 	<div class="page-content">
+	<div id="n1" style="visibility:hidden"><s:property value="order.orderID"/></div>
+	<form action="torun">
+	<input id="orderid" type="hidden" name="order.orderID">
+	<input type="submit" class="btn btn-primary btn-lg" value="确认上车" onclick="get()">
+	</form>
 	<div id="container"></div>
 	<div id="panel" style="margin-top: 100px;"></div>
 	<blockquote class="layui-elem-quote"
@@ -100,9 +123,10 @@ html, body, #container {
 				司机已经接到订单，正在加速赶来的路上 <img src="images/car.gif"
 					style="position: relatives; left: 400px; top: 35px; height: 70px; width: 70px;">
 			</div>
-			<a
-				href="driverInformation.action" onclick="x_admin_show('订单详情','passenger_currentorder.jsp',600,500)" 
+			<a href="driverInformation.action" 
+				onclick="x_admin_show('订单详情','passenger_currentorder.jsp',600,400)"
 				class="x-a" target="_blank"><h3>点击获取订单详情...</h3></a> <br>
+			
 				<input type="submit" data-toggle="modal" data-target="#myModal"
 				class="layui-btn" value="取消订单"
 				style="display:block;margin:0 auto">
@@ -110,8 +134,8 @@ html, body, #container {
 	</blockquote>
 	</div>
 	<%
-		String address = request.getParameter("address");
-		String tipinput = request.getParameter("tipinput");
+	String address=request.getParameter("order.start");
+	String tipinput=request.getParameter("order.destination");
 	%>
 	<script type="text/javascript">
     //基本地图加载
@@ -137,6 +161,9 @@ html, body, #container {
 				log.error('获取驾车数据失败：' + result)
 			}
 		});
+    function get(){
+		document.getElementById("orderid").value=document.getElementById("n1").innerHTML;
+	}
 	</script>
 
 
@@ -149,17 +176,36 @@ html, body, #container {
 						aria-hidden="true"></button>
 					<h4 class="modal-title" id="myModalLabel">司机评价表</h4>
 				</div>
-				<div class="modal-body">按下 ESC 按钮退出。</div>
-				<form action="passenger_index.jsp">
+				<form action="deleteorder">
+				<input type="hidden" id="orderid"  name ="order.orderID" readonly="readonly"/>
+				<input type="hidden" id="orderid"  name ="order.passenger.passengerID" readonly="readonly"/>
+				<input type="hidden" id="orderid"  name ="order.driver.driverID" readonly="readonly"/>
 					<div class="modal-footer">
-						<textarea
-							style="width: 300px; height: 200px; position: relative; left: -100px; top: -10px;"></textarea>
+				<div class="modal-body" style="position:absolute;left:100px;top:50px;">请对司机打分:<span class="box"> <span>★</span> <span>★</span>
+									<span>★</span> <span>★</span> <span>★</span>
+							</span> <span id="2"><s:property value="order.estimatedtod" />0</span>分</div>
+							<input type="hidden" name="order.orderID">
+							<input type="hidden" name="order.passenger.passengerID">
+							<input type="hidden" name="order.driver.driverID">
+							<input type="hidden"  id="1" name ="order.estimateptod" readonly="readonly" />
 						<input type="submit" class="btn btn-primary" value="完成评价">
 					</div>
 				</form>
-
 			</div>
 		</div>
 	</div>
+		<script type="text/javascript">
+			function f1() {
+				alert("评价成功，点击确定跳转主页面");
+			}
+			$(function() {
+				$(".box span").click(function(event) {
+					$(this).parent().find("span").addClass("sel");
+					$(this).nextAll().removeClass("sel");
+					$(this).parent().next().text($(this).index() + 1);
+					var i=document.getElementById("2").innerHTML;
+					document.getElementById("1").value=i;
+				});
+			});
+		</script>
 </body>
-</html>

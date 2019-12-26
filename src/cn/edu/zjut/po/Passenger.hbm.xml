@@ -33,6 +33,9 @@
 		<property name="telephone" type="string">
 			<column name="telephone" length="20"/>
 		</property>
+			<property name="score" type="double">
+			<column name="score"/>
+			</property>
 		<property name="longitude" type="java.lang.Double">
 			<column name="longitude"/>
 		</property>
