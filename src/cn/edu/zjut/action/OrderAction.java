@@ -1,5 +1,6 @@
 package cn.edu.zjut.action;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -24,6 +25,15 @@ public class OrderAction {
 	private List orders;
 	private Double longitude;
 	private Double latitude;
+	private Double length;
+	public Double getLength() {
+		return length;
+	}
+
+	public void setLength(Double length) {
+		this.length = length;
+	}
+
 	public String save() {
 		orderService.save(order);
 		return "success";
@@ -61,6 +71,13 @@ public class OrderAction {
 	
 	public String getpassenger() {
 		//仔细想了想，好像不用改什么，先放着
+		order=orderService.findbyId(order);
+		Date date=new Date();
+		Calendar calendar = Calendar.getInstance();
+        date = calendar.getTime();
+        System.out.println(date);
+		order.setStarttime(date);
+		orderService.update(order);
 		return "success";
 	}
 	public String cancelorder() {
@@ -83,6 +100,54 @@ public class OrderAction {
 		System.out.println(order.getDriver().getDriverID());
 		return "success";
 	}
+	
+	public String arrive() {
+		System.out.println(order.getOrderID());
+		int iscomplete=order.getIsCompleted();
+		order=orderService.findbyId(order);
+		order.setIsCompleted(iscomplete);
+		double sum,nowsum;
+		Date date=new Date();
+		Calendar calendar = Calendar.getInstance();
+        date = calendar.getTime();
+        System.out.println(date);
+		order.setEndtime(date);
+		int time = (int)(order.getEndtime().getTime() - order.getStarttime().getTime())/(1000*60);
+		System.out.println("经过总时长:" + time);
+		length=length/1000;
+		if(order.getType().equals("优享")) {
+			double startsum=13.00;
+			if(length<=20) {
+				nowsum=2.3*length + 0.6*time;
+				if(nowsum>=startsum)
+					sum=nowsum;
+				else sum = startsum;
+			}
+			else {
+				nowsum=2.3*20+0.6*time+3.3*(length-20);
+				sum=nowsum;
+			}
+		}
+		else {
+			double startsum=13.00;
+			if(length<=20) {
+				nowsum=1.6*length+0.5*time;
+				if(nowsum>=startsum)
+					sum=nowsum;
+				else sum = startsum;
+			}
+			else {
+				nowsum=1.6*20+0.5*time+2.4*(length-20);
+				sum=nowsum;
+			}
+		}
+
+		System.out.println("总价格:" + sum);
+		order.setSum(sum);
+		orderService.update(order);
+		return "success";
+	}
+	
 	public String setlocation() {
 		order.setDriver(driverService.findbyId(order.getDriver()));
 		order.getDriver().setLatitude(latitude);

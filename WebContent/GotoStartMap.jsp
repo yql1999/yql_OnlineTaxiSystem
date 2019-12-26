@@ -121,7 +121,6 @@
                         <input class="form-control" id="destination" name="destination" readonly="readonly">
                     </div>
                     <input type="hidden" class="form-control" id="id" name="order.orderID" readonly="readonly">
-                    <input type="text" class="form-control" id="start" name="order.starttime" readonly="readonly">
                     <div class="text-right">
                         <span id="returnMessage" class="glyphicon"> </span>
                         <button type="button" class="btn btn-default right" data-dismiss="modal">关闭</button>
@@ -213,7 +212,7 @@
 				'fillColor': '#02B0FF',
 				'fillOpacity': 0.25
 			}
-}
+	}
   AMap.plugin('AMap.Geolocation', function() {
     var geolocation = new AMap.Geolocation(options);
     map.addControl(geolocation);

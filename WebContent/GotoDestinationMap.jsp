@@ -57,6 +57,16 @@
 <head>
 <meta charset="utf-8">
 <title>前往目的地</title>
+<script type="text/javascript" language="JavaScript">
+    $(document).ready(function(){
+			//console.log("11111");
+				$("btn2").click(function(){
+					document.getElementById("fsum").value=$(sum);
+					$("#orderModal").modal("show");
+					return false;
+				});
+		});
+    </script>
 </head>
 <body>
 	<div id="container" onmouseup="test()"></div>
@@ -79,11 +89,12 @@
 		<td id="td4"><s:property value="order.destination"/></td>
 		<td id="td5"></td>
 		<td id="td6"></td>
+		<td id="td7"><s:property value="order.orderID"/></td>
 	</tr>
 </table>
 <form action="warning" method="post">
 	<input type="text" id="location" name="location" style="visibility:hidden">
-	<input type="text" id="destination" name="destination" style="visibility:hidden">
+	<input type="text" id="destination1" name="destination" style="visibility:hidden">
 	<button type="submit" id="btn1" class="alert1 layui-btn layui-btn-danger">报警</button>
 </form>
 
@@ -100,7 +111,7 @@
         <h4 class="modal-title" id="myModalLabel">确认送达客户?<br>擅自结束订单可能会收到低星评价！</h4>
       </div>
       <div class="modal-body">
-                <form id="updateform" action="arrive" >
+                <s:form id="updateform" action="arrive" >
                     <div class="form-group">
                         <label for="loginname" class="control-label">用户名:</label>
                         <input type="text" class="form-control" id="nickname" name="nickname" readonly="readonly">
@@ -117,15 +128,22 @@
                         <label for="address" class="control-label">终点:</label>
                         <input class="form-control" id="destination" name="destination" readonly="readonly">
                     </div>
+                    <div class="form-group">
+                        <label for="distance" class="control-label">经过路程:</label>
+                        <input class="form-control" id="distance" name="length" readonly="readonly">
+                    </div>
                    	<div class="form-group" style="visibility: hidden; display: none;">
-                   		<input class="form-control" id="isCompleted" name="isCompleted" value="2">
+                   		<input class="form-control" id="isCompleted" name="order.isCompleted" value="2">
+                   	</div> 
+                   	<div class="form-group" style="visibility: hidden; display: none;">
+                   		<input class="form-control" id="orderID" name="order.orderID">
                    	</div> 
                     <div class="text-right">
                         <span id="returnMessage" class="glyphicon"> </span>
                         <button type="button" class="btn btn-default right" data-dismiss="modal">关闭</button>
                         <button id="submitBtn" type="submit" class="btn btn-primary" >已送达乘客</button>
                     </div>
-                </form>
+                </s:form>
       </div>
     </div>
   </div>
@@ -147,8 +165,22 @@
 </script>
 <script>
   var map, route, marker;
+  var length;
   var geolocation;
   var path = [];
+  function getDistance(lat1, lng1, lat2, lng2) {
+		earthRadius = 6367000;
+		lat1 = (lat1 * Math.PI) / 180;
+		lng1 = (lng1 * Math.PI) / 180;
+		lat2 = (lat2 * Math.PI) / 180;
+		lng2 = (lng2 * Math.PI) / 180;
+		calcLongitude = lng2 - lng1;
+		calcLatitude = lat2 - lat1;
+		stepOne = Math.pow(Math.sin(calcLatitude / 2), 2) + Math.cos(lat1) * Math.cos(lat2) * Math.pow(Math.sin(calcLongitude / 2), 2);
+		stepTwo = 2 * Math.asin(Math.min(1, Math.sqrt(stepOne)));
+		calculatedDistance = earthRadius * stepTwo;
+		return Math.round(calculatedDistance);
+	}
   var driving=new AMap.Driving({
       //map:map,
       panel:"panel"
@@ -262,6 +294,7 @@
     });
     
   }
+  
   function onComplete1(data) {
 	  	//map.removeControl(geolocation);
 	  	/*map = new AMap.Map("container", {
@@ -278,6 +311,8 @@
 	    //var location=text.indexOf(",");
 		//var left=text.substring(0,minutelocation-1);
 		//var right=text.substring(minutelocation+1,minutelocation.length);
+		length+=getDistance(path[0].P, path[0].Q, data.position.P, data.position.Q);
+		console.log("length:"+length);
 	    path[0].Q=data.position.Q;
 	    path[0].P=data.position.P;
 	    
@@ -384,6 +419,8 @@
 	  document.getElementById("telephone").value=document.getElementById("td2").innerHTML;
 	  document.getElementById("start").value=document.getElementById("td3").innerHTML;
 	  document.getElementById("destination").value=document.getElementById("td4").innerHTML;
+	  document.getElementById("distance").value=length;
+	  document.getElementById("orderID").value=document.getElementById("td7").innerHTML;
 	  document.getElementById("nickname1").value=document.getElementById("td1").innerHTML;
 	  document.getElementById("telephone1").value=document.getElementById("td2").innerHTML;
 	  document.getElementById("start1").value=document.getElementById("td3").innerHTML;
