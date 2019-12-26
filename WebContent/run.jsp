@@ -80,7 +80,7 @@ html, body, #container {
 			<p style="visibility: hidden">由于众多浏览器已不再支持非安全域的定位请求，为保位成功率和精度，请升级您的站点到HTTPS。</p>
 		</div>
 		<form action="#">
-			<input type="button" value="支付" onclick="x_admin_show('支付','pay.jsp',400,300)"
+			<input type="button" value="支付" onclick="x_admin_show('支付','pay.jsp',400,600)"
 			 data-toggle="modal" class="layui-btn" 
 				style="height:50px;width:260px;position: absolute; bottom: 100px; right: 20px;display:block;margin:0 auto;">
 		</form>

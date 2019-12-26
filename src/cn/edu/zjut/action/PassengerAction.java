@@ -47,6 +47,11 @@ public class PassengerAction {
 		passengerService.allOrder(loginPassenger);
 		return "success";
 	}
+	
+	public String currOrder() {
+		passengerService.currOrder(loginPassenger);
+		return "success";
+	}
 
 	public String getNickname() {
 		return nickname;

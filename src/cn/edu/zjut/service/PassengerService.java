@@ -77,6 +77,14 @@ public class PassengerService implements IPassengerService {
 		return orders;
 	}
 
+	@Override
+	public Order currOrder(Passenger passenger) {
+		System.out.println("Passenger currOrder service");
+		Order order = PassengerDAO.currOrder(passenger);
+		ActionContext.getContext().getSession().put("currOrder", order);
+		return order;
+	}
+	
 	public IPassengerDAO getPassengerDAO() {
 		return PassengerDAO;
 	}

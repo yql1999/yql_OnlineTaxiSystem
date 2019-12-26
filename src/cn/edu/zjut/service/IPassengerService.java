@@ -15,4 +15,5 @@ public interface IPassengerService {
 	public Passenger select(Passenger passenger);//查询个人信息
 	public Driver driverInformation(Order order);//获取接收订单的司机信息
 	public ArrayList<Order> allOrder(Passenger passenger);//查看所有订单
+	public Order currOrder(Passenger passenger);
 }

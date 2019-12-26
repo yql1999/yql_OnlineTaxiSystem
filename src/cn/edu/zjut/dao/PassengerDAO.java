@@ -94,8 +94,7 @@ public class PassengerDAO extends BaseHibernateDAO implements IPassengerDAO {
 	@Override
 	public Driver driverInformation(Order order) {
 		try {
-			String hql = "from Order where OrderID=1";
-			//hql += order.getOrderID();
+			String hql = "from Order where OrderID="+order.getOrderID();
 			Query queryObject = getSession().createQuery(hql);
 			Driver driver = ((Order) queryObject.getResultList().get(0)).getDriver();
 			return driver;
@@ -108,9 +107,22 @@ public class PassengerDAO extends BaseHibernateDAO implements IPassengerDAO {
 	@Override
 	public ArrayList<Order> allOrder(Passenger passenger) {
 		try {
-			Passenger passenger2 = (Passenger) ActionContext.getContext().getSession().get("passenger");
-			String hql = "from Order where passengerID=" + passenger2.getPassengerID();
+			passenger = (Passenger) ActionContext.getContext().getSession().get("passenger");
+			String hql = "from Order where passengerID=" + passenger.getPassengerID();
 			return (ArrayList<Order>) getSession().createQuery(hql).list();
+		} catch (RuntimeException re) {
+			throw re;
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public Order currOrder(Passenger passenger) {
+		try {
+			Passenger passenger2 = (Passenger) ActionContext.getContext().getSession().get("passenger");
+			String hql = "from Order where passengerID=" + passenger2.getPassengerID() + "order by orderID desc";
+			ArrayList<Order> orders = (ArrayList<Order>) getSession().createQuery(hql).list();
+			return orders.get(0);
 		} catch (RuntimeException re) {
 			throw re;
 		}

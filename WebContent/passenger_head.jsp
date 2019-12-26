@@ -66,18 +66,18 @@
 	<div class="left-nav">
 		<div id="side-nav">
 			<ul id="nav">
-			
-				<li>
-					<a href="passenger_driverlist.jsp"> 
-						<i class="iconfont">&#xe6b8;</i>
-						<cite>司机信息列表</cite>
-					</a>
-				</li>
 				
 				<li>
 					<a href="allOrder.action"> 
 						<i class="iconfont">&#xe723;</i>
 						<cite>我的订单</cite> 
+					</a>
+				</li>
+				
+				<li>
+					<a href="currOrder.action"> 
+						<i class="iconfont">&#xe6b8;</i>
+						<cite>当前订单</cite>
 					</a>
 				</li>
 				

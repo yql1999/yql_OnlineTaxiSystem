@@ -15,8 +15,11 @@
 		<action name="allOrder" class="passengerAction" method="allOrder">
 			<result name="success">/passenger_orderlist.jsp</result>
 		</action>
+		<action name="currOrder" class="passengerAction" method="currOrder">
+			<result name="success">/passenger_currOrder.jsp</result>
+		</action>
 		<action name="driverInformation" class="passengerAction" method="driverInformation">
-			<result name="success">/passenger_currentorder.jsp</result>
+			<result name="success"></result>
 		</action>
 		<!-- <action name="passenger_*" class="passengerAction" method="{1}">
 			<result name="success">/success_test.jsp</result>
@@ -24,7 +27,7 @@
 		</action> -->
 		
 		<action name="passengerlogin" class="passengerAction" method="login">
-			<result name="success">/passenger_head.jsp</result>
+			<result name="success">/passenger_index.jsp</result>
 			<result name="fail">/LoginFail.jsp</result>
 		</action>
 		<action name="driverlogin" class="driverAction" method="login">

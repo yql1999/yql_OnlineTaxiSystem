@@ -77,6 +77,7 @@
 			<input type="submit" class="layui-btn" value="支付" 
 				style="display:block;margin:0 auto">
 		</s:form>
+		<img src="images/pay.png" height="250" width="210" style="display:block;margin:0 auto">
 		</div>
 		
 		<%-- <script type="text/javascript">
