@@ -56,7 +56,7 @@
 		
 			<div class="x-body">
 			<div id="n1" style="visibility:hidden"><s:property value="order.passenger.passengerID"/></div>
-			<s:form action="finish" >
+
 			<s:form action="passenger_pay.action" method="post">
 				<table class="layui-table">
 					<thead>

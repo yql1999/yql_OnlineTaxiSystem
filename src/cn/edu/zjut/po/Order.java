@@ -22,43 +22,11 @@ public class Order {
 	private Double estimatedtop;
 	private Boolean isEstimated;
 	private int isCompleted;//0代表未接单，1代表已接单，2代表已完成
-	private double slng;
-	private double slat;
-	private double elng;
-	private double elat;
+	private Double slng;
+	private Double slat;
+	private Double elng;
+	private Double elat;
 	
-	public double getSlng() {
-		return slng;
-	}
-
-	public double getSlat() {
-		return slat;
-	}
-
-	public double getElng() {
-		return elng;
-	}
-
-	public double getElat() {
-		return elat;
-	}
-
-	public void setSlng(double slng) {
-		this.slng = slng;
-	}
-
-	public void setSlat(double slat) {
-		this.slat = slat;
-	}
-
-	public void setElng(double elng) {
-		this.elng = elng;
-	}
-
-	public void setElat(double elat) {
-		this.elat = elat;
-	}
-
 	public Double getSum() {
 		return sum;
 	}
@@ -73,7 +41,7 @@ public class Order {
 		this.setOrderID(orderID);
 	}
 	
-	public Order(int orderID, String start, String destination, Date starttime, Date endtime, int passnum, String type, double sum, Driver driver, Passenger passenger, double estimateptod, double estimatedtop,Boolean isEstimated,int isCompleted,double slng,double slat,double elng,double elat) {
+	public Order(int orderID, String start, String destination, Date starttime, Date endtime, int passnum, String type, Double sum, Driver driver, Passenger passenger, Double estimateptod, Double estimatedtop,Boolean isEstimated,int isCompleted,Double slng,Double slat,Double elng,Double elat) {
 		this.setOrderID(orderID);
 		this.setStart(start);
 		this.setDestination(destination);
@@ -199,6 +167,38 @@ public class Order {
 
 	public void setIsCompleted(int isCompleted) {
 		this.isCompleted = isCompleted;
+	}
+
+	public Double getSlng() {
+		return slng;
+	}
+
+	public void setSlng(Double slng) {
+		this.slng = slng;
+	}
+
+	public Double getSlat() {
+		return slat;
+	}
+
+	public void setSlat(Double slat) {
+		this.slat = slat;
+	}
+
+	public Double getElng() {
+		return elng;
+	}
+
+	public void setElng(Double elng) {
+		this.elng = elng;
+	}
+
+	public Double getElat() {
+		return elat;
+	}
+
+	public void setElat(Double elat) {
+		this.elat = elat;
 	}
 	
 		

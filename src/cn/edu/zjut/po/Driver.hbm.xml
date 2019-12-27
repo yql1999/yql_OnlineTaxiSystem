@@ -45,6 +45,6 @@
 		<!--  <property name="carID" type="int">
 			<column name="carID"/>
 		</property>-->
-		<one-to-one name="car" constrained="true"/>
+		<one-to-one name="car" constrained="true" class="cn.edu.zjut.po.Car"/>
 	</class>
 </hibernate-mapping>
