@@ -7,7 +7,7 @@ import cn.edu.zjut.service.IPassengerService;
 public class PassengerAction {
 	private String nickname;
 	private String password;
-	private Passenger loginPassenger;
+	private Passenger loginUser;
 	private Order order;
 	private IPassengerService passengerService = null;
 
@@ -16,13 +16,15 @@ public class PassengerAction {
 	}
 
 	public String register() {
-		passengerService.register(loginPassenger);
+		passengerService.register(loginUser);
 		return "success";
 	}
 
 	public String login() {
-		if (passengerService.login(loginPassenger))
+		if (passengerService.login(loginUser)) {
+			loginUser=passengerService.findbyaccount(loginUser);
 			return "success";
+			}
 		return "fail";
 	}
 
@@ -34,7 +36,7 @@ public class PassengerAction {
 	}
 
 	public String select() {
-		passengerService.select(loginPassenger);
+		passengerService.select(loginUser);
 		return "success";
 	}
 
@@ -44,12 +46,12 @@ public class PassengerAction {
 	}
 
 	public String allOrder() {
-		passengerService.allOrder(loginPassenger);
+		passengerService.allOrder(loginUser);
 		return "success";
 	}
 	
 	public String currOrder() {
-		passengerService.currOrder(loginPassenger);
+		passengerService.currOrder(loginUser);
 		return "success";
 	}
 
@@ -70,11 +72,11 @@ public class PassengerAction {
 	}
 
 	public Passenger getLoginUser() {
-		return loginPassenger;
+		return loginUser;
 	}
 
 	public void setLoginUser(Passenger loginUser) {
-		this.loginPassenger = loginUser;
+		this.loginUser = loginUser;
 	}
 
 	public IPassengerService getPassengerService() {

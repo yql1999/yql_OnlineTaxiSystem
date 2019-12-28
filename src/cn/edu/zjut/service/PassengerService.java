@@ -57,7 +57,6 @@ public class PassengerService implements IPassengerService {
 		return temp;
 	}
 
-	@Override
 	public void update(String nickname, String password) {
 		Passenger passenger = (Passenger) ActionContext.getContext().getSession().get("passenger");
 		passenger.setNickname(nickname);
@@ -66,13 +65,11 @@ public class PassengerService implements IPassengerService {
 		// System.out.println("Passenger update");
 	}
 
-	@Override
 	public Passenger select(Passenger passenger) {
 		System.out.println("Passenger select service");
 		return PassengerDAO.select(passenger);
 	}
 
-	@Override
 	public Driver driverInformation(Order order) {
 		System.out.println("Passenger driverInformation service");
 		Driver driver=PassengerDAO.driverInformation(order);
@@ -80,7 +77,6 @@ public class PassengerService implements IPassengerService {
 		return driver;
 	}
 
-	@Override
 	public ArrayList<Order> allOrder(Passenger passenger) {
 		System.out.println("Passenger allOrder service");
 		ArrayList<Order> orders = PassengerDAO.allOrder(passenger);
@@ -88,7 +84,6 @@ public class PassengerService implements IPassengerService {
 		return orders;
 	}
 
-	@Override
 	public Order currOrder(Passenger passenger) {
 		System.out.println("Passenger currOrder service");
 		Order order = PassengerDAO.currOrder(passenger);

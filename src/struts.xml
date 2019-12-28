@@ -21,11 +21,6 @@
 		<action name="driverInformation" class="passengerAction" method="driverInformation">
 			<result name="success"></result>
 		</action>
-		<!-- <action name="passenger_*" class="passengerAction" method="{1}">
-			<result name="success">/success_test.jsp</result>
-			<result name="fail">/fail_test.jsp</result>
-		</action> -->
-		
 		<action name="passengerlogin" class="passengerAction" method="login">
 			<result name="success">/passenger_index.jsp</result>
 			<result name="fail">/LoginFail.jsp</result>
@@ -64,7 +59,27 @@
 		<action name="cancelorder" class="orderAction" method="cancelorder">
 			<result name="success">/order-list.jsp</result>
 		</action>
-		
+		<action name="addorder" class="orderAction" method="addorder">
+		<result name="success">/route.jsp</result>
+		</action>
+		<action name="cancel" class="orderAction" method="cancel">
+		<result name="success">/intime_call.jsp</result>
+		</action>
+		<action name="torun" class="orderAction" method="torun">
+		<result name="success">/run.jsp</result>
+		</action>
+		<action name="deleteorder" class="orderAction" method="deleteorder">
+		<result name="success">/intime_call.jsp</result>
+		</action>
+		<action name="toappraise" class="orderAction" method="toappraise">
+		<result name="success">/appraise.jsp</result>
+		</action>
+		<action name="appraise" class="orderAction" method="appraise">
+		<result name="success">/pay.jsp</result>
+		</action>
+		<action name="finish" class="orderAction" method="finish">
+		<result name="success">/passenger_index.jsp</result>
+		</action>
 	</package>
 	<package name="ajax" extends="json-default" namespace="/">
         <action name="ajaxRequest" class="orderAction" method="setlocation">

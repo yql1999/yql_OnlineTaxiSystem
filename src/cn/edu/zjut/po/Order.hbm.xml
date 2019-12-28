@@ -39,8 +39,11 @@
 		<property name="estimatedtop" type="java.lang.Double">
 			<column name="estimatedtop"/>
 		</property>
-		<property name="isEstimated" type="java.lang.Boolean">
-			<column name="isEstimated"/>
+		<property name="isEstimatedD" type="java.lang.Boolean">
+			<column name="isEstimatedD"/>
+		</property>
+			<property name="isEstimatedP" type="java.lang.Boolean">
+			<column name="isEstimatedP"/>
 		</property>
 		<property name="isCompleted" type="int">
 			<column name="isCompleted"/>

@@ -165,7 +165,8 @@ public class OrderAction {
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		java.sql.Date sqld=new java.sql.Date(t.getTime());
 		order.setStarttime(sqld);
-		order.setIsEstimated(false);
+		order.setIsEstimatedP(false);
+		order.setIsEstimatedD(false);
 		orderService.save(order);
 		return"success";
 	}
@@ -194,7 +195,10 @@ public class OrderAction {
 		orderService.cancel(order);
 		return "success";
 	}
-
+public String finish() {
+	loginUser=order.getPassenger();
+	return "success";
+}
 	//获取精确到秒的时间戳  
 	public static int getSecondTimestamp(Date date){  
 	    if (null == date) {  

@@ -82,7 +82,7 @@ public class OrderDAO extends BaseHibernateDAO implements IOrderDAO {
 			List<Order> orders=findorders("from Order as user where passengerID="+i);
 			for(int j=0;j<orders.size();j++) {
 			Order example=orders.get(j);
-			 if(example.getIsEstimated()==false) {
+			 if(example.getIsEstimatedP()==false) {
 			session.delete(example);
 			 }
 			}
@@ -97,7 +97,7 @@ public class OrderDAO extends BaseHibernateDAO implements IOrderDAO {
 			List<Order> orders=findorders("from Order as user where passengerID="+i);
 			for(int j=0;j<orders.size();j++) {
 			Order example=orders.get(j);
-			 if(example.getIsEstimated()==false) {
+			 if(example.getIsEstimatedP()==false) {
 			session.delete(example);
 			 }
 			}
@@ -145,7 +145,7 @@ public class OrderDAO extends BaseHibernateDAO implements IOrderDAO {
         order.setSum(order.getSum());
 		order.setEstimateptod(score1);
 		order.setIsCompleted(2);
-		order.setIsEstimated(true);
+		order.setIsEstimatedP(true);
 		session.update(order);
 		tran.commit();
 	}

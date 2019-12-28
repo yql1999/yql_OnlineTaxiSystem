@@ -20,7 +20,8 @@ public class Order {
 	private Double sum;
 	private Double estimateptod;
 	private Double estimatedtop;
-	private Boolean isEstimated;
+	private Boolean isEstimatedD;
+	private Boolean isEstimatedP;
 	private int isCompleted;//0代表未接单，1代表已接单，2代表已完成
 	private Double slng;
 	private Double slat;
@@ -41,7 +42,7 @@ public class Order {
 		this.setOrderID(orderID);
 	}
 	
-	public Order(int orderID, String start, String destination, Date starttime, Date endtime, int passnum, String type, Double sum, Driver driver, Passenger passenger, Double estimateptod, Double estimatedtop,Boolean isEstimated,int isCompleted,Double slng,Double slat,Double elng,Double elat) {
+	public Order(int orderID, String start, String destination, Date starttime, Date endtime, int passnum, String type, Double sum, Driver driver, Passenger passenger, Double estimateptod, Double estimatedtop,Boolean isEstimatedP,Boolean isEstimatedD,int isCompleted,Double slng,Double slat,Double elng,Double elat) {
 		this.setOrderID(orderID);
 		this.setStart(start);
 		this.setDestination(destination);
@@ -57,7 +58,8 @@ public class Order {
 		this.setPassenger(passenger);
 		this.setEstimatedtop(estimatedtop);
 		this.setEstimateptod(estimateptod);
-		this.setIsEstimated(isEstimated);
+		this.isEstimatedD=isEstimatedD;
+		this.isEstimatedP=isEstimatedP;
 		this.setIsCompleted(isCompleted);
 		this.elat=elat;
 		this.elng=elng;
@@ -153,12 +155,21 @@ public class Order {
 		this.estimatedtop = estimatedtop;
 	}
 
-	public Boolean getIsEstimated() {
-		return isEstimated;
+
+	public Boolean getIsEstimatedD() {
+		return isEstimatedD;
 	}
 
-	public void setIsEstimated(Boolean isEstimated) {
-		this.isEstimated = isEstimated;
+	public Boolean getIsEstimatedP() {
+		return isEstimatedP;
+	}
+
+	public void setIsEstimatedD(Boolean isEstimatedD) {
+		this.isEstimatedD = isEstimatedD;
+	}
+
+	public void setIsEstimatedP(Boolean isEstimatedP) {
+		this.isEstimatedP = isEstimatedP;
 	}
 
 	public int getIsCompleted() {

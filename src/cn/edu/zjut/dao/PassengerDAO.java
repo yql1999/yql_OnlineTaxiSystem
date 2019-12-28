@@ -62,7 +62,6 @@ public class PassengerDAO extends BaseHibernateDAO implements IPassengerDAO {
 		}
 	}
 
-	@Override
 	public void update(Passenger passenger) {
 		Transaction tx = null;
 		Session session = null;
@@ -79,7 +78,6 @@ public class PassengerDAO extends BaseHibernateDAO implements IPassengerDAO {
 		}
 	}
 
-	@Override
 	public Passenger select(Passenger passenger) {
 		try {
 			String hql = "from Passenger where passengerID=";
@@ -91,7 +89,6 @@ public class PassengerDAO extends BaseHibernateDAO implements IPassengerDAO {
 		}
 	}
 
-	@Override
 	public Driver driverInformation(Order order) {
 		try {
 			String hql = "from Order where OrderID="+order.getOrderID();
@@ -104,7 +101,6 @@ public class PassengerDAO extends BaseHibernateDAO implements IPassengerDAO {
 	}
 
 	@SuppressWarnings("unchecked")
-	@Override
 	public ArrayList<Order> allOrder(Passenger passenger) {
 		try {
 			passenger = (Passenger) ActionContext.getContext().getSession().get("passenger");
@@ -116,7 +112,6 @@ public class PassengerDAO extends BaseHibernateDAO implements IPassengerDAO {
 	}
 
 	@SuppressWarnings("unchecked")
-	@Override
 	public Order currOrder(Passenger passenger) {
 		try {
 			Passenger passenger2 = (Passenger) ActionContext.getContext().getSession().get("passenger");
@@ -128,25 +123,20 @@ public class PassengerDAO extends BaseHibernateDAO implements IPassengerDAO {
 		}
 	}
 
-	@Override
 	public void addOrder(Order order) {
 		// TODO Auto-generated method stub
 
 	}
-
-	@Override
 	public void deleteOrder(Order order) {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public void estimate(Driver driver) {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public void pay(Passenger passenger) {
 		// TODO Auto-generated method stub
 

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@page import="cn.edu.zjut.po.Passenger"%>
 		<%@ taglib prefix="s" uri="/struts-tags" %>
 <!doctype html>
 <html>
@@ -57,7 +58,8 @@ html, body, #container {
 			<p style="color: white; font-size: 1.2em; cellspacing: 0">请耐心等待，系统正在为你加速派车</p>
 			<br>
 			<br>
-			<div id="n1" style="visibility:hidden"><s:property value="order.passenger.passengerID"/></div>
+						<%Passenger passenger=(Passenger)request.getSession().getAttribute("passenger");%>
+					<div id="n1" style="visibility:hidden"><%=passenger.getPassengerID()%></div>
 			<form action="cancel">
 				<input type="submit" data-toggle="modal" class="layui-btn"
 					value="停止叫车" style="merge-top: 10px; merge-left: 20px;" onclick="get()">

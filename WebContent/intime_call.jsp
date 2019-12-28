@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@page import="cn.edu.zjut.po.Passenger"%>
 	<%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html>
@@ -50,7 +51,8 @@ html, body, #container {
 					<div class="input-item-prepend">
 						<span class="input-item-text">起始位置</span>
 					</div>
-					<div id="n1" style="visibility:hidden"><s:property value="loginUser.passengerID"/></div>
+					<%Passenger passenger=(Passenger)request.getSession().getAttribute("passenger");%>
+					<div id="n1" style="visibility:hidden"><%=passenger.getPassengerID()%></div>
 					<input id='address' name='order.start' type="text">
 				</div>
 				<hr class="hr15">
