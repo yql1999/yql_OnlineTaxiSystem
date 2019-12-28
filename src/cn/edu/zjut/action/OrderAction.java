@@ -68,9 +68,15 @@ public class OrderAction {
 		Order t=new Order();
 		while(it.hasNext()) {
 			t=(Order)it.next();
+			if(t.getIsCompleted()!=0) {
+				it.remove();
+				
+			}
+			else {
 			System.out.println(t.getSlat());
 			if(getDistance(latitude,longitude,t.getSlat(),t.getSlng())/1000>10) {
 				it.remove();
+			}
 			}
 		}
 		return "success";

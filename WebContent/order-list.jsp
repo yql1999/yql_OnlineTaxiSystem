@@ -183,5 +183,13 @@
         </div>
 	</div>
 </body>
-
+<script>
+window.onload=function(){
+	var flag=$("td10").val();
+	if(!flag)
+	{
+		alert("现在没有可接订单，请稍后刷新");
+	}
+}
+</script>
 </html>
