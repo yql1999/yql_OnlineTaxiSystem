@@ -59,6 +59,12 @@
 		<action name="cancelorder" class="orderAction" method="cancelorder">
 			<result name="success">/order-list.jsp</result>
 		</action>
+		<action name="arrive" class="orderAction" method="arrive">
+			<result name="success">/driverEstimate.jsp</result>
+		</action>
+		<action name="driverEstimate" class="orderAction" method="driverEstimate">
+			<result name="success">/driverEstimate.jsp</result>
+		</action>
 		<action name="addorder" class="orderAction" method="addorder">
 		<result name="success">/route.jsp</result>
 		</action>

@@ -30,6 +30,7 @@ public class OrderAction {
 	private Double latitude;
 	private Double length;
 	private int orderID;
+	private Double estimatedtop;
 	public Double getLength() {
 		return length;
 	}
@@ -151,6 +152,16 @@ public class OrderAction {
 		System.out.println("×Ü¼Û¸ñ:" + sum);
 		order.setSum(sum);
 		orderService.update(order);
+		orders=orderService.findorders();
+		return "success";
+	}
+	
+	public String driverEstimate(){
+		order=orderService.findbyId(order);
+		order.setIsEstimatedD(true);
+		order.setEstimatedtop(estimatedtop);
+		orderService.update(order);
+		orders=orderService.findorders();
 		return "success";
 	}
 	
@@ -296,6 +307,14 @@ public String finish() {
 
 	public void setOrderID(int orderID) {
 		this.orderID = orderID;
+	}
+	
+	public Double getEstimatedtop() {
+		return estimatedtop;
+	}
+
+	public void setEstimatedtop(Double estimatedtop) {
+		this.estimatedtop = estimatedtop;
 	}
 	
 }

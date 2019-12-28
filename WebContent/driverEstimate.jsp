@@ -41,10 +41,27 @@
             display:inline;
         }
     </style>
+    <%!int idNum=0; 
+	int i = 0;%>
+    <script type="text/javascript" language="JavaScript">
+    $(document).ready(function(){
+		<%for(i=0;i<100;i++){%>
+			console.log(<%=i%>);
+		//console.log("11111");
+			$("#btn<%=i%>").click(function(){
+				console.log("kaishi "+<%=i%>+"anniu ");
+				document.getElementById("i1").value=$(<%="td1"+i%>).html();
+				document.getElementById("i2").value=$(<%="td2"+i%>).html();
+				var esform = document.getElementById('esform');
+				esform.submit();
+				return false;
+			});
+		<%}%>
+	});
+    </script>
     <!--[endif]-->
 </head>
 <body class="layui-anim layui-anim-up">
-    <s:form action="orderEstimate" method="post">
     <div class="x-nav">
       <span class="layui-breadcrumb">
         <a href="">首页</a>
@@ -56,6 +73,9 @@
         <i class="layui-icon" style="line-height:30px">ဂ</i></a>
     </div>
     <div class="x-body">
+    	<xblock>
+        	<button class="layui-btn" onclick="javascript:window.location.href='order-list.jsp'">下次再评</button>
+      	</xblock>
         <table class="layui-table">
             <thead>
               <tr>
@@ -68,31 +88,43 @@
                   <th>是否中途更换路线</th>
                   <th>评价</th>
                   <th>反馈内容</th>
+                  <th></th>
               </tr>
             </thead>
             <tbody>
+            <s:iterator value="orders" var="object">
+			   <s:if test="#object.isEstimatedD!=1">
               <tr>
-                  <td><s:property value="order.driverID" />1</td>
-                  <td><s:property value="order.passengerID" />1</td>
+                  <td><s:property value="order.driver.driverID" /></td>
+                  <td><s:property value="order.passenger.passengerID" /></td>
                   <td>18:11</td>
                   <td>6.4km</td>
-                  <td><s:property value="order.start"/>浙江工业大学屏峰校区</td>
-                  <td><s:property value="order.destination"/>西溪印象城</td>
+                  <td><s:property value="order.start"/></td>
+                  <td><s:property value="order.destination"/></td>
                   <td>否</td>
-                  <td class="es"><span class="box">
+                  <td id="<%="td2"+idNum%>"><span class="box">
                       <span>★</span>
                       <span>★</span>
                       <span>★</span>
                       <span>★</span>
                       <span>★</span>
                   </span>
-                  <span><s:property value="order.estimatedtop" />0</span>分</td>
+                  <span>0</span>分</td>
                   <td><input type="text"/></td>
+                  <td><button id="<%="btn"+idNum%>" class="layui-btn layui-btn-sm" >提交评价</button></td>
+                  <td id="<%="td1"+idNum%>" style="visibility: hidden; display: none;"><s:property value="#object.orderID"/></td>
               </tr>
+              <% idNum++; %>
+              </s:if>
+              </s:iterator>
             </tbody>
         </table>
+        <s:form action="driverEstimate" method="post" id="esform" style="visibility: hidden; display: none;">
+        <input id="i1" name="order.orderID"/>
+        <input id="i2" name="estimatedtop"/>
+        <input type="submit" value="tijiao"/>
+        </s:form>
     </div>
-    </s:form>
     <script type="text/javascript">
         $(function(){
             $(".box span").click(function(event){
@@ -101,7 +133,6 @@
                 $(this).parent().next().text($(this).index()+1);
             });
         });
-
     </script>
 </body>
 </html>

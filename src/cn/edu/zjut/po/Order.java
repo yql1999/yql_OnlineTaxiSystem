@@ -42,7 +42,8 @@ public class Order {
 		this.setOrderID(orderID);
 	}
 	
-	public Order(int orderID, String start, String destination, Date starttime, Date endtime, int passnum, String type, Double sum, Driver driver, Passenger passenger, Double estimateptod, Double estimatedtop,Boolean isEstimated,int isCompleted,Double slng,Double slat,Double elng,Double elat) {		this.setOrderID(orderID);
+	public Order(int orderID, String start, String destination, Date starttime, Date endtime, int passnum, String type, Double sum, Driver driver, Passenger passenger, Double estimateptod, Double estimatedtop,Boolean isEstimatedD,int isCompleted,Double slng,Double slat,Double elng,Double elat,Boolean isEstimatedP) {
+		this.setOrderID(orderID);
 		this.setStart(start);
 		this.setDestination(destination);
 		this.setStarttime(starttime);
@@ -57,12 +58,13 @@ public class Order {
 		this.setPassenger(passenger);
 		this.setEstimatedtop(estimatedtop);
 		this.setEstimateptod(estimateptod);
-		this.setIsEstimatedD(isEstimatedD);		this.setIsCompleted(isCompleted);
+		this.setIsCompleted(isCompleted);
+		this.elat=elat;
+		this.elng=elng;
+		this.slat=slat;
+		this.slng=slng;
+		this.setIsEstimatedD(isEstimatedD);
 		this.setIsEstimatedP(isEstimatedP);
-		this.setSlat(slat);
-		this.setSlng(slng);
-		this.setElat(elat);
-		this.setElng(elng);
 	}
 
 	public int getOrderID() {
@@ -153,15 +155,13 @@ public class Order {
 		this.estimatedtop = estimatedtop;
 	}
 
-
 	public Boolean getIsEstimatedD() {
-		return isEstimatedD;	}
-
-	public void setIsEstimatedD(Boolean isEstimatedD) {
-		this.isEstimatedD = isEstimatedD;	
+		return isEstimatedD;
 	}
 
-
+	public void setIsEstimatedD(Boolean isEstimatedD) {
+		this.isEstimatedD = isEstimatedD;
+	}
 
 	public int getIsCompleted() {
 		return isCompleted;
