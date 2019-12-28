@@ -20,10 +20,10 @@
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <%!int idNum=0; 
 	int i = 0;%>
-    <script type="text/javascript" language="JavaScript">
+    <script type="text/javascript" language="JavaScript"> 
     $(document).ready(function(){
+    	
 			<%for(i=0;i<100;i++){%>
-			//console.log("11111");
 				$("#btn<%=i%>").click(function(){
 					console.log("kaishi "+<%=i%>+"anniu ");
 					document.getElementById("i1").value=$("#<%="td1"+i%>").html();
@@ -39,6 +39,7 @@
 					document.getElementById("i11").value=$(<%="td12"+i%>).html();
 					document.getElementById("i12").value=$(<%="td13"+i%>).html();
 					document.getElementById("i13").value=$(<%="td2"+i%>).html();
+					document.getElementById("ID").value=document.getElementById("id").innerHTML;
 					$("#orderModal").modal("show");
 					return false;
 				});
@@ -46,7 +47,6 @@
 		});
     </script>
 </head>
-<body>
 <body>
 	<div class="x-nav">
 		<span class="layui-breadcrumb"> <a href="">首页</a> <a href="">演示</a>
@@ -105,6 +105,8 @@
                    <td id="<%="td11"+idNum%>" style="visibility: hidden; display: none;"><s:property value="#object.estimatedtop"/></td>
                    <td id="<%="td12"+idNum%>" style="visibility: hidden; display: none;"><s:property value="#object.isEstimated"/></td>
                    <td id="<%="td13"+idNum%>" style="visibility: hidden; display: none;"><s:property value="#object.isCompleted"/></td>
+                   <td id="<%="td14"+idNum%>" style="visibility: hidden; display: none;"><s:property value="#object.slng"/></td>
+                   <td id="<%="td15"+idNum%>" style="visibility: hidden; display: none;"><s:property value="#object.slat"/></td>
                    <td>
                    <button id="<%="btn"+idNum%>" class="layui-btn layui-btn-sm" data-toggle="modal" data-target="#orderModal">确认接单</button>
                    </td>
@@ -115,6 +117,7 @@
             </tbody>
 			
 		</table>
+		<div id="id" style="visibility:hidden;display:none;"><s:property value="order.driver.driverID"/></div>
 		<div style=" text-align:center">
 			<!-- 模态框（Modal） -->
 			<div class="modal fade" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -144,7 +147,7 @@
 								</div>
 								<div class="form-group">
 									<label>司机编号</label>
-									<input type="text" class="form-control" name ="order.driver.driverID" readonly="readonly" value="1"/>
+									<input type="text" class="form-control" name ="order.driver.driverID" readonly="readonly" id="ID"/>
 									<!--<s:property value="loginUser.driverID"/>-->
 								</div>
 								<input type="text" class="form-control" name="order.type" readonly="readonly" style="visibility: hidden; display: none;" id="i5"/>
@@ -180,4 +183,5 @@
         </div>
 	</div>
 </body>
+
 </html>

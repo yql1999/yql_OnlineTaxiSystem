@@ -42,10 +42,9 @@
 		<property name="isEstimatedD" type="java.lang.Boolean">
 			<column name="isEstimatedD"/>
 		</property>
-			<property name="isEstimatedP" type="java.lang.Boolean">
+		<property name="isEstimatedP" type="java.lang.Boolean">
 			<column name="isEstimatedP"/>
-		</property>
-		<property name="isCompleted" type="int">
+		</property>		<property name="isCompleted" type="int">
 			<column name="isCompleted"/>
 		</property>
 		<property name="slng" type="java.lang.Double">

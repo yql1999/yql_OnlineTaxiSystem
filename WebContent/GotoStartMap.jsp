@@ -419,9 +419,10 @@
 	  document.getElementById("id1").value=document.getElementById("td7").innerHTML;
   }
   function cli(data){
-		
+	  	var a=document.getElementById("td7").innerHTML;
 		var url='ajaxRequest';
 		var params={
+					orderID:a,
 					longitude:data.position.Q,
 					latitude:data.position.P
 		};

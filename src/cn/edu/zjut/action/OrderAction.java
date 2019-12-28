@@ -29,6 +29,7 @@ public class OrderAction {
 	private Double longitude;
 	private Double latitude;
 	private Double length;
+	private int orderID;
 	public Double getLength() {
 		return length;
 	}
@@ -45,10 +46,10 @@ public class OrderAction {
 	public String ordertake() {
 		//System.out.println(order.getPassenger());
 		//System.out.println("ordertake  "+order.getPassenger().getPassengerID());
-		int i=order.getPassenger().getPassengerID();
-		Passenger p=new Passenger();
-		p=passengerService.findbyId(i);
-		order.setPassenger(p);
+		//int i=order.getDriver().getDriverID()
+		Driver p=new Driver();
+		p=driverService.findbyId(order.getDriver());
+		order.setDriver(p);
 		order.setIsCompleted(1);
 		orderService.update(order);
 		//System.out.println("ordertake"+" "+order.getPassenger().getNickname());
@@ -56,19 +57,20 @@ public class OrderAction {
 	}
 	
 	public String findorders() {
+		//System.out.println(order.getDriver().getDriverID());
 		System.out.println("findorders method start");
 		orders=orderService.findorders();
 		System.out.println("Item Action executed!");
-
-		/*Iterator<List> it=orders.iterator();
+		
+		Iterator<List> it=orders.iterator();
 		Order t=new Order();
 		while(it.hasNext()) {
 			t=(Order)it.next();
-			System.out.println(t.getOrderID());
-			System.out.println(t.getStart());
-			System.out.println(t.getDestination());
-			System.out.println(t.getPassenger().getNickname());		
-		}*/
+			System.out.println(t.getSlat());
+			if(getDistance(latitude,longitude,t.getSlat(),t.getSlng())/1000>10) {
+				it.remove();
+			}
+		}
 		return "success";
 	}
 	
@@ -152,7 +154,10 @@ public class OrderAction {
 	}
 	
 	public String setlocation() {
-		order.setDriver(driverService.findbyId(order.getDriver()));
+		Order s=new Order();
+		s.setOrderID(orderID);
+		order=orderService.findbyId(s);
+		//order.setDriver(driverService.findbyId(order.getDriver()));
 		order.getDriver().setLatitude(latitude);
 		order.getDriver().setLongitude(longitude);
 		System.out.println(order.getDriver().getAccount());
@@ -166,8 +171,7 @@ public class OrderAction {
 		java.sql.Date sqld=new java.sql.Date(t.getTime());
 		order.setStarttime(sqld);
 		order.setIsEstimatedP(false);
-		order.setIsEstimatedD(false);
-		orderService.save(order);
+		order.setIsEstimatedD(false);		orderService.save(order);
 		return"success";
 	}
 	public String deleteorder() {
@@ -199,19 +203,20 @@ public String finish() {
 	loginUser=order.getPassenger();
 	return "success";
 }
-	//获取精确到秒的时间戳  
-	public static int getSecondTimestamp(Date date){  
-	    if (null == date) {  
-	        return 0;  
-	    }  
-	    String timestamp = String.valueOf(date.getTime());  
-	    int length = timestamp.length();  
-	    if (length > 3) {  
-	        return Integer.valueOf(timestamp.substring(0,length-3));  
-	    } else {  
-	        return 0;  
-	    }  
-	} 
+	 public double getDistance(double lat1, double lng1,double  lat2,double lng2) {
+			double earthRadius = 6367000;
+			lat1 = (lat1 * Math.PI) / 180;
+			lng1 = (lng1 * Math.PI) / 180;
+			lat2 = (lat2 * Math.PI) / 180;
+			lng2 = (lng2 * Math.PI) / 180;
+			double calcLongitude = lng2 - lng1;
+			double calcLatitude = lat2 - lat1;
+			double stepOne = Math.pow(Math.sin(calcLatitude / 2), 2) + Math.cos(lat1) * Math.cos(lat2) * Math.pow(Math.sin(calcLongitude / 2), 2);
+			double stepTwo = 2 * Math.asin(Math.min(1, Math.sqrt(stepOne)));
+			double calculatedDistance = earthRadius * stepTwo;
+			System.out.println(Math.round(calculatedDistance));
+			return Math.round(calculatedDistance);
+	}
 	public Order getOrder() {
 		return order;
 	}
@@ -274,6 +279,14 @@ public String finish() {
 
 	public void setLoginUser(Passenger loginUser) {
 		this.loginUser = loginUser;
+	}
+
+	public int getOrderID() {
+		return orderID;
+	}
+
+	public void setOrderID(int orderID) {
+		this.orderID = orderID;
 	}
 	
 }

@@ -17,7 +17,8 @@
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script src="./lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="./js/xadmin.js"></script>
-
+	<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.15&key=a008fd73a62e235f98ff8247f00db18c&plugin=AMap.Driving"></script>
+	
 </head>
 <body>
     <!-- 顶部开始 -->
@@ -29,7 +30,8 @@
         
         <ul class="layui-nav right" lay-filter="">
           <li class="layui-nav-item">
-            <a href="javascript:;"><s:property value="loginUser.name"/></a>
+          <div id="a" style="visiblity:hidden;display:none;"><s:property value="loginUser.driverID"/></div>
+            <a href="javascript:;" ><s:property value="loginUser.name"/></a>
             <dl class="layui-nav-child"> <!-- 二级菜单 -->
                     <dd>
 						<a
@@ -75,23 +77,23 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="findorders">
+                        <a _href="findorders" id="orderlist">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>订单列表</cite>
                          </a>
                     </li >
                     <li>
-                        <a href="login">
+                        <a _href="login">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>司机评价</cite>
                         </a>
                     </li>
                 </ul>
             </li>
-            
         </ul>
       </div>
     </div>
+   
     <!-- <div class="x-slide_left"></div> -->
     <!-- 左侧菜单结束 -->
     <!-- 右侧主体开始 -->
@@ -117,4 +119,54 @@
     <!-- 底部结束 -->
     
 </body>
+<script>
+var map,result,t,g;
+map = new AMap.Map("container", {
+    resizeEnable: true,
+    zoom: 13
+  });
+  var options={
+		  	'timeout': 10000,          //超过10秒后停止定位，默认：5s
+		 	'showButton': true,//是否显示定位按钮
+			'buttonPosition': 'LB',//定位按钮的位置
+			/* LT LB RT RB */
+			'buttonOffset': new AMap.Pixel(10, 20),//定位按钮距离对应角落的距离
+			'showMarker': true,//是否显示定位点
+			'markerOptions':{//自定义定位点样式，同Marker的Options
+			  'offset': new AMap.Pixel(-18, -33),
+			  'content':'<img src="./css/car.png" style="width:65px;height:65px"/>'
+			},
+			'showCircle': false,//是否显示定位精度圈
+			'circleOptions': {//定位精度圈的样式
+				'strokeColor': '#0093FF',
+				'noSelect': true,
+				'strokeOpacity': 0.5,
+				'strokeWeight': 1,
+				'fillColor': '#02B0FF',
+				'fillOpacity': 0.25
+			}
+	}
+AMap.plugin('AMap.Geolocation', function() {
+    var geolocation = new AMap.Geolocation(options);
+    map.addControl(geolocation);
+    geolocation.getCurrentPosition(function(status,result){
+      if(status=='complete'){		    	  
+        console.log(result.position);
+        t=result.position.P;
+        g=result.position.Q;
+      }else{
+        onError(result);
+      }})
+})
+window.onload=function(){
+	//document.getElementById("driverid").value=document.getElementById("a").innerHTML;
+	var a=document.getElementById("a").innerHTML;
+	console.log(t);
+	console.log(g);
+	document.getElementById("orderlist").setAttribute("_href","findorders?order.driver.driverID="+a+"&latitude="+t+"&longitude="+g);
+	//document.getElementById("orderlist").click();
+	//document.getElementById("sbtn").click();
+	//window.open="localhost:8080/leaf/findorders?order.driver.driverID="+a;
+}
+</script>
 </html>

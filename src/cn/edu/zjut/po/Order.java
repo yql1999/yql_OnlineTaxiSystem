@@ -42,8 +42,7 @@ public class Order {
 		this.setOrderID(orderID);
 	}
 	
-	public Order(int orderID, String start, String destination, Date starttime, Date endtime, int passnum, String type, Double sum, Driver driver, Passenger passenger, Double estimateptod, Double estimatedtop,Boolean isEstimatedP,Boolean isEstimatedD,int isCompleted,Double slng,Double slat,Double elng,Double elat) {
-		this.setOrderID(orderID);
+	public Order(int orderID, String start, String destination, Date starttime, Date endtime, int passnum, String type, Double sum, Driver driver, Passenger passenger, Double estimateptod, Double estimatedtop,Boolean isEstimated,int isCompleted,Double slng,Double slat,Double elng,Double elat) {		this.setOrderID(orderID);
 		this.setStart(start);
 		this.setDestination(destination);
 		this.setStarttime(starttime);
@@ -58,13 +57,12 @@ public class Order {
 		this.setPassenger(passenger);
 		this.setEstimatedtop(estimatedtop);
 		this.setEstimateptod(estimateptod);
-		this.isEstimatedD=isEstimatedD;
-		this.isEstimatedP=isEstimatedP;
-		this.setIsCompleted(isCompleted);
-		this.elat=elat;
-		this.elng=elng;
-		this.slat=slat;
-		this.slng=slng;
+		this.setIsEstimatedD(isEstimatedD);		this.setIsCompleted(isCompleted);
+		this.setIsEstimatedP(isEstimatedP);
+		this.setSlat(slat);
+		this.setSlng(slng);
+		this.setElat(elat);
+		this.setElng(elng);
 	}
 
 	public int getOrderID() {
@@ -157,12 +155,10 @@ public class Order {
 
 
 	public Boolean getIsEstimatedD() {
-		return isEstimatedD;
-	}
+		return isEstimatedD;	}
 
-	public Boolean getIsEstimatedP() {
-		return isEstimatedP;
-	}
+	public void setIsEstimatedD(Boolean isEstimatedD) {
+		this.isEstimatedD = isEstimatedD;	}
 
 	public void setIsEstimatedD(Boolean isEstimatedD) {
 		this.isEstimatedD = isEstimatedD;
@@ -178,6 +174,14 @@ public class Order {
 
 	public void setIsCompleted(int isCompleted) {
 		this.isCompleted = isCompleted;
+	}
+
+	public Boolean getIsEstimatedP() {
+		return isEstimatedP;
+	}
+
+	public void setIsEstimatedP(Boolean isEstimatedP) {
+		this.isEstimatedP = isEstimatedP;
 	}
 
 	public Double getSlng() {
