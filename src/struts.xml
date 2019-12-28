@@ -89,6 +89,9 @@
 		<action name="driverregister" class="driverAction" method="register">
 			<result name="success">/Login.jsp</result>
 		</action>
+		<action name="register" class="passengerAction" method="register">
+			<result name="success">/Login.jsp</result>
+		</action>
 	</package>
 	<package name="ajax" extends="json-default" namespace="/">
         <action name="ajaxRequest" class="orderAction" method="setlocation">

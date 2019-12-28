@@ -59,7 +59,7 @@
 				</h4>
 			</div>
 			<div class="modal-body" style=" text-align:center; font-size:20px;" >
-			<a href = "re.html" style = "color: #ffffff; background-color:#009688; text-decoration: none;  border-radius: 2px; padding: 5px 20px;">乘客</a><br>
+			<a href = "passenger_register.jsp" style = "color: #ffffff; background-color:#009688; text-decoration: none;  border-radius: 2px; padding: 5px 20px;">乘客</a><br>
 				<br>
 				<a href = "driver_reg.jsp" style = "color: #ffffff; background-color:#009688; text-decoration: none; border-radius: 2px; padding: 5px 20px;">司机</a><br>
 				<br>

@@ -36,11 +36,5 @@
 			<property name="score" type="double">
 			<column name="score"/>
 			</property>
-		<property name="longitude" type="java.lang.Double">
-			<column name="longitude"/>
-		</property>
-		<property name="latitude" type="java.lang.Double">
-			<column name="latitude"/>
-		</property>
 	</class>
 </hibernate-mapping>
