@@ -49,6 +49,7 @@ public class OrderAction {
 		//int i=order.getDriver().getDriverID()
 		Driver p=new Driver();
 		p=driverService.findbyId(order.getDriver());
+		order=orderService.findbyId(order);
 		order.setDriver(p);
 		order.setIsCompleted(1);
 		orderService.update(order);
@@ -157,11 +158,19 @@ public class OrderAction {
 		Order s=new Order();
 		s.setOrderID(orderID);
 		order=orderService.findbyId(s);
+		order.setDriver(driverService.findbyId(order.getDriver()));
 		//order.setDriver(driverService.findbyId(order.getDriver()));
 		order.getDriver().setLatitude(latitude);
 		order.getDriver().setLongitude(longitude);
 		System.out.println(order.getDriver().getAccount());
 		driverService.update(order.getDriver());
+		return "success";
+	}
+	public String getlocation() {
+		Order s=new Order();
+		s.setOrderID(orderID);
+		order=orderService.findbyId(s);
+		System.out.println(order.getSlat());
 		return "success";
 	}
 	public String addorder() {

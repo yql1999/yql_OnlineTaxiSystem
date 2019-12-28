@@ -181,7 +181,7 @@
     }
 </script>
 <script>
-  var map, route, marker;
+  var map, route, marker,ttt;
   var path = [];
   var driving=new AMap.Driving({
       //map:map,
@@ -218,6 +218,7 @@
     map.addControl(geolocation);
     geolocation.getCurrentPosition(function(status,result){
     	if(status=='complete'){
+    		setlocation(path);
         	onComplete(result)
         }else{
             onError(result)
@@ -255,7 +256,10 @@
     //var tempdestination=document.getElementById('hzzsbstart').innerText;
     //var str=tempdestination.split(',');
     //path.push([str[0],str[1]]);
-    path.push([120.04742974409801, 30.224854563803]);
+    
+    console.log(ttt);
+    path.push([ttt.slng,ttt.slat]);
+    //path.push([120.04742974409801, 30.224854563803]);
     //path.push([left, right]);
     //console.log(path[0]);
     //console.log(path[1]);
@@ -426,7 +430,7 @@
 					longitude:data.position.Q,
 					latitude:data.position.P
 		};
-		console.log(params);
+		//console.log(params);
 		jQuery.post(url,params,callbackFun);
 		/*$.ajax({
 			type:"POST",
@@ -437,9 +441,25 @@
 	}
 	function callbackFun(data)
 	{
-		console.log(data);
+		//console.log(data);
 		//alert(data);
 	} 
+	function setlocation(path){
+		var a=document.getElementById("td7").innerHTML;
+		var url='ajaxSlocation';
+		var params={
+					orderID:a,
+		};
+		console.log(params);
+		$.ajaxSettings.async = false;
+		jQuery.post(url,params,callback);
+	}
+	function callback(data)
+	{
+		window.ttt=data;
+		console.log(ttt);
+		//alert(data);
+	}
 </script>
 </body>
 </html>

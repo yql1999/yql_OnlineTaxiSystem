@@ -164,7 +164,7 @@
     }
 </script>
 <script>
-  var map, route, marker;
+  var map, route, marker,ttt;
   var length;
   var geolocation;
   var path = [];
@@ -216,7 +216,7 @@
     map.addControl(geolocation);
     geolocation.getCurrentPosition(function(status,result){
       if(status=='complete'){
-    	  
+    	setlocation(path);
         onComplete(result)
       }else{
         onError(result)
@@ -256,7 +256,8 @@
     //var tempdestination=document.getElementById('hzzsbstart').innerText;
     //var str=tempdestination.split(',');
     //path.push([str[0],str[1]]);
-    path.push([120.04742974409801, 30.224854563803]);
+    path.push([ttt.elng,ttt.elat]);
+    //path.push([120.04742974409801, 30.224854563803]);
     console.log(path);
     //path.push([left, right]);
     //console.log(path[0]);
@@ -426,6 +427,22 @@
 	  document.getElementById("start1").value=document.getElementById("td3").innerHTML;
 	  document.getElementById("destination1").value=document.getElementById("td4").innerHTML;
   }
+  function setlocation(path){
+		var a=document.getElementById("td7").innerHTML;
+		var url='ajaxSlocation';
+		var params={
+					orderID:a,
+		};
+		console.log(params);
+		$.ajaxSettings.async = false;
+		jQuery.post(url,params,callback);
+	}
+	function callback(data)
+	{
+		window.ttt=data;
+		console.log(ttt);
+		//alert(data);
+	}
 </script>
 </body>
 </html>
