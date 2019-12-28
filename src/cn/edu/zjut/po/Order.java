@@ -158,15 +158,10 @@ public class Order {
 		return isEstimatedD;	}
 
 	public void setIsEstimatedD(Boolean isEstimatedD) {
-		this.isEstimatedD = isEstimatedD;	}
-
-	public void setIsEstimatedD(Boolean isEstimatedD) {
-		this.isEstimatedD = isEstimatedD;
+		this.isEstimatedD = isEstimatedD;	
 	}
 
-	public void setIsEstimatedP(Boolean isEstimatedP) {
-		this.isEstimatedP = isEstimatedP;
-	}
+
 
 	public int getIsCompleted() {
 		return isCompleted;
