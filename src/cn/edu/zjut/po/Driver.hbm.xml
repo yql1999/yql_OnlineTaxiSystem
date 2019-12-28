@@ -4,7 +4,9 @@
 	<class name="cn.edu.zjut.po.Driver" table="driver" catalog="hibernatedb">
 		<id name="driverID" type="int">
 			<column name="driverID"/>
-			<generator class="increment"/>
+			<generator class="foreign">
+            <param name="property">car</param>
+            </generator>
 		</id>
 		<property name="name" type="string">
 			<column name="name" length="20"/>
@@ -45,6 +47,6 @@
 		<!--  <property name="carID" type="int">
 			<column name="carID"/>
 		</property>-->
-		<one-to-one name="car" constrained="true" class="cn.edu.zjut.po.Car"/>
+		<one-to-one name="car" constrained="true"/>
 	</class>
 </hibernate-mapping>

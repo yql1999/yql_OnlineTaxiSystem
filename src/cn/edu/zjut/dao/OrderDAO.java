@@ -145,7 +145,8 @@ public class OrderDAO extends BaseHibernateDAO implements IOrderDAO {
         order.setSum(order.getSum());
 		order.setEstimateptod(score1);
 		order.setIsCompleted(2);
-		order.setIsEstimatedP(true);		session.update(order);
+		order.setIsEstimatedP(true);		
+		session.update(order);
 		tran.commit();
 	}
 }
