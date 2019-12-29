@@ -69,7 +69,7 @@ public class Driver {
 		this.age = age;
 	}
 
-	public boolean isGender() {
+	public boolean getGender() {
 		return gender;
 	}
 

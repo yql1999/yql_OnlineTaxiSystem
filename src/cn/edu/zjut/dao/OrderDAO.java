@@ -149,4 +149,39 @@ public class OrderDAO extends BaseHibernateDAO implements IOrderDAO {
 		session.update(order);
 		tran.commit();
 	}
+	
+	public void appraise2(Order order) {
+		Transaction tran=null;
+		Session session=null;
+		session=getSession();
+		tran=session.beginTransaction();
+		int k=order.getPassenger().getPassengerID();
+		List<Order> passengerorders=findorders("from Order as user where passengerID="+k);
+		int size=passengerorders.size();
+		Passenger passenger = new Passenger();
+		passenger.setPassengerID(k);
+		String hql="from Passenger as user where passengerID=";
+		String queryString=hql+passenger.getPassengerID();
+		Query queryObject=session.createQuery(queryString);
+		passenger=(Passenger)queryObject.getResultList().get(0);
+		double score=(passenger.getScore()*size+order.getEstimateptod())/(size+1); 
+		passenger.setScore(score);
+		int id=passenger.getPassengerID();
+		Passenger example=session.load(Passenger.class,id);
+		session.update(example);
+		
+		double score1=order.getEstimateptod();
+		String hql1="from Order as user where orderID=";
+		String queryString1=hql1+order.getOrderID();
+		Query queryObject1=session.createQuery(queryString1);
+		order=(Order)queryObject1.getResultList().get(0);
+        order.setDestination(order.getDestination());
+        order.setStart(order.getStart());
+        order.setSum(order.getSum());
+		order.setEstimateptod(score1);
+		order.setIsCompleted(2);
+		order.setIsEstimatedP(true);		
+		session.update(order);
+		tran.commit();
+	}
 }
