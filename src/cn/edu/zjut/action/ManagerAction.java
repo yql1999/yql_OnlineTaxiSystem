@@ -62,11 +62,9 @@ public class ManagerAction {
 	}
 	public String deleteDriver() {
 		System.out.println("driv:"+driv.getDriverID());
-		car=carService.findbyId(driv.getDriverID());
-		managerService.deletecar(car);
-		
+		car=carService.findbyId(car.getCarID());
 		driv=driverService.findbyId(driv);
-		managerService.deletedriver(driv);
+		managerService.deletedriver(driv,car);
 		return "success";
 	}
 	

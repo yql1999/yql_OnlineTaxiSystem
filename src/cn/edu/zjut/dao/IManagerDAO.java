@@ -11,6 +11,6 @@ public interface IManagerDAO {
 	public List findByHql(String hql);
 	public Manager findpassengerbyId(int id);
 	public void deletepassenger(Passenger id);
-	public void deletedriver(Driver id);
-	public void deletecar(Car id);
+	public void deletedriver(Driver id,Car s);
+	//public void deletecar(Car id);
 }

@@ -42,19 +42,19 @@ public class ManagerService implements IManagerService{
 		//System.out.println("temp"+temp);
 		
 	}
-	public void deletedriver(Driver transientInstance) {
+	public void deletedriver(Driver transientInstance,Car s) {
 		//System.out.println("before Manager findbyId");
 		//Manager temp=managerDAO.findpassengerbyId(id);
-		managerDAO.deletedriver(transientInstance);
+		managerDAO.deletedriver(transientInstance,s);
 		//System.out.println("temp"+temp);
 	}
-	public void deletecar(Car transientInstance) {
-		//System.out.println("before Manager findbyId");
-		//Manager temp=managerDAO.findpassengerbyId(id);
-		managerDAO.deletecar(transientInstance);
-		//System.out.println("temp"+temp);
-		
-	}
+//	public void deletecar(Car transientInstance) {
+//		//System.out.println("before Manager findbyId");
+//		//Manager temp=managerDAO.findpassengerbyId(id);
+//		managerDAO.deletecar(transientInstance);
+//		//System.out.println("temp"+temp);
+//		
+//	}
 	
 	public List findPassengerByHql() {
 		String hql="from Passenger";

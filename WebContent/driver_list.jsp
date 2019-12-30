@@ -27,6 +27,7 @@
 				$("#btn<%=i%>").click(function(){
 					console.log("kaishi "+<%=i%>+"anniu ");
 					document.getElementById("inp").value=document.getElementById("<%="td1"+i%>").innerHTML;
+					document.getElementById("car").value=document.getElementById("<%="div1"+i%>").innerHTML;
 					setTimeout(function(){
 						document.getElementById("bt").click();
 					},1000);
@@ -79,6 +80,7 @@
 					<s:iterator value="driver" var="object">
 						<tr>
 							<td id="<%="td1"+idNum%>"><s:property value="#object.driverID" /></td>
+						    <div id="<%="div1"+idNum%>"><s:property value="#object.car.carID" /></div>
 							<td><s:property value="#object.name" /></td>
 							<td><s:property value="#object.gender" /></td>
 							<td><s:property value="#object.age" /></td>
@@ -98,6 +100,7 @@
 					</s:iterator>
 					<s:form action="managerdeletedriver" >
 									<input id="inp"  name="driv.driverID" >
+									<input id="car"  name="car.carID" >
 								<button type="submit" id="bt" value="删除" ></button>
 					</s:form>
 				</tbody>

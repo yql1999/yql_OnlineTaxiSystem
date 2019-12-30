@@ -10,8 +10,8 @@ public interface IManagerService {
 	public Boolean login(Manager transientInstance);
 	public Manager findbyId(int id);
 	public void deletepassenger(Passenger transientInstance);
-	public void deletedriver(Driver transientInstance);
-	public void deletecar(Car transientInstance);
+	public void deletedriver(Driver transientInstance,Car transientInstance1);
+	//public void deletecar(Car transientInstance);
 	public List findPassengerByHql();
 	public List findDriverByHql();
 	public List<Order> findOrderByHql();
