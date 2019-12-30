@@ -2,6 +2,7 @@ package cn.edu.zjut.service;
 
 import cn.edu.zjut.dao.CarDAO;
 import cn.edu.zjut.po.Car;
+import cn.edu.zjut.po.Driver;
 
 public class CarService implements ICarService{
 	private CarDAO carDAO=null;
@@ -11,6 +12,9 @@ public class CarService implements ICarService{
 	public void save(Car transientInstance) {
 		System.out.println("execute--Car.save()--method.");
 		carDAO.save(transientInstance);
+	}
+	public Car findbyId(int id) {		
+		return carDAO.findbyId(id);
 	}
 	public CarDAO getCarDAO() {
 		return carDAO;

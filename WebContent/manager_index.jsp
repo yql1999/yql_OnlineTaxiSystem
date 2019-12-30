@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>主页</title>
+<title>管理员主页</title>
 <meta name="renderer" content="webkit|ie-comp|ie-stand">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
@@ -29,7 +29,7 @@
         
         <ul class="layui-nav right" lay-filter="">
           <li class="layui-nav-item">
-            <a href="javascript:;">admin</a>
+            <a href="javascript:;">管理员</a>
             <dl class="layui-nav-child"> <!-- 二级菜单 -->
                     <dd>
 						<a
@@ -60,14 +60,14 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="passenger-list.jsp" >
+                        <a _href="passengerlist" >
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>乘客列表</cite>
                             
                         </a>
                     </li >
                     <li>
-                        <a _href="passenger-list.jsp">
+                        <a _href="driverlist">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>司机列表</cite>
                             
@@ -85,17 +85,12 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="order-list.jsp">
+                        <a _href="managerfindorderlist">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>订单列表</cite>
                          </a>
                     </li >
-                    <li>
-                        <a href="login">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>司机评价</cite>
-                        </a>
-                    </li>
+                    
                 </ul>
             </li>
             

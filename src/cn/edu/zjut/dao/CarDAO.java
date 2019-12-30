@@ -5,7 +5,7 @@ import javax.persistence.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import cn.edu.zjut.po.Car;
+import cn.edu.zjut.po.*;
 
 public class CarDAO extends BaseHibernateDAO implements ICarDAO{
 	public CarDAO() {
@@ -27,11 +27,11 @@ public class CarDAO extends BaseHibernateDAO implements ICarDAO{
 			session.close();
 		}
 	}
-	public Car findbyId(Car transientInstance) {
+	public Car findbyId(int id) {
 		try {
-			String hql="from Car as user where account=";
-			String queryString=hql+transientInstance.getCarID();
-			Query queryObject=getSession().createQuery(queryString);
+			String hql="from Car as user where carID=";
+			String queryString = hql + id;
+			Query queryObject = getSession().createQuery(queryString);
 			return (Car)queryObject.getResultList().get(0);
 		}catch(RuntimeException re) {
 			throw re;
