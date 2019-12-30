@@ -8,9 +8,11 @@ public interface IOrderService {
 	public void save(Order transientInstance);
 	public void update(Order transientInstance);
 	public List findorders();
+	public List finddriverhistoryorders(Order transientInstance);
 	public Order findbyId(Order transientInstance);
 	public void deleteorder(Order order);
 	public void appraise(Order order);
 	 public void cancel(Order order);
-
+	public void appraise2(Order order);
+	
 }

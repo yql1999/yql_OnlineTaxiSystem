@@ -51,7 +51,7 @@
 			$("#btn<%=i%>").click(function(){
 				console.log("kaishi "+<%=i%>+"anniu ");
 				document.getElementById("i1").value=$(<%="td1"+i%>).html();
-				document.getElementById("i2").value=$(<%="td2"+i%>).html();
+				document.getElementById("i2").value=$(<%="td2"+i%>).html().innerHtml;
 				var esform = document.getElementById('esform');
 				esform.submit();
 				return false;
@@ -81,8 +81,6 @@
               <tr>
                   <th>司机ID</th>
                   <th>乘客ID</th>
-                  <th>行程时长</th>
-                  <th>行程距离</th>
                   <th>起点</th>
                   <th>终点</th>
                   <th>是否中途更换路线</th>
@@ -93,12 +91,10 @@
             </thead>
             <tbody>
             <s:iterator value="orders" var="object">
-			   <s:if test="#object.isEstimatedD!=1">
+			   <s:if test="#object.isEstimatedD!=1&&#object.isCompleted==2">
               <tr>
                   <td><s:property value="order.driver.driverID" /></td>
                   <td><s:property value="order.passenger.passengerID" /></td>
-                  <td>18:11</td>
-                  <td>6.4km</td>
                   <td><s:property value="order.start"/></td>
                   <td><s:property value="order.destination"/></td>
                   <td>否</td>

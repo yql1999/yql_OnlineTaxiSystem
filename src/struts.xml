@@ -53,6 +53,9 @@
 		<action name="findorders" class="orderAction" method="findorders">
 			<result name="success">/order-list.jsp</result>
 		</action>
+		<action name="driverInfo1" class="driverAction" method="driverInfo">
+			<result name="success">/driverInfo.jsp</result>
+		</action>
 		<action name="getpassenger" class="orderAction" method="getpassenger">
 			<result name="success">/GotoDestinationMap.jsp</result>
 		</action>
@@ -64,6 +67,9 @@
 		</action>
 		<action name="driverEstimate" class="orderAction" method="driverEstimate">
 			<result name="success">/driverEstimate.jsp</result>
+		</action>
+		<action name="driverinfochange" class="driverAction" method="update">
+			<result name="success">/driverInfo.jsp</result>
 		</action>
 		<action name="addorder" class="orderAction" method="addorder">
 		<result name="success">/route.jsp</result>
@@ -86,18 +92,18 @@
 		<action name="finish" class="orderAction" method="finish">
 		<result name="success">/passenger_index.jsp</result>
 		</action>
-		<action name="driverregister" class="driverAction" method="register">
+<action name="driverregister" class="driverAction" method="register">
 			<result name="success">/Login.jsp</result>
 		</action>
 		<action name="register" class="passengerAction" method="register">
 			<result name="success">/Login.jsp</result>
 		</action>
-		<action name="isSuccess" class="passengerAction" method="isSuccess">
+<action name="driverhistory" class="orderAction" method="driverhistory">
+			<result name="success">/driver_historyorder.jsp</result>
+		</action><action name="isSuccess" class="passengerAction" method="isSuccess">
          <result name="success">/order_success.jsp</result>
          <result name="fail">/route.jsp</result>
-     </action>
-	</package>
-	<package name="ajax" extends="json-default" namespace="/">
+     </action>	</package>	<package name="ajax" extends="json-default" namespace="/">
         <action name="ajaxRequest" class="orderAction" method="setlocation">
             <result name="success" type="json">
             	<param name="root">order</param> 

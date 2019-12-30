@@ -12,6 +12,31 @@ public class DriverAction {
 		driverService.register(loginUser);
 		return "success";
 	}
+	
+	public String update() {
+		driverService.update(loginUser);
+		return "success";
+	}
+	
+	public String driverInfo() {
+		loginUser=driverService.findbyId(loginUser);
+		return "success";
+	}
+	public String driverinfochange() {
+		Driver d= new Driver();
+		d=driverService.findbyId(loginUser);
+		d.setName(loginUser.getName());
+		d.setGender(loginUser.getGender());
+		d.setAge(loginUser.getAge());
+		d.setIdnumber(loginUser.getIdnumber());
+		d.setPassword(loginUser.getPassword());
+		d.setTelephone(loginUser.getTelephone());
+		d.getCar().setColor(loginUser.getCar().getColor());
+		d.getCar().setSeats(loginUser.getCar().getSeats());
+		d.getCar().setPlate(loginUser.getCar().getPlate());
+		d.getCar().setType(loginUser.getCar().getType());
+		return "success";
+	}
 	public String login() {
 		if(driverService.login(loginUser))
 		{

@@ -70,9 +70,15 @@ public class OrderAction {
 		Order t=new Order();
 		while(it.hasNext()) {
 			t=(Order)it.next();
+			if(t.getIsCompleted()!=0) {
+				it.remove();
+				
+			}
+			else {
 			System.out.println(t.getSlat());
 			if(getDistance(latitude,longitude,t.getSlat(),t.getSlng())/1000>10) {
 				it.remove();
+			}
 			}
 		}
 		return "success";
@@ -164,6 +170,7 @@ public class OrderAction {
 		order.setEstimatedtop(estimatedtop);
 		orderService.update(order);
 		orders=orderService.findorders();
+		orderService.appraise2(order);
 		return "success";
 	}
 	
@@ -221,9 +228,15 @@ public class OrderAction {
 		orderService.cancel(order);
 		return "success";
 	}
-public String finish() {
+	
+	public String finish() {
+	loginUser=order.getPassenger();
 	return "success";
-}
+	}
+	public String driverhistory() {
+		orders=orderService.finddriverhistoryorders(order);
+		return "success";
+	}
 	 public double getDistance(double lat1, double lng1,double  lat2,double lng2) {
 			double earthRadius = 6367000;
 			lat1 = (lat1 * Math.PI) / 180;

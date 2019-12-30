@@ -12,4 +12,5 @@ public interface IOrderDAO {
 	public void deleteorder(Order order);
 	public void appraise(Order order);
 	public void cancel(Order order);
+	public void appraise2(Order order);
 }

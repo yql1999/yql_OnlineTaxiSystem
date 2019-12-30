@@ -26,7 +26,11 @@ public class OrderService implements IOrderService {
 		List list = orderDAO.findorders(hql);
 		return list;
 	}
-
+	public List finddriverhistoryorders(Order transientInstance) {
+		String hql="from Order as user where driverID="+transientInstance.getDriver().getDriverID();
+		List list = orderDAO.findorders(hql);
+		return list;
+	}
 	
 	public Order findbyId(Order transientInstance) {
 		Order temp=orderDAO.findbyId(transientInstance);
@@ -48,6 +52,12 @@ public class OrderService implements IOrderService {
     	System.out.println("评价完成");
     	orderDAO.appraise(order);
     }
+    
+    public void appraise2(Order order) {
+    	System.out.println("司机评价完成");
+    	orderDAO.appraise2(order);
+    }
+    
     public void cancel(Order order) {
     	System.out.println("cancel");
     	orderDAO.cancel(order);

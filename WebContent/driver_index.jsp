@@ -62,9 +62,15 @@
                 </a>
                 <ul class="sub-menu">                 
                     <li>
-                        <a _href="passenger-list.jsp">
+                        <a _href="driverInfo1" id="driverID">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>个人信息管理</cite>                            
+                        </a>
+                    </li > 
+                    <li>
+                        <a _href="driverhistory" id="riverID1">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>查看历史订单</cite>                            
                         </a>
                     </li >                
                 </ul>
@@ -154,11 +160,18 @@ AMap.plugin('AMap.Geolocation', function() {
         console.log(result.position);
         t=result.position.P;
         g=result.position.Q;
+        var a=document.getElementById("a").innerHTML;
+    	console.log(t);
+    	console.log(g);
+    	document.getElementById("orderlist").setAttribute("_href","findorders?order.driver.driverID="+a+"&latitude="+t+"&longitude="+g);
+    	document.getElementById("driverID").setAttribute("_href","driverInfo1?loginUser.driverID="+a);
+    	document.getElementById("riverID1").setAttribute("_href","driverhistory?order.driver.driverID="+a);
+
       }else{
         onError(result);
       }})
 })
-window.onload=function(){
+/*window.onload=function(){
 	//document.getElementById("driverid").value=document.getElementById("a").innerHTML;
 	var a=document.getElementById("a").innerHTML;
 	console.log(t);
@@ -167,6 +180,6 @@ window.onload=function(){
 	//document.getElementById("orderlist").click();
 	//document.getElementById("sbtn").click();
 	//window.open="localhost:8080/leaf/findorders?order.driver.driverID="+a;
-}
+}*/
 </script>
 </html>

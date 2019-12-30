@@ -26,7 +26,7 @@
 			<%for(i=0;i<100;i++){%>
 				$("#btn<%=i%>").click(function(){
 					console.log("kaishi "+<%=i%>+"anniu ");
-					document.getElementById("i1").value=$("#<%="td1"+i%>").html();
+					document.getElementById("i1").value=$(<%="td1"+i%>).html();
 					document.getElementById("i2").value=$(<%="td3"+i%>).html();
 					document.getElementById("i3").value=$(<%="td4"+i%>).html();
 					document.getElementById("i4").value=$(<%="td5"+i%>).html();
@@ -183,5 +183,23 @@
         </div>
 	</div>
 </body>
-
+<script>
+window.onload=function(){
+	var flag=$("#td10").val();
+	var fla=0;
+	for(var t=0;t<100;t++){
+		flag=$("#td1"+t).val();
+		if(flag!=null){
+			fla=1;
+			break;
+		}
+		
+	}
+	console.log(flag);
+	if(fla==0)
+	{
+		alert("现在没有可接订单，请稍后刷新");
+	}
+}
+</script>
 </html>
