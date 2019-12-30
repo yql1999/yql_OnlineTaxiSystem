@@ -1,6 +1,6 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@page import="cn.edu.zjut.po.Order"%>
 	<%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html>
 <html>
@@ -15,8 +15,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
 	content="initial-scale=1.0, user-scalable=no, width=device-width">
-
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport"
 	content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
@@ -100,18 +99,20 @@ html, body, #container {
 <body>
 	<%@ include file="passenger_head.jsp"%>
 	<div class="page-content">
-	<div id="n1" style="visibility:hidden"><s:property value="order.orderID"/></div>
+	<%Order order=(Order)request.getSession().getAttribute("order");%>
+	<div id="n1" style="visibility:hidden" ><%=order.getOrderID() %></div>
 	<form action="torun">
 	<input id="orderid" type="hidden" name="order.orderID">
+	<input type="button" class="btn btn-primary btn-lg" onclick="refresh()" value="获取司机位置">
 	<input type="submit" class="btn btn-primary btn-lg" value="确认上车" onclick="get()">
 	</form>
 	<div id="container"></div>
-	<div id="panel" style="margin-top: 100px;"></div>
+	<div id="panel" style="margin-top: 100px;visibility:hidden"></div>
 	<blockquote class="layui-elem-quote"
 		style="merge-bottom: 200px; merge-right: 300px;">
 		<!-- <div style="height: 210px; width: 500px;"> -->
 		<div class="input-card"
-			style="left: 100px; height: 240px; width: 500px; background: #333; opacity: .80;
+			style="left: 100px; height: 280px; width: 300px; background: #333; opacity: .80;
     		position: fixed; left: 40%; top: 40%;">
 
 			<span class="x-red"><h3>接单成功！</h3></span> 
@@ -120,50 +121,87 @@ html, body, #container {
 				style="height: 30px; width: 30px; position: relative; left: 120px; top: -25px;">
 
 			<div style="color:white;">
-				司机已经接到订单，正在加速赶来的路上 <img src="images/car.gif"
+				司机已经接到订单
+			</div>
+			<div style="color:white;">
+				正在加速赶来的路上 <img src="images/car.gif"
 					style="position: relatives; left: 400px; top: 35px; height: 70px; width: 70px;">
 			</div>
-			<a href="driverInformation.action" 
-				onclick="x_admin_show('订单详情','passenger_currentorder.jsp',600,400)"
-				class="x-a" target="_blank"><h3>点击获取订单详情...</h3></a> <br>
-			
+			<input type="submit"  
+				onclick="x_admin_show('订单详情','driverInformation.action',480,500)"
+				class="layui-btn" value="点击获取订单详情" style="display:block;mergin:0 auto;"> 
 				<input type="submit" data-toggle="modal" data-target="#myModal"
 				class="layui-btn" value="取消订单"
-				style="display:block;margin:0 auto">
+				style="display:block;mergin:0 auto;margin-top:20px;">
 		</div>
 	</blockquote>
 	</div>
-	<%
-	String address=request.getParameter("order.start");
-	String tipinput=request.getParameter("order.destination");
-	%>
 	<script type="text/javascript">
-    //基本地图加载
-    var map = new AMap.Map("container", {
-        resizeEnable: true,
-        center: [116.397428, 39.90923],//地图中心点
-        zoom: 13 //地图显示的缩放级别
-    });
-    //构造路线导航类
-    var driving = new AMap.Driving({
-        map: map,
-        panel: "panel"
-    });
-    // 根据起终点名称规划驾车导航路线
-    driving.search([
-        {keyword: "<%=address%>"},
-        {keyword: "<%=tipinput%>"
-		} ], function(status, result) {
-			// result 即是对应的驾车导航信息，相关数据结构文档请参考  https://lbs.amap.com/api/javascript-api/reference/route-search#m_DrivingResult
-			if (status === 'complete') {
-				log.success('绘制驾车路线完成')
-			} else {
-				log.error('获取驾车数据失败：' + result)
-			}
-		});
+	  var map = new AMap.Map("container", {
+	        resizeEnable: true,
+	        center: [116.397428, 39.90923],//地图中心点
+	        zoom: 13 //地图显示的缩放级别
+	    });
+	    //构造路线导航类
+	    var driving = new AMap.Driving({
+	        map: map,
+	        panel: "panel",
+	        hideMarkers:true
+	    }); 
+	    var slng=<%=order.getSlng()%>;
+	    var slat=<%=order.getSlat()%>;
+	    var lon=<%=order.getDriver().getLongitude()%>;
+	    var lat=<%=order.getDriver().getLatitude()%>;
+	    var startIcon = new AMap.Icon({
+	        // 图标尺寸
+	        size: new AMap.Size(50, 50),
+	        // 图标的取图地址
+	        image: 'css/car.png',
+	        // 图标所用图片大小
+	        imageSize: new AMap.Size(50, 50),
+	        // 图标取图偏移量
+	        imageOffset: new AMap.Pixel(-5, -20)
+	    });
+	    var endIcon = new AMap.Icon({
+	        // 图标尺寸
+	        size: new AMap.Size(25, 34),
+	        // 图标的取图地址
+	        image: "https://a.amap.com/jsapi_demos/static/resource/img/user.png",
+	        // 图标所用图片大小
+	        imageSize: new AMap.Size(25, 34),
+	        // 图标取图偏移量
+	        imageOffset: new AMap.Pixel(0, 0)
+	    });
+	    var startMarker = new AMap.Marker({
+	        position: new AMap.LngLat(lon,lat),
+	        icon: startIcon,
+	        offset: new AMap.Pixel(-13, -30)
+	    });
+	    var endMarker = new AMap.Marker({
+	        position: new AMap.LngLat(slng,slat),
+	        icon: endIcon,
+	        offset: new AMap.Pixel(-13, -30)
+	    });
+	    // 根据起终点经纬度规划驾车导航路线
+	     driving.search(new AMap.LngLat(lon, lat), new AMap.LngLat(slng,slat ), function(status, result) {
+	         // result 即是对应的驾车导航信息，相关数据结构文档请参考  https://lbs.amap.com/api/javascript-api/reference/route-search#m_DrivingResult
+	         if (status === 'complete') {
+	             log.success('绘制驾车路线完成')
+	         } else {
+	             log.error('获取驾车数据失败：' + result)
+	         }
+	     });
+	    map.add([startMarker,endMarker]);
+	    <%System.out.println(order.getSlng());%>
+	    <%System.out.println(order.getSlat());%>
+	    <%System.out.println(order.getDriver().getLongitude());%>
+	    <%System.out.println(order.getDriver().getLatitude());%>
     function get(){
 		document.getElementById("orderid").value=document.getElementById("n1").innerHTML;
 	}
+    function refresh(){
+    	location.reload();
+    }
 	</script>
 
 
@@ -176,19 +214,19 @@ html, body, #container {
 						aria-hidden="true"></button>
 					<h4 class="modal-title" id="myModalLabel">司机评价表</h4>
 				</div>
+				<div id="n2"  style="visibility:hidden"><%=order.getOrderID()%></div>
+				<div id="n3"  style="visibility:hidden"><%=order.getPassenger().getPassengerID() %></div>
+				<div id="n4"  style="visibility:hidden"><%=order.getDriver().getDriverID()%></div>
 				<form action="deleteorder">
-				<input type="hidden" id="orderid"  name ="order.orderID" readonly="readonly"/>
-				<input type="hidden" id="orderid"  name ="order.passenger.passengerID" readonly="readonly"/>
-				<input type="hidden" id="orderid"  name ="order.driver.driverID" readonly="readonly"/>
 					<div class="modal-footer">
 				<div class="modal-body" style="position:absolute;left:100px;top:50px;">请对司机打分:<span class="box"> <span>★</span> <span>★</span>
 									<span>★</span> <span>★</span> <span>★</span>
 							</span> <span id="2"><s:property value="order.estimatedtod" />0</span>分</div>
-							<input type="hidden" name="order.orderID">
-							<input type="hidden" name="order.passenger.passengerID">
-							<input type="hidden" name="order.driver.driverID">
+							<input type="hidden" id="order" name="order.orderID">
+							<input type="hidden" id="passenger" name="order.passenger.passengerID">
+							<input type="hidden" id="driver" name="order.driver.driverID">
 							<input type="hidden"  id="1" name ="order.estimateptod" readonly="readonly" />
-						<input type="submit" class="btn btn-primary" value="完成评价">
+						<input type="submit" class="btn btn-primary" value="完成评价" onclick="f()">
 					</div>
 				</form>
 			</div>
@@ -207,5 +245,10 @@ html, body, #container {
 					document.getElementById("1").value=i;
 				});
 			});
+			function f(){
+				document.getElementById("order").value=document.getElementById("n2").innerHTML;
+				document.getElementById("passenger").value=document.getElementById("n3").innerHTML;
+				document.getElementById("driver").value=document.getElementById("n4").innerHTML;
+			}
 		</script>
 </body>

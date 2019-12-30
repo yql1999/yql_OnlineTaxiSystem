@@ -9,6 +9,8 @@ import java.util.List;
 
 import org.apache.struts2.json.annotations.JSON;
 
+import com.opensymphony.xwork2.ActionContext;
+
 import cn.edu.zjut.po.Driver;
 import cn.edu.zjut.po.Order;
 import cn.edu.zjut.po.Passenger;
@@ -220,7 +222,6 @@ public class OrderAction {
 		return "success";
 	}
 public String finish() {
-	loginUser=order.getPassenger();
 	return "success";
 }
 	 public double getDistance(double lat1, double lng1,double  lat2,double lng2) {

@@ -1,5 +1,7 @@
 package cn.edu.zjut.action;
 
+import java.io.IOException;
+
 import cn.edu.zjut.po.Order;
 import cn.edu.zjut.po.Passenger;
 import cn.edu.zjut.service.IPassengerService;
@@ -41,6 +43,7 @@ public class PassengerAction {
 	}
 
 	public String driverInformation() {
+		passengerService.currOrder(loginUser);
 		passengerService.driverInformation(order);
 		return "success";
 	}
@@ -54,7 +57,15 @@ public class PassengerAction {
 		passengerService.currOrder(loginUser);
 		return "success";
 	}
-
+	public String isSuccess() throws IOException, InterruptedException {
+		while(true) {
+			if (passengerService.isSuccess()) {
+				System.out.println("success action");
+				return "success";
+			}
+			Thread.sleep(5000);
+		}
+	}
 	public String getNickname() {
 		return nickname;
 	}

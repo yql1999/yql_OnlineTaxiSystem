@@ -19,7 +19,7 @@
 			<result name="success">/passenger_currOrder.jsp</result>
 		</action>
 		<action name="driverInformation" class="passengerAction" method="driverInformation">
-			<result name="success"></result>
+			<result name="success">/passenger_driverlist.jsp</result>
 		</action>
 		<action name="passengerlogin" class="passengerAction" method="login">
 			<result name="success">/passenger_index.jsp</result>
@@ -92,6 +92,10 @@
 		<action name="register" class="passengerAction" method="register">
 			<result name="success">/Login.jsp</result>
 		</action>
+		<action name="isSuccess" class="passengerAction" method="isSuccess">
+         <result name="success">/order_success.jsp</result>
+         <result name="fail">/route.jsp</result>
+     </action>
 	</package>
 	<package name="ajax" extends="json-default" namespace="/">
         <action name="ajaxRequest" class="orderAction" method="setlocation">

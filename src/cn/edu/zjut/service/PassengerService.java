@@ -64,6 +64,11 @@ public class PassengerService implements IPassengerService {
 		PassengerDAO.update(passenger);
 		// System.out.println("Passenger update");
 	}
+	public Boolean isSuccess() {
+		if(PassengerDAO.isSuccess())
+			return true;
+		return false;
+	}
 
 	public Passenger select(Passenger passenger) {
 		System.out.println("Passenger select service");
@@ -71,6 +76,7 @@ public class PassengerService implements IPassengerService {
 	}
 
 	public Driver driverInformation(Order order) {
+		order = (Order) ActionContext.getContext().getSession().get("currOrder");
 		System.out.println("Passenger driverInformation service");
 		Driver driver=PassengerDAO.driverInformation(order);
 		ActionContext.getContext().getSession().put("driver", driver);

@@ -1,11 +1,14 @@
+<%@page import="cn.edu.zjut.po.Driver"%>
+<%@page import="com.sun.xml.bind.v2.schemagen.xmlschema.Import"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html>
 <html>
 
 <head>
 <meta charset="UTF-8">
-<title>所有司机信息</title>
+<title>司机信息</title>
 <meta name="renderer" content="webkit">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport"
@@ -18,148 +21,134 @@
 <script type="text/javascript" src="./lib/layui/layui.js"
 	charset="utf-8"></script>
 <script type="text/javascript" src="./js/xadmin.js"></script>
-
-<link rel="stylesheet"
-	href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css" />
-<script
-	src="https://a.amap.com/jsapi_demos/static/demo-center/js/demoutils.js"></script>
-<script type="text/javascript"
-	src="https://webapi.amap.com/maps?v=1.4.15&key=a008fd73a62e235f98ff8247f00db18c&plugin=AMap.Driving"></script>
-<script type="text/javascript"
-	src="https://cache.amap.com/lbs/static/addToolbar.js"></script>
 </head>
+<script type="text/javascript">
+      /*  function f(){
+            window.location.href = "driverInformation";
+        }*/ 
+window.onload=function(){
+	$.ajax( {url : 'driverInformation',// 跳转到 action
+	data : {
+	},
+	type : 'post',
+	cache : false,
+	dataType : 'json',
+	success : function(data) {
+	},
+	error : function() {
+	}
+	})5000;
+	}
+</script>
+<body onLoad=f() >
+	<div class="x-body">
 
-<body>
-	<%@ include file="passenger_head.jsp"%>
-	<div class="page-content">
-		<div class="x-body">
-			<!-- <xblock>
-				<span class="x-right" style="line-height: 40px">共有数据：10 条</span> 
-			</xblock> -->
-			<table class="layui-table">
-				<thead>
-					<tr>
-						<th>
-							<div class="layui-unselect header layui-form-checkbox"
-								lay-skin="primary">
-								<i class="layui-icon">&#xe605;</i>
-							</div>
-						</th>
-						<th>司机编号</th>
-						<th>司机姓名</th>
-						<th>司机性别</th>
-						<th>驾龄</th>
-						<th>联系电话</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>
-							<div class="layui-unselect layui-form-checkbox"
-								lay-skin="primary" data-id='2'>
-								<i class="layui-icon">&#xe605;</i>
-							</div>
-						</td>
-						<td>01</td>
-						<td>司机01</td>
-						<td>男</td>
-						<td>2</td>
-						<td>111111</td>
-					</tr>
-				</tbody>
-			</table>
-			<div class="page">
-				<div>
-					<a class="prev" href="">&lt;&lt;</a> <a class="num" href="">1</a> <span
-						class="current">2</span> <a class="num" href="">3</a> <a
-						class="next" href="">&gt;&gt;</a>
-				</div>
+		<form class="layui-form" action="passenger_select.action"
+			method="post" validate="true">
+			<%Driver driver=(Driver)request.getSession().getAttribute("driver");%>
+			<%-- <s:set name="driver" value="#session['driver']"/> --%>
+
+			<div class="layui-form-item">
+				<label for="account" class="layui-form-label"> 司机姓名</label>
+				<div class="layui-input-inline">
+					<input type="text" id="name" name="name" id="name" disabled="disabled"
+						autocomplete="off" class="layui-input"
+						value="<%=driver.getName() %>">
+						</div>
 			</div>
-
-		</div>
-		<script>
-			layui.use('laydate', function() {
-				var laydate = layui.laydate;
-
-				//执行一个laydate实例
-				laydate.render({
-					elem : '#start' //指定元素
-				});
-
-				//执行一个laydate实例
-				laydate.render({
-					elem : '#end' //指定元素
-				});
-			});
-
-			/*用户-停用*/
-			function member_stop(obj, id) {
-				layer.confirm('确认要停用吗？', function(index) {
-
-					if ($(obj).attr('title') == '启用') {
-
-						//发异步把用户状态进行更改
-						$(obj).attr('title', '停用')
-						$(obj).find('i').html('&#xe62f;');
-
-						$(obj).parents("tr").find(".td-status").find('span')
-								.addClass('layui-btn-disabled').html('已停用');
-						layer.msg('已停用!', {
-							icon : 5,
-							time : 1000
-						});
-
-					} else {
-						$(obj).attr('title', '启用')
-						$(obj).find('i').html('&#xe601;');
-
-						$(obj).parents("tr").find(".td-status").find('span')
-								.removeClass('layui-btn-disabled').html('已启用');
-						layer.msg('已启用!', {
-							icon : 5,
-							time : 1000
-						});
-					}
-
-				});
-			}
-
-			/*用户-删除*/
-			function member_del(obj, id) {
-				layer.confirm('确认要删除吗？', function(index) {
-					//发异步删除数据
-					$(obj).parents("tr").remove();
-					layer.msg('已删除!', {
-						icon : 1,
-						time : 1000
-					});
-				});
-			}
-
-			function delAll(argument) {
-
-				var data = tableCheck.getData();
-
-				layer.confirm('确认要删除吗？' + data, function(index) {
-					//捉到所有被选中的，发异步进行删除
-					layer.msg('删除成功', {
-						icon : 1
-					});
-					$(".layui-form-checked").not('.header').parents('tr')
-							.remove();
-				});
-			}
-		</script>
-		<script>
-			var _hmt = _hmt || [];
-			(function() {
-				var hm = document.createElement("script");
-				hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
-				var s = document.getElementsByTagName("script")[0];
-				s.parentNode.insertBefore(hm, s);
-			})();
-		</script>
+			<div class="layui-form-item">
+				<label for="phone" class="layui-form-label"> 联系电话 </label>
+				<div class="layui-input-inline">
+					<input type="text" id="phone" name="phone" id="phone" disabled="disabled"
+						autocomplete="off" class="layui-input"
+						value="<%=driver.getTelephone() %>">
+						</div>
+			</div>
+			<div class="layui-form-item">
+				<label for="age" class="layui-form-label"> 司机年龄 </label>
+				<div class="layui-input-inline">
+					<input type="text" id="age" name="age" disabled="disabled"
+						autocomplete="off" class="layui-input"
+						value="<%=driver.getAge() %>">
+					</div>
+			</div>
+			<div class="layui-form-item">
+				<label for="experience" class="layui-form-label"> 司机驾龄 </label>
+				<div class="layui-input-inline">
+					<input type="text" id="experience" name="experience" disabled="disabled"
+						autocomplete="off" class="layui-input"
+						value="<%=driver.getExperience() %>">
+					</div>
+			</div>
+			<div class="layui-form-item">
+				<label for="plate" class="layui-form-label"> 车牌 </label>
+				<div class="layui-input-inline">
+					<input type="text" id="plate" name="plate" disabled="disabled"
+						autocomplete="off" class="layui-input"
+						value="<%=driver.getCar().getPlate() %>">
+					</div>
+			</div>
+			<div class="layui-form-item">
+				<label for="color" class="layui-form-label"> 车辆颜色 </label>
+				<div class="layui-input-inline">
+					<input type="text" id="color" name="color" disabled="disabled"
+						autocomplete="off" class="layui-input"
+						value="<%=driver.getCar().getColor() %>">
+					</div>
+			</div>
+			<div class="layui-form-item">
+				<label for="type" class="layui-form-label"> 车辆类型 </label>
+				<div class="layui-input-inline">
+					<input type="text" id="type" name="type" disabled="disabled"
+						autocomplete="off" class="layui-input"
+						value="<%=driver.getCar().getType() %>">
+					</div>
+			</div>
+		</form>
 	</div>
+	<script>
+        layui.use(['form','layer'], function(){
+            $ = layui.jquery;
+          var form = layui.form
+          ,layer = layui.layer;
+        
+          //èªå®ä¹éªè¯è§å
+          form.verify({
+            nikename: function(value){
+              if(value.length < 5){
+                return 'æµç§°è³å°å¾5ä¸ªå­ç¬¦å';
+              }
+            }
+            ,pass: [/(.+){6,12}$/, 'å¯ç å¿é¡»6å°12ä½']
+            ,repass: function(value){
+                if($('#L_pass').val()!=$('#L_repass').val()){
+                    return 'ä¸¤æ¬¡å¯ç ä¸ä¸è´';
+                }
+            }
+          });
+
+          //çå¬æäº¤
+          form.on('submit(add)', function(data){
+            console.log(data);
+            //åå¼æ­¥ï¼ææ°æ®æäº¤ç»php
+            layer.alert("å¢å æå", {icon: 6},function () {
+                // è·å¾frameç´¢å¼
+                var index = parent.layer.getFrameIndex(window.name);
+                //å³é­å½åframe
+                parent.layer.close(index);
+            });
+            return false;
+          });
+          
+          
+        });
+    </script>
+	<script>var _hmt = _hmt || []; (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();</script>
 </body>
 
 </html>

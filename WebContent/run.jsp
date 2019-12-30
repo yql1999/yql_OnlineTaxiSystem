@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="cn.edu.zjut.po.Order"%>
+<%Order order=(Order)request.getSession().getAttribute("order");%>
 <!DOCTYPE html>
 <link rel="stylesheet"
 	href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css" />
@@ -72,7 +74,7 @@ html, body, #container {
 	<div class="page-content">
 		<div id="container" onmouseup="test()"></div>
 		<div id="panel" style="margin-top:100px;"></div>
-		<div class="info" style="visibility: hidden">
+		<div class="info" style="visibility:hidden">
 			<h4 id='status' style="visibility: hidden"></h4>
 			<hr>
 			<p id='result' style="visibility: hidden"></p>
@@ -173,7 +175,7 @@ html, body, #container {
 				//var tempdestination=document.getElementById('hzzsbstart').innerText;
 				//var str=tempdestination.split(',');
 				//path.push([str[0],str[1]]);
-				path.push([ 120.04742974409801, 30.224854563803 ]);
+				path.push([<%=order.getElng()%>,<%=order.getElat()%> ]);
 				console.log(path);
 				//path.push([left, right]);
 				//console.log(path[0]);
@@ -201,8 +203,9 @@ html, body, #container {
 					route.search(); //查询导航路径并开启拖拽导航
 				});
 				//console.log(path[0].Q+"   "+path[0].P);
+				
 				driving.search(new AMap.LngLat(path[0].Q, path[0].P),
-						new AMap.LngLat(path[1].Q, path[1].P), function(status,
+						new AMap.LngLat(<%=order.getElng()%>,<%=order.getElat()%>), function(status,
 								result) {
 							// result 即是对应的驾车导航信息，相关数据结构文档请参考  https://lbs.amap.com/api/javascript-api/reference/route-search#m_DrivingResult
 							if (status === 'complete') {
@@ -268,7 +271,7 @@ html, body, #container {
 				//console.log(path[0].Q+"   "+path[0].P);
 
 				driving.search(new AMap.LngLat(path[0].Q, path[0].P),
-						new AMap.LngLat(path[1].Q, path[1].P), function(status,
+						new AMap.LngLat(<%=order.getElng()%>,<%=order.getElat()%>), function(status,
 								result) {
 							// result 即是对应的驾车导航信息，相关数据结构文档请参考  https://lbs.amap.com/api/javascript-api/reference/route-search#m_DrivingResult
 							if (status === 'complete') {

@@ -3,11 +3,14 @@ package cn.edu.zjut.dao;
 import javax.persistence.Query;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.hibernate.Session;
 
 import org.hibernate.Transaction;
+
+import com.opensymphony.xwork2.ActionContext;
 
 import cn.edu.zjut.po.Driver;
 import cn.edu.zjut.po.Order;
@@ -98,7 +101,8 @@ public class OrderDAO extends BaseHibernateDAO implements IOrderDAO {
 			for(int j=0;j<orders.size();j++) {
 			Order example=orders.get(j);
 			
- 			if(example.getIsEstimatedP()==false) {			session.delete(example);
+ 			if(example.getIsEstimatedP()==false) {			
+ 				session.delete(example);
 			 }
 			}
 			int k=order.getDriver().getDriverID();
@@ -108,6 +112,7 @@ public class OrderDAO extends BaseHibernateDAO implements IOrderDAO {
 			driver.setDriverID(k);
 			String hql="from Driver as user where driverID=";
 			String queryString=hql+driver.getDriverID();
+			System.out.println(queryString);
 			Query queryObject=session.createQuery(queryString);
 			driver=(Driver)queryObject.getResultList().get(0);
 			double score=(driver.getScore()*size+order.getEstimateptod())/(size+1);
@@ -149,4 +154,5 @@ public class OrderDAO extends BaseHibernateDAO implements IOrderDAO {
 		session.update(order);
 		tran.commit();
 	}
+	
 }

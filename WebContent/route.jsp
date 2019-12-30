@@ -5,10 +5,12 @@
 <!doctype html>
 <html>
 <head>
+<script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
 	content="initial-scale=1.0, user-scalable=no, width=device-width">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>路线规划</title>
 <style type="text/css">
 html, body, #container {
@@ -48,8 +50,14 @@ html, body, #container {
 <script type="text/javascript"
 	src="https://cache.amap.com/lbs/static/addToolbar.js"></script>
 </head>
-<body>
-	<%@ include file="passenger_head.jsp"%>
+<script type="text/javascript">
+        function f(){
+            window.location.href = "isSuccess.action";
+        }
+</script>
+<body onLoad=f()>
+<!-- <iframe id="mainframe" src="isSuccess.action" name="mainframe" frameborder="0" scrolling="no" width="1000px" height="100px"></iframe>
+ -->	<%@ include file="passenger_head.jsp"%>
 	<div class="page-content">
 		<div id="container"></div>
 		<div id="panel" style="margin-top: 100px;"></div>
@@ -66,6 +74,10 @@ html, body, #container {
 					<input type="hidden" name="order.passenger.passengerID" id="spassenger">
 					<input type="hidden" name="loginUser.passengerID" id="spassenger2">
 			</form>
+			<!-- <form action="isSuccess.action" method="post">
+				<input type="submit" data-toggle="modal" class="layui-btn"
+					value="刷新" style="merge-top: 10px; merge-left: 20px;">
+			</form> -->
 			<img src="images/timg.gif"
 				style="width: 100px; height: 100px; margin: -56px 0px 0px 284px;">
 		</div>
@@ -102,6 +114,30 @@ html, body, #container {
 				log.error('获取驾车数据失败：' + result)
 			}
 		});
+    
+    //定时发送action请求
+   /* $(function(){
+        setInterval(function send(){
+            $.ajax({
+                url:'isSuccess.action',
+                type:'post',
+                dataType:'html',
+                success:function(data){
+                     //alert(data);
+                     window.location.href="/order_success.jsp";
+                     if(data.equals("success")){
+                    	 alert("接单成功");
+                         window.location.href="/order_success.jsp";
+                     }
+                     else{
+                    	 alert("接单失败");
+                         window.location.href="/route.jsp";
+                     }
+                	}
+                }
+            );
+        },3000);
+    }); */
 	</script>
 </body>
 </html>

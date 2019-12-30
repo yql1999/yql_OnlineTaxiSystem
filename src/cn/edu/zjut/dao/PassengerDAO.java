@@ -91,10 +91,9 @@ public class PassengerDAO extends BaseHibernateDAO implements IPassengerDAO {
 
 	public Driver driverInformation(Order order) {
 		try {
-			String hql = "from Order where OrderID="+order.getOrderID();
+			String hql = "from Order where orderID="+order.getOrderID();
 			Query queryObject = getSession().createQuery(hql);
-			Driver driver = ((Order) queryObject.getResultList().get(0)).getDriver();
-			return driver;
+			return (Driver) ((Order) queryObject.getResultList().get(0)).getDriver();
 		} catch (RuntimeException re) {
 			throw re;
 		}
@@ -122,23 +121,25 @@ public class PassengerDAO extends BaseHibernateDAO implements IPassengerDAO {
 			throw re;
 		}
 	}
-
-	public void addOrder(Order order) {
-		// TODO Auto-generated method stub
+	public Boolean isSuccess() {
+		try {
+			Passenger passenger2 = (Passenger) ActionContext.getContext().getSession().get("passenger");
+			String hql = "from Order where passengerID=" + passenger2.getPassengerID() + "order by orderID desc";
+			ArrayList<Order> orders = (ArrayList<Order>) getSession().createQuery(hql).list();
+			Order order = orders.get(0);
+			ActionContext.getContext().getSession().put("order", order);
+			if(order.getDriver()!=null) {
+				System.out.println("true");
+				return true;
+			}
+			else {
+				System.out.println("false");
+				return false;
+			}
+		} catch (RuntimeException re) {
+			throw re;
+		}
 
 	}
-	public void deleteOrder(Order order) {
-		// TODO Auto-generated method stub
 
-	}
-
-	public void estimate(Driver driver) {
-		// TODO Auto-generated method stub
-
-	}
-
-	public void pay(Passenger passenger) {
-		// TODO Auto-generated method stub
-
-	}
 }
