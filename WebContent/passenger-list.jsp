@@ -49,17 +49,7 @@
 			class="layui-icon" style="line-height: 30px">ဂ</i></a>
 	</div>
 	<div class="x-body">
-		<div class="layui-row">
-			<form class="layui-form layui-col-md12 x-so">
-				<input class="layui-input" placeholder="开始日" name="start" id="start">
-				<input class="layui-input" placeholder="截止日" name="end" id="end">
-				<input type="text" name="username" placeholder="请输入用户名"
-					autocomplete="off" class="layui-input">
-				<button class="layui-btn" lay-submit="" lay-filter="sreach">
-					<i class="layui-icon">&#xe615;</i>
-				</button>
-			</form>
-		</div>
+
 		<table class="layui-table">
 			<thead>
 				<tr>
@@ -86,7 +76,7 @@
 							<td class="td-status"><span
 								class="layui-btn layui-btn-normal layui-btn-mini">已启用</span></td>
 						<td class="td-manage"><a onclick="member_stop(this,'10001')"
-							href="javascript:;" title="启用"> <i class="layui-icon">&#xe601;</i>
+							href="javascript:;" title="停用"> <i class="layui-icon">&#xe601;</i>
 						</a>
 						<button id="<%="btn"+idNum%>" ><i class="layui-icon">&#xe640;</i></button>
 						</td>
@@ -101,26 +91,13 @@
 		</table>
 	</div>
 	<script>
-		layui.use('laydate', function() {
-			var laydate = layui.laydate;
-
-			//执行一个laydate实例
-			laydate.render({
-				elem : '#start' //指定元素
-			});
-
-			//执行一个laydate实例
-			laydate.render({
-				elem : '#end' //指定元素
-			});
-		});
-
+		
 		/*用户-停用*/
 		function member_stop(obj, id) {
-			layer.confirm('确认要停用吗？', function(index) {
-				if ($(obj).attr('title') == '启用') {
+			layer.confirm('确认要更改吗？', function(index) {
+				if ($(obj).attr('title') == '停用') {
 					//发异步把用户状态进行更改
-					$(obj).attr('title', '停用')
+					$(obj).attr('title', '启用')
 					$(obj).find('i').html('&#xe62f;');
 					$(obj).parents("tr").find(".td-status").find('span')
 							.addClass('layui-btn-disabled').html('已停用');
@@ -129,7 +106,7 @@
 						time : 1000
 					});
 				} else {
-					$(obj).attr('title', '启用')
+					$(obj).attr('title', '停用')
 					$(obj).find('i').html('&#xe601;');
 					$(obj).parents("tr").find(".td-status").find('span')
 							.removeClass('layui-btn-disabled').html('已启用');

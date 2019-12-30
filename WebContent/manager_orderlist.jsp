@@ -25,21 +25,9 @@
 			<a href="">订单列表</a>
 		</span> <a class="layui-btn layui-btn-small"
 			style="line-height: 1.6em; margin-top: 3px; float: right"
-			href="javascript:location.replace(location.href);" title="刷新"> <i
+			href="managerfindorderlist" title="刷新"> <i
 			class="layui-icon" style="line-height: 30px">ဂ</i></a>
 	</div>
-	<div class="x-body">
-		<div class="layui-row">
-			<form class="layui-form layui-col-md12 x-so">
-				<input class="layui-input" placeholder="开始日" name="start" id="start">
-				<input class="layui-input" placeholder="截止日" name="end" id="end">
-				<input type="text" name="username" placeholder="请输入用户名"
-					autocomplete="off" class="layui-input">
-				<button class="layui-btn" lay-submit="" lay-filter="sreach">
-					<i class="layui-icon">&#xe615;</i>
-				</button>
-			</form>
-		</div>
 		<table class="layui-table">
 			<thead>
 				<tr>
