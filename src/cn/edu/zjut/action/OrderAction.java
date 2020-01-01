@@ -191,6 +191,10 @@ public class OrderAction {
 		Order t=new Order();
 		while(it.hasNext()) {
 			t=(Order)it.next();
+			if(t.getIsCompleted()==0) {
+				it.remove();
+				continue;
+			}
 			if(t.getDriver().getDriverID()!=order.getDriver().getDriverID()) {
 				it.remove();
 				
@@ -201,6 +205,7 @@ public class OrderAction {
 		}
 		return "success";
 	}
+	
 	public String setlocation() {
 		Order s=new Order();
 		s.setOrderID(orderID);
@@ -263,7 +268,6 @@ public class OrderAction {
 	}
 	
 	public String finish() {
-	loginUser=order.getPassenger();
 	return "success";
 	}
 	public String driverhistory() {
