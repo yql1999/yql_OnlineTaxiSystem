@@ -89,7 +89,7 @@
                          </a>
                     </li >
                     <li>
-                        <a _href="login">
+                        <a _href="driverEstimate" id="orderestimatelist">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>司机评价</cite>
                         </a>
@@ -166,7 +166,7 @@ AMap.plugin('AMap.Geolocation', function() {
     	document.getElementById("orderlist").setAttribute("_href","findorders?order.driver.driverID="+a+"&latitude="+t+"&longitude="+g);
     	document.getElementById("driverID").setAttribute("_href","driverInfo1?loginUser.driverID="+a);
     	document.getElementById("riverID1").setAttribute("_href","driverhistory?order.driver.driverID="+a);
-
+		document.getElementById("orderestimatelist").setAttribute("_href","findestimate?order.driver.driverID="+a)
       }else{
         onError(result);
       }})

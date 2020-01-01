@@ -9,8 +9,6 @@ import java.util.List;
 
 import org.apache.struts2.json.annotations.JSON;
 
-import com.opensymphony.xwork2.ActionContext;
-
 import cn.edu.zjut.po.Driver;
 import cn.edu.zjut.po.Order;
 import cn.edu.zjut.po.Passenger;
@@ -174,6 +172,10 @@ public class OrderAction {
 		return "success";
 	}
 	
+	public String findestimate() {
+		orders=orderService.findorders();
+		return "success";
+	}
 	public String setlocation() {
 		Order s=new Order();
 		s.setOrderID(orderID);
