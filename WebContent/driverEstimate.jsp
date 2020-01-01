@@ -83,7 +83,6 @@
                   <th>乘客ID</th>
                   <th>起点</th>
                   <th>终点</th>
-                  <th>是否中途更换路线</th>
                   <th>评价</th>
                   <th>反馈内容</th>
                   <th></th>
@@ -97,7 +96,6 @@
                   <td><s:property value="order.passenger.passengerID" /></td>
                   <td><s:property value="order.start"/></td>
                   <td><s:property value="order.destination"/></td>
-                  <td>否</td>
                   <td id="<%="td2"+idNum%>"><span class="box">
                       <span>★</span>
                       <span>★</span>
