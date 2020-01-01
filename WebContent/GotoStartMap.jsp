@@ -441,6 +441,10 @@
 	}
 	function callbackFun(data)
 	{
+		console.log(data);
+		if(data==true){
+			alert("乘客已取消订单，请关闭该页面重新接单");
+		}
 		//console.log(data);
 		//alert(data);
 	} 
@@ -456,6 +460,7 @@
 	}
 	function callback(data)
 	{
+		console.log(data);
 		window.ttt=data;
 		console.log(ttt);
 		//alert(data);

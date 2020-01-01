@@ -138,6 +138,11 @@
             	<!--  <param name="root">order.driver.longitude</param> 
 				<param name="root">order.isCompleted</param> -->
             </result>
+            <result name="fail" type="json">
+            	<param name="root">flag</param> 
+            	<!--  <param name="root">order.driver.longitude</param> 
+				<param name="root">order.isCompleted</param> -->
+            </result>
        </action>
        <action name="ajaxSlocation" class="orderAction" method="setlocation">
             <result name="success" type="json">
@@ -145,11 +150,10 @@
             	<!--  <param name="root">order.driver.longitude</param> 
 				<param name="root">order.isCompleted</param> -->
             </result>
-             <result name="fail" type="json">
+		<result name="fail" type="json">
             	<param name="root">flag</param> 
             	<!--  <param name="root">order.driver.longitude</param> 
 				<param name="root">order.isCompleted</param> -->
-            </result>
-       </action>
+        </result>       </action>
 	</package>
 </struts>

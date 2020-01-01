@@ -31,6 +31,7 @@ public class OrderAction {
 	private Double length;
 	private int orderID;
 	private Double estimatedtop;
+	private Boolean flag;
 	public Double getLength() {
 		return length;
 	}
@@ -179,7 +180,8 @@ public class OrderAction {
 	public String setlocation() {
 		Order s=new Order();
 		s.setOrderID(orderID);
-		order=orderService.findbyId(s);
+		try {
+		order=orderService.findbyId(s);		
 		order.setDriver(driverService.findbyId(order.getDriver()));
 		//order.setDriver(driverService.findbyId(order.getDriver()));
 		order.getDriver().setLatitude(latitude);
@@ -187,6 +189,11 @@ public class OrderAction {
 		System.out.println(order.getDriver().getAccount());
 		driverService.update(order.getDriver());
 		return "success";
+		}
+		catch(Exception e){
+			flag=true;
+			return "fail";
+		}
 	}
 	public String getlocation() {
 		Order s=new Order();
@@ -331,6 +338,14 @@ public class OrderAction {
 
 	public void setEstimatedtop(Double estimatedtop) {
 		this.estimatedtop = estimatedtop;
+	}
+
+	public Boolean getFlag() {
+		return flag;
+	}
+
+	public void setFlag(Boolean flag) {
+		this.flag = flag;
 	}
 	
 }
