@@ -160,6 +160,18 @@ public class OrderAction {
 		order.setSum(sum);
 		orderService.update(order);
 		orders=orderService.findorders();
+		Iterator<List> it=orders.iterator();
+		Order t=new Order();
+		while(it.hasNext()) {
+			t=(Order)it.next();
+			if(t.getDriver().getDriverID()!=order.getDriver().getDriverID()) {
+				it.remove();
+				
+			}
+			else {
+			System.out.println(t.getSlat());
+			}
+		}
 		return "success";
 	}
 	
@@ -175,6 +187,18 @@ public class OrderAction {
 	
 	public String findestimate() {
 		orders=orderService.findorders();
+		Iterator<List> it=orders.iterator();
+		Order t=new Order();
+		while(it.hasNext()) {
+			t=(Order)it.next();
+			if(t.getDriver().getDriverID()!=order.getDriver().getDriverID()) {
+				it.remove();
+				
+			}
+			else {
+			System.out.println(t.getSlat());
+			}
+		}
 		return "success";
 	}
 	public String setlocation() {
