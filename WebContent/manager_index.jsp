@@ -31,10 +31,7 @@
           <li class="layui-nav-item">
             <a href="javascript:;">管理员</a>
             <dl class="layui-nav-child"> <!-- 二级菜单 -->
-                    <dd>
-						<a
-							onclick="x_admin_show('个人信息','manager_information.jsp',600,300)">查看个人信息</a>
-					</dd>
+                
 					
 					<dd>
 						<a href="Login.jsp">退出登录</a>

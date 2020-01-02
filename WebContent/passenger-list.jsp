@@ -49,7 +49,6 @@
 			class="layui-icon" style="line-height: 30px">ဂ</i></a>
 	</div>
 	<div class="x-body">
-
 		<table class="layui-table">
 			<thead>
 				<tr>
@@ -64,7 +63,6 @@
 				</tr>
 			</thead>
 				<tbody>
-				
 					<s:iterator value="passenger" var="object">
 						<tr>
 							<td id="<%="td1"+idNum%>"><s:property value="#object.passengerID" /></td>

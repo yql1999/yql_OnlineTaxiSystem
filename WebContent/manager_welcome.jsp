@@ -22,23 +22,40 @@
 <body>
 	<div class="x-body layui-anim layui-anim-up">
 		<blockquote class="layui-elem-quote">
-			欢迎您， <span class="x-red">！</span>当前时间：<%= new java.util.Date()%>
+			尊贵的管理员，欢迎您<span class="x-red">！</span>当前时间：<%= new java.util.Date()%>
 		</blockquote>
 
 		<fieldset class="layui-elem-field">
 			<legend>个人信息</legend>
-			<div class="layui-field-box">
-				<table class="layui-table" lay-skin="line">
-					<tbody>
-						<tr>
-							<td><a 
-								onclick="x_admin_show('查看个人信息','manager_information.jsp',600,300)"
-								class="x-a" target="_blank">查看个人信息</a></td>
-						</tr>
-						
-					</tbody>
-				</table>
-			</div>
+			<div class="x-body">
+        <form class="layui-form" action="apssenger_update.do" method="post">
+          <div class="layui-form-item">
+              <label for="userid" class="layui-form-label">用户ID</label>
+              <div class="layui-input-inline">
+                  <label for="userid" class="layui-form-label">1</label>
+              </div>
+          </div>
+          
+          <div class="layui-form-item">
+              <label class="layui-form-label">角色</label>
+              <div class="layui-input-inline">
+                  <label for="userid" class="layui-form-label">管理员</label>
+              </div>
+          </div>
+          <div class="layui-form-item">
+              <label for="useraccount" class="layui-form-label">账号</label>
+              <div class="layui-input-inline">
+                  <label for="userid" class="layui-form-label">GYT</label>
+              </div>
+          </div>
+          <div class="layui-form-item">
+              <label for="userpassword" class="layui-form-label">密码</label>
+              <div class="layui-input-inline">
+                  <label for="userid" class="layui-form-label">GYT</label>
+              </div>
+          </div>
+      </form>
+    </div>
 		</fieldset>
 		
 	</div>

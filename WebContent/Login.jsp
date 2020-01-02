@@ -63,7 +63,7 @@
 				<br>
 				<a href = "driver_reg.jsp" style = "color: #ffffff; background-color:#009688; text-decoration: none; border-radius: 2px; padding: 5px 20px;">司机</a><br>
 				<br>
-				<a href = "re.html" style = "color: #ffffff; background-color:#009688; text-decoration: none; border-radius: 2px; padding: 5px 20px;">管理员</a>
+				
 			</div>
 			
 		</div><!-- /.modal-content -->

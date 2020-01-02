@@ -65,7 +65,6 @@ public class ManagerDAO extends BaseHibernateDAO implements IManagerDAO {
 		s=(Car)queryObject1.getResultList().get(0);
 		session.delete(s);
 		session.delete(transientInstance);
-		
 		tran.commit();
 		session.close();
 	}
