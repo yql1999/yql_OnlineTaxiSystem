@@ -164,9 +164,13 @@ public class OrderAction {
 		Order t=new Order();
 		while(it.hasNext()) {
 			t=(Order)it.next();
+			if(t.getDriver()==null)
+			{
+				it.remove();
+				continue;
+			}
 			if(t.getDriver().getDriverID()!=order.getDriver().getDriverID()) {
 				it.remove();
-				
 			}
 			else {
 			System.out.println(t.getSlat());
@@ -176,9 +180,12 @@ public class OrderAction {
 	}
 	
 	public String driverEstimate(){
+		Double b;
+		b=order.getEstimatedtop();
 		order=orderService.findbyId(order);
 		order.setIsEstimatedD(true);
-		order.setEstimatedtop(estimatedtop);
+		System.out.println("pingjiapingfen"+estimatedtop);
+		order.setEstimatedtop(b);
 		orderService.update(order);
 		orders=orderService.findorders();
 		orderService.appraise2(order);
@@ -191,7 +198,7 @@ public class OrderAction {
 		Order t=new Order();
 		while(it.hasNext()) {
 			t=(Order)it.next();
-			if(t.getIsCompleted()==0) {
+			if(t.getIsCompleted()!=2) {
 				it.remove();
 				continue;
 			}
@@ -272,6 +279,22 @@ public class OrderAction {
 	}
 	public String driverhistory() {
 		orders=orderService.finddriverhistoryorders(order);
+		Iterator<List> it=orders.iterator();
+		Order t=new Order();
+		while(it.hasNext()) {
+			t=(Order)it.next();
+			if(t.getIsCompleted()!=2) {
+				it.remove();
+				continue;
+			}
+			if(t.getDriver().getDriverID()!=order.getDriver().getDriverID()) {
+				it.remove();
+				
+			}
+			else {
+			System.out.println(t.getSlat());
+			}
+		}
 		return "success";
 	}
 	 public double getDistance(double lat1, double lng1,double  lat2,double lng2) {

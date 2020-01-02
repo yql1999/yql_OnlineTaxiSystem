@@ -3,7 +3,6 @@
 <hibernate-mapping>
 	<class name="cn.edu.zjut.po.Driver" table="driver" catalog="hibernatedb">
 		<id name="driverID" type="int">
-			<column name="driverID"/>
 			<generator class="foreign">
             <param name="property">car</param>
             </generator>

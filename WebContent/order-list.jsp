@@ -57,16 +57,6 @@
 			class="layui-icon" style="line-height: 30px">ဂ</i></a>
 	</div>
 	<div class="x-body">
-		<div class="layui-row">
-			<form class="layui-form layui-col-md12 x-so">
-
-				<input type="text" name="username" placeholder="请输入订单号"
-					autocomplete="off" class="layui-input">
-				<button class="layui-btn" lay-submit="" lay-filter="sreach">
-					<i class="layui-icon">&#xe615;</i>
-				</button>
-			</form>
-		</div>
 		<table class="layui-table">
 			<thead>
 				<tr>

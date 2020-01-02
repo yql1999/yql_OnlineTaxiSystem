@@ -58,7 +58,6 @@
         <a href="">个人信息</a>
         
       </span>
-      <td id="hzzsb" style="visibility:hidden;display:none;"><s:property value="loginUser.driverID"/></td>
       <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
         <i class="layui-icon" style="line-height:30px">ဂ</i></a>
     </div>
@@ -125,7 +124,7 @@
 						<div class="modal-body">
 								<div class="form-group">
 									<label>司机编号</label>
-									<input type="text" class="form-control" name="loginUser.orderID" readonly="readonly" id="i1"/>
+									<input type="text" class="form-control" name="loginUser.driverID" readonly="readonly" id="i1"/>
 								</div>
 								<div class="form-group">
 									<label>姓名</label>
@@ -141,7 +140,7 @@
 								</div>
 								<div class="form-group">
 									<label>身份证号</label>
-									<input type="text" class="form-control" name ="loginUser.idnum" id="i5"/>
+									<input type="text" class="form-control" name ="loginUser.idnumber" id="i5"/>
 								</div>
 								<div class="form-group">
 									<label>驾驶证号</label>
@@ -157,7 +156,7 @@
 								</div>
 								<div class="form-group">
 									<label>综合评分</label>
-									<input type="text" class="form-control" name ="loginUser.idnum" readonly="readonly" id="i9"/>
+									<input type="text" class="form-control" name ="loginUser.score" readonly="readonly" id="i9"/>
 								</div>
 								<div class="form-group">
 									<label>车辆ID</label>

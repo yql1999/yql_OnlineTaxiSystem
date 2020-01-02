@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%@page import="cn.edu.zjut.po.Driver"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html>
@@ -22,6 +23,16 @@
 </head>
 <body>
     <!-- 顶部开始 -->
+    <table style="visibility: hidden; display:none;">
+    	<tbody>
+    		<tr>
+    		<td id="td1"><s:property value="loginUser.name"/></td>
+    		<td id="td2"><s:property value="loginUser.telephone"/></td>
+    		<td id="td3"><s:property value="loginUser.score"/></td>
+    		<td id="td4"><s:property value="loginUser.car.plate"/></td>
+    		</tr>
+    	</tbody>
+    </table>
     <div class="container">
         <div class="logo"><a href="./index.html">叶子打车</a></div>
         <div class="left_open">
@@ -35,16 +46,15 @@
             <dl class="layui-nav-child"> <!-- 二级菜单 -->
                     <dd>
 						<a
-							onclick="x_admin_show('个人信息','manager_information.jsp',600,300)">查看个人信息</a>
+							onclick="x_admin_show('个人信息','driver_information.jsp',600,400)">查看个人信息</a>
 					</dd>
-					
 					<dd>
 						<a href="Login.jsp">退出登录</a>
 					</dd>
       
             </dl>
           </li>
-          <li class="layui-nav-item to-index"><a href="manager_index.jsp">前台首页</a></li>
+          <li class="layui-nav-item to-index"><a href="driver_index.jsp">前台首页</a></li>
         </ul>
         
     </div>
@@ -89,7 +99,7 @@
                          </a>
                     </li >
                     <li>
-                        <a _href="driverEstimate" id="driver">
+                        <a _href="findestimate" id="driver">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>司机评价</cite>
                         </a>
@@ -110,7 +120,7 @@
           </ul>
           <div class="layui-tab-content">
             <div class="layui-tab-item layui-show">
-                <iframe src='./manager_welcome.jsp' frameborder="0" scrolling="yes" class="x-iframe"></iframe>
+                <iframe src='./driver_welcome.jsp' frameborder="0" scrolling="yes" class="x-iframe"></iframe>
             </div>
           </div>
         </div>
@@ -126,7 +136,11 @@
     
 </body>
 <script>
-var map,result,t,g;
+var map,result,t,g,dn,dt,ds,dcp;
+dn=document.getElementById("td1").innerHTML;
+dt=document.getElementById("td2").innerHTML;
+ds=document.getElementById("td3").innerHTML;
+dcp=document.getElementById("td4").innerHTML;
 map = new AMap.Map("container", {
     resizeEnable: true,
     zoom: 13
@@ -166,7 +180,11 @@ AMap.plugin('AMap.Geolocation', function() {
     	document.getElementById("orderlist").setAttribute("_href","findorders?order.driver.driverID="+a+"&latitude="+t+"&longitude="+g);
     	document.getElementById("driverID").setAttribute("_href","driverInfo1?loginUser.driverID="+a);
     	document.getElementById("riverID1").setAttribute("_href","driverhistory?order.driver.driverID="+a);
-		document.getElementById("driver").setAttribute("_href","findestimate?order.driver.driverID="+a)
+		document.getElementById("driver").setAttribute("_href","findestimate?order.driver.driverID="+a);
+		localStorage.setItem("drivername",dn);
+		localStorage.setItem("drivertelephone",dt);
+		localStorage.setItem("driverscore",ds);
+		localStorage.setItem("drivercarplate",dcp);
       }else{
         onError(result);
       }})

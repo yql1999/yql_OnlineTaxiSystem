@@ -229,6 +229,8 @@
   
   setTimeout(function () {
 	  AMap.plugin('AMap.Geolocation', function() {
+		  	//map.removeControl(geolocation);
+			  
 		    var geolocation = new AMap.Geolocation(options);
 		    map.addControl(geolocation);
 		    geolocation.getCurrentPosition(function(status,result){
@@ -303,6 +305,7 @@
 		//    zoom: 13
 		//  });
 	  	cli(data);
+	  	
 	    document.getElementById('status').innerHTML='定位成功'
 	    var str = [];
 	    console.log(data);
@@ -357,6 +360,8 @@
 	    });
 	    setTimeout(function () {
 	  	  AMap.plugin('AMap.Geolocation', function() {
+	  			//map.removeControl(geolocation);
+			  	  
 	  		    var geolocation = new AMap.Geolocation(options);
 	  		    map.addControl(geolocation);
 	  		    geolocation.getCurrentPosition(function(status,result){

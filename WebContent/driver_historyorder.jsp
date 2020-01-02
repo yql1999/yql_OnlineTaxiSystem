@@ -19,24 +19,14 @@
 </head>
 <body>
 <div class="x-nav">
-		<span class="layui-breadcrumb"> <a href="">首页</a> <a href="">演示</a>
-			<a> <cite>导航元素</cite></a>
+		<span class="layui-breadcrumb"> <a href="./driver_welcome.jsp">我的首页</a>
+			<a> <cite>历史订单</cite></a>
 		</span> <a class="layui-btn layui-btn-small"
 			style="line-height: 1.6em; margin-top: 3px; float: right"
 			href="javascript:location.replace(location.href);" title="刷新"> <i
 			class="layui-icon" style="line-height: 30px">ဂ</i></a>
 	</div>
 	<div class="x-body">
-		<div class="layui-row">
-			<form class="layui-form layui-col-md12 x-so">
-
-				<input type="text" name="username" placeholder="请输入订单号"
-					autocomplete="off" class="layui-input">
-				<button class="layui-btn" lay-submit="" lay-filter="sreach">
-					<i class="layui-icon">&#xe615;</i>
-				</button>
-			</form>
-		</div>
 		<table class="layui-table">
 			<thead>
 				<tr>

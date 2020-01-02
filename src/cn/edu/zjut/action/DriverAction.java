@@ -24,6 +24,7 @@ public class DriverAction {
 	}
 	public String driverinfochange() {
 		Driver d= new Driver();
+		System.out.println(loginUser.getDriverID());
 		d=driverService.findbyId(loginUser);
 		d.setName(loginUser.getName());
 		d.setGender(loginUser.getGender());
@@ -35,6 +36,7 @@ public class DriverAction {
 		d.getCar().setSeats(loginUser.getCar().getSeats());
 		d.getCar().setPlate(loginUser.getCar().getPlate());
 		d.getCar().setType(loginUser.getCar().getType());
+		driverService.update(d);
 		return "success";
 	}
 	public String login() {

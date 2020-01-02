@@ -216,8 +216,8 @@
     map.addControl(geolocation);
     geolocation.getCurrentPosition(function(status,result){
       if(status=='complete'){
-    	setlocation(path);
-        onComplete(result)
+    	  setlocation(path);
+        onComplete(result);
       }else{
         onError(result)
       }
@@ -233,9 +233,10 @@
 		    geolocation.getCurrentPosition(function(status,result){
 		      if(status=='complete'){
 		    	  
-		        onComplete1(result)
+		        onComplete1(result);
+		        setlocation(path);
 		      }else{
-		        onError(result)
+		        onError(result);
 		      }
 		    });
 		  });
@@ -305,6 +306,7 @@
 	  	//var geolocation = new AMap.Geolocation(options);
 	    //map.addControl(geolocation);
 	    //geolocation.getCurrentPosition();
+	    cli(data);
 	    document.getElementById('status').innerHTML='定位成功'
 	    var str = [];
 	    console.log(data);
@@ -427,7 +429,33 @@
 	  document.getElementById("start1").value=document.getElementById("td3").innerHTML;
 	  document.getElementById("destination1").value=document.getElementById("td4").innerHTML;
   }
-  function setlocation(path){
+  function cli(data){
+	  	var a=document.getElementById("td7").innerHTML;
+		var url='ajaxRequest';
+		var params={
+					orderID:a,
+					longitude:data.position.Q,
+					latitude:data.position.P
+		};
+		//console.log(params);
+		jQuery.post(url,params,callbackFun);
+		/*$.ajax({
+			type:"POST",
+			url:url,
+			dataType:"json",
+			success:callbackFun(data)
+		});*/
+	}
+	function callbackFun(data)
+	{
+		console.log(data);
+		if(data==true){
+			alert("乘客已取消订单，请关闭该页面重新接单");
+		}
+		//console.log(data);
+		//alert(data);
+	} 
+	function setlocation(path){
 		var a=document.getElementById("td7").innerHTML;
 		var url='ajaxSlocation';
 		var params={
@@ -439,6 +467,7 @@
 	}
 	function callback(data)
 	{
+		console.log(data);
 		window.ttt=data;
 		console.log(ttt);
 		//alert(data);

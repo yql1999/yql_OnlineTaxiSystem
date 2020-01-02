@@ -51,7 +51,7 @@
 			$("#btn<%=i%>").click(function(){
 				console.log("kaishi "+<%=i%>+"anniu ");
 				document.getElementById("i1").value=$(<%="td1"+i%>).html();
-				document.getElementById("i2").value=$(<%="td2"+i%>).html().innerHtml;
+				document.getElementById("i2").value=document.getElementById("<%="td2"+i%>").innerHTML;
 				var esform = document.getElementById('esform');
 				esform.submit();
 				return false;
@@ -92,18 +92,18 @@
             <s:iterator value="orders" var="object">
 			   <s:if test="#object.isEstimatedD!=1&&#object.isCompleted==2">
               <tr>
-                  <td><s:property value="order.driver.driverID" /></td>
-                  <td><s:property value="order.passenger.passengerID" /></td>
-                  <td><s:property value="order.start"/></td>
-                  <td><s:property value="order.destination"/></td>
-                  <td id="<%="td2"+idNum%>"><span class="box">
+                  <td><s:property value="#object.driver.driverID" /></td>
+                  <td><s:property value="#object.passenger.passengerID" /></td>
+                  <td><s:property value="#object.start"/></td>
+                  <td><s:property value="#object.destination"/></td>
+                  <td><span class="box">
                       <span>★</span>
                       <span>★</span>
                       <span>★</span>
                       <span>★</span>
                       <span>★</span>
                   </span>
-                  <span>0</span>分</td>
+                  <span id="<%="td2"+idNum%>">0</span>分</td>
                   <td><input type="text"/></td>
                   <td><button id="<%="btn"+idNum%>" class="layui-btn layui-btn-sm" >提交评价</button></td>
                   <td id="<%="td1"+idNum%>" style="visibility: hidden; display: none;"><s:property value="#object.orderID"/></td>
@@ -113,9 +113,9 @@
               </s:iterator>
             </tbody>
         </table>
-        <s:form action="driverEstimate" method="post" id="esform" style="visibility: hidden; display: none;">
+        <s:form action="driverEstimate" method="post" id="esform" style="visibility:hidden; display:none;">
         <input id="i1" name="order.orderID"/>
-        <input id="i2" name="estimatedtop"/>
+        <input id="i2" name="order.estimatedtop"/>
         <input type="submit" value="tijiao"/>
         </s:form>
     </div>
