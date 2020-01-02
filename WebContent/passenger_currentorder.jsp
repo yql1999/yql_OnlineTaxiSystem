@@ -42,7 +42,7 @@
 				<label for="gender" class="layui-form-label"> 司机性别 </label>
 				<div class="layui-input-inline">
 					<input type="text" id="gender" class="layui-input"
-						autocomplete="off" value="<%=driver.isGender() == true ? "男" : "女"%>">
+						autocomplete="off" value="<%=driver.getGender() == true ? "男" : "女"%>">
 				</div>
 			</div>
 			<div class="layui-form-item">

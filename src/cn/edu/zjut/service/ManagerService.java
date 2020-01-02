@@ -43,10 +43,7 @@ public class ManagerService implements IManagerService{
 		
 	}
 	public void deletedriver(Driver transientInstance,Car s) {
-		//System.out.println("before Manager findbyId");
-		//Manager temp=managerDAO.findpassengerbyId(id);
 		managerDAO.deletedriver(transientInstance,s);
-		//System.out.println("temp"+temp);
 	}
 //	public void deletecar(Car transientInstance) {
 //		//System.out.println("before Manager findbyId");
