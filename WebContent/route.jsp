@@ -54,7 +54,7 @@ html, body, #container {
         function f(){
             window.location.href = "isSuccess.action";
         }
-</script>
+</script> 
 <body onLoad=f()>
 <!-- <iframe id="mainframe" src="isSuccess.action" name="mainframe" frameborder="0" scrolling="no" width="1000px" height="100px"></iframe>
  -->	<%@ include file="passenger_head.jsp"%>
@@ -62,11 +62,10 @@ html, body, #container {
 		<div id="container"></div>
 		<div id="panel" style="margin-top: 100px;"></div>
 		<div class="input-card"
-			style="left: 100px; height: 150px; width: 400px; background: #202020; position: fixed; left: 40%; top: 40%;">
+			style="left: 100px; height: 170px; width: 400px; background: #202020; opacity: .80; position: fixed; left: 40%; top: 40%;">
 			<p style="color: white; font-size: 1.2em; cellspacing: 0">请耐心等待，系统正在为你加速派车</p>
 			<br>
 			<br>
-						<%Passenger passenger=(Passenger)request.getSession().getAttribute("passenger");%>
 					<div id="n1" style="visibility:hidden"><%=passenger.getPassengerID()%></div>
 			<form action="cancel">
 				<input type="submit" data-toggle="modal" class="layui-btn"
@@ -111,7 +110,7 @@ html, body, #container {
 			if (status === 'complete') {
 				log.success('绘制驾车路线完成')
 			} else {
-				log.error('获取驾车数据失败：' + result)
+				log.error('获取驾车数据失败:' + result)
 			}
 		});
     

@@ -54,6 +54,7 @@
 	<%@ include file="passenger_head.jsp"%>
 	<div id="n1"style="visibility:hidden" ><s:property value="order.orderID"/></div>
 	<div id="n2"style="visibility:hidden" ><s:property value="order.passenger.passengerID"/></div>
+	<div id="n3"style="visibility:hidden" ><s:property value="order.driver.driverID"/></div>
 	<div class="page-content">
 		
 			<div class="x-nav">
@@ -77,7 +78,6 @@
 							<th>费用</th>
 							<th>起点</th>
 							<th>终点</th>
-							<th>是否中途更换路线</th>
 							<th>评价</th>
 							
 						</tr>
@@ -91,7 +91,6 @@
 							<td><s:property value="order.sum" /></td>
 							<td><s:property value="order.start" /></td>
 							<td><s:property value="order.destination" /></td>
-							<td>否</td>
 							<td class="es"><span class="box"> <span>★</span> <span>★</span>
 									<span>★</span> <span>★</span> <span>★</span>
 							</span>
@@ -99,10 +98,10 @@
 						</tr>
 					</tbody>
 				</table>
-		        <input type="hidden" name="order.driver.driverID" value="1">
+		        <input id="driverid" type="hidden" name="order.driver.driverID" >
 		        <input id="orderid" type="hidden" name="order.orderID">
 		        <input id="passengerid" type="hidden" name="loginUser.passengerID">
-				<input type="hidden"  id="1" name ="order.estimateptod" readonly="readonly" "/>
+				<input type="hidden"  id="1" name ="order.estimateptod" readonly="readonly" value="0"/>
 			<!-- <input type="submit" class="layui-btn" value="提交评价" onclick="f1()"> -->
 			<input type="submit" class="layui-btn" value="提交评价并去支付"  onclick="get()"
 				style="display:block;margin:0 auto">
@@ -121,6 +120,7 @@
 				});
 			});
 			 function get(){
+				 document.getElementById("driverid").value=document.getElementById("n3").innerHTML;
 					document.getElementById("orderid").value=document.getElementById("n1").innerHTML;
 					document.getElementById("passengerid").value=document.getElementById("n2").innerHTML;
 				}

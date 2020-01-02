@@ -21,13 +21,12 @@
 </head>
 <body>
    <%@ include file="passenger_head.jsp"%>
-    <!-- <div class="x-slide_left"></div> -->
     <!-- 左侧菜单结束 -->
     <!-- 右侧主体开始 -->
     <div class="page-content">
         <div class="layui-tab tab" lay-filter="xbs_tab" lay-allowclose="false">
           <ul class="layui-tab-title">
-            <li class="home"><i class="layui-icon">&#xe68e;</i>我的</li>
+            <li class="home"><i class="layui-icon">&#xe68e;</i>乘客主界面</li>
           </ul>
           <div class="layui-tab-content">
             <div class="layui-tab-item layui-show">

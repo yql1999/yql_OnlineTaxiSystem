@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC
+"-//Apache Struts//XWork Validator 1.0.2//EN"
+"http://www.opensymphony.com/xwork/xwork-validator-1.0.2.dtd">
+
+<validators>
+
+	<field name="nickname">
+		<field-validator type="stringlength">
+			<param name="minLength">1</param>
+			<param name="maxLength">6</param>
+			<message>用户名长度必须在 ${minLength}~${maxLength}位之间</message>
+		</field-validator>
+		<field-validator type="requiredstring">
+			<message>用户名不能为空，且包含数字和字符</message>
+		</field-validator>
+	</field>
+
+	<field name="password">
+		<field-validator type="stringlength">
+			<param name="minLength">3</param>
+			<param name="maxLength">100</param>
+			<message>密码长度不得少于 ${minLength}位</message>
+		</field-validator>
+		<field-validator type="requiredstring">
+			<message>密码不能为空</message>
+		</field-validator>
+	</field>
+
+	<field name="repassword">
+		<field-validator type="stringlength">
+			<param name="minLength">3</param>
+			<param name="maxLength">100</param>
+			<message>确认密码长度不得少于 ${minLength}位</message>
+		</field-validator>
+		<field-validator type="requiredstring">
+			<message>确认密码不能为空</message>
+		</field-validator>
+		<field-validator type="fieldexpression">
+			<param name="expression">password==repassword</param>
+			<message>确认密码和密码输入不一致</message>
+		</field-validator>
+	</field>
+
+	<field name="age">
+		<field-validator type="required">
+			<message>请输入年齡</message>
+		</field-validator>
+		<field-validator type="int">
+			<param name="min">1</param>
+			<param name="max">100</param>
+			<message>年齡且必须在 ${min}~${max}岁之间</message>
+		</field-validator>
+	</field>
+
+	<field name="phone">
+		<field-validator type="requiredstring">
+			<message>手机号码不能为空</message>
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="minLength">11</param>
+			<message>请输入正确的手机号码（号码位數必須为11位）</message>
+		</field-validator>
+	</field>
+
+</validators>

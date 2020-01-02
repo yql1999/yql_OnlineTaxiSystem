@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="cn.edu.zjut.po.Passenger"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,8 +41,9 @@
 					</dd>
 				</dl></li>
 		</ul>
+		<%Passenger passenger=(Passenger)request.getSession().getAttribute("passenger");%>
 		<ul class="layui-nav right" lay-filter="">
-			<li class="layui-nav-item"><a href="javascript:;">我的</a>
+			<li class="layui-nav-item"><a href="javascript:;"><%=passenger.getName() %></a>
 				<dl class="layui-nav-child">
 					<!-- 二级菜单 -->
 					<dd>

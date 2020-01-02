@@ -51,7 +51,7 @@
 <!--[endif]-->
 </head>
 <body class="layui-anim layui-anim-up">
-	
+	<%@ include file="passenger_head.jsp"%>
 	<div class="page-content">
 		
 			<div class="x-body">

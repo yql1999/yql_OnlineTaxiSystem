@@ -65,6 +65,14 @@ window.onload=function(){
 						</div>
 			</div>
 			<div class="layui-form-item">
+				<label for="type" class="layui-form-label"> 司机评分 </label>
+				<div class="layui-input-inline">
+					<input type="text" id="type" name="type" disabled="disabled"
+						autocomplete="off" class="layui-input"
+						value="<%=driver.getScore() %>">
+					</div>
+			</div>
+			<div class="layui-form-item">
 				<label for="age" class="layui-form-label"> 司机年龄 </label>
 				<div class="layui-input-inline">
 					<input type="text" id="age" name="age" disabled="disabled"

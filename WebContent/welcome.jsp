@@ -54,12 +54,6 @@
 			<%int num=1;%>
 				<thead>
 					<tr>
-						<th>
-							<div class="layui-unselect header layui-form-checkbox"
-								lay-skin="primary">
-								<i class="layui-icon">&#xe605;</i>
-							</div>
-						</th>
 						<th>订单编号</th>
 						<th>出发地</th>
 						<th>目的地</th>
@@ -68,19 +62,12 @@
 						<th>乘客数量</th>
 						<th>订单状态</th>
 						<th>金额</th>
-						<th>操作</th>
 					</tr>
 				</thead>
 				<tbody><%-- <s:set name="orders" var="#session['orders']"/> --%>
 				<%-- <s:iterator value="#session.orders" var='order'> --%>
 				<s:iterator value="#session.orders">
 					<tr>
-						<td>
-							<div class="layui-unselect layui-form-checkbox"
-								lay-skin="primary" data-id='2'>
-								<i class="layui-icon">&#xe605;</i>
-							</div>
-						</td>
 						<td><%=num++ %></td>
 						<td><s:property value='start'/></td>
 						<td><s:property value='destination'/></td>
@@ -89,14 +76,7 @@
 						<td><s:property value='passnum'/></td>
 						<td><s:property value='isCompleted!=0 ? "已完成" : "未完成"'/></td>
 						<td><s:property value='sum'/></td>
-						<td class="td-manage">
-							<!-- 
-              <a title="查看"  onclick="x_admin_show('编辑','order-view.html')" href="javascript:;">
-                <i class="layui-icon">&#xe63c;</i>
-              </a> --> <a title="删除" onclick="member_del(this,'要删除的id')"
-							href="javascript:;"> <i class="layui-icon">&#xe640;</i>
-						</a>
-						</td>
+						
 					</tr>
 					</s:iterator>
 				</tbody>

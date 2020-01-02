@@ -66,7 +66,7 @@
                         </p>
                     </div>
                     <div class="agileits-bottom">
-                        <input type="submit" value="注册" onclick="get()">
+                        <input type="submit" value="注册">
                     </div>
                 </form>
             </div>
@@ -83,8 +83,5 @@
     <!-- //copyright -->
 </body>
 <script>
-function get(){
-	alert("注册完成，点击确定回到主页");
-}
 </script>
 </html>

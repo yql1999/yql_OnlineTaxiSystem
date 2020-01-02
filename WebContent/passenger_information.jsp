@@ -21,8 +21,8 @@
 <script type="text/javascript" src="./lib/layui/layui.js"
 	charset="utf-8"></script>
 <script type="text/javascript" src="./js/xadmin.js"></script>
-</head>
 
+</head>
 <body>
 	<div class="x-body">
 
@@ -32,43 +32,34 @@
 			<%-- <s:set name="passenger" value="#session['passenger']"/> --%>
 
 			<div class="layui-form-item">
-				<label for="account" class="layui-form-label"> 用户名</label>
-				<div class="layui-input-inline">
-					<input type="text" id="account" name="account" id="account" required=""
-						autocomplete="off" class="layui-input"
-						value="<%=passenger.getAccount() %>">
-						</div>
+				<label for="account" class="layui-form-label">用户名</label>
+				
+				<label class="layui-form-label"><%=passenger.getAccount() %></label>
+					
 			</div>
 			<div class="layui-form-item">
 				<label for="phone" class="layui-form-label"> 联系电话 </label>
 				<div class="layui-input-inline">
-					<input type="text" id="phone" name="phone" id="phone" required=""
-						autocomplete="off" class="layui-input"
-						value="<%=passenger.getTelephone() %>">
+				
+				<label class="layui-form-label"><%=passenger.getTelephone() %></label>
 						</div>
 			</div>
 			<div class="layui-form-item">
 				<label for="nickname" class="layui-form-label"> 昵称 </label>
 				<div class="layui-input-inline">
-					<input type="text" id="nickname" name="nickname" required=""
-						autocomplete="off" class="layui-input"
-						value="<%=passenger.getNickname() %>">
+				 <label class="layui-form-label"><%=passenger.getNickname() %></label>
 					</div>
 			</div>
 			<div class="layui-form-item">
 				<label for="password" class="layui-form-label"> 密码 </label>
 				<div class="layui-input-inline">
-					<input type="text" id="password" name="password" required=""
-						autocomplete="off" class="layui-input"
-						value="<%=passenger.getPassword() %>">
+				 <label class="layui-form-label"><%=passenger.getPassword() %></label>
 					</div>
 			</div>
 			<div class="layui-form-item">
 				<label class="layui-form-label">角色</label>
 				<div class="layui-input-inline">
-					<input type="text" id="email" name="email" required=""
-						autocomplete="off" class="layui-input"
-						value="普通乘客">
+					<label class="layui-form-label">普通乘客</label>
 				</div>
 			</div>
 		</form>
