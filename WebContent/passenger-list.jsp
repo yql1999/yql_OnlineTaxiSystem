@@ -49,6 +49,7 @@
 			class="layui-icon" style="line-height: 30px">ဂ</i></a>
 	</div>
 	<div class="x-body">
+
 		<table class="layui-table">
 			<thead>
 				<tr>
@@ -63,11 +64,12 @@
 				</tr>
 			</thead>
 				<tbody>
+				
 					<s:iterator value="passenger" var="object">
 						<tr>
 							<td id="<%="td1"+idNum%>"><s:property value="#object.passengerID" /></td>
 							<td><s:property value="#object.nickname" /></td>
-							<td><s:property value="#object.gender" /></td>
+							<td><!--<s:property value="#object.gender" />--><s:if test="#object.gender > 0">男</s:if><s:elseif test="#object.gender < 1">女</s:elseif></td>
 							<td><s:property value="#object.age" /></td>
 							<td><s:property value="#object.idnumber" /></td>
 							<td><s:property value="#object.telephone" /></td>

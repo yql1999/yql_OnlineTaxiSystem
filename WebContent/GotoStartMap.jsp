@@ -182,6 +182,7 @@
 </script>
 <script>
   var map, route, marker,ttt;
+  var geolocation;
   var path = [];
   var driving=new AMap.Driving({
       //map:map,
@@ -214,7 +215,7 @@
 			}
 	}
   AMap.plugin('AMap.Geolocation', function() {
-    var geolocation = new AMap.Geolocation(options);
+    geolocation = new AMap.Geolocation(options);
     map.addControl(geolocation);
     geolocation.getCurrentPosition(function(status,result){
     	if(status=='complete'){
@@ -230,8 +231,8 @@
   setTimeout(function () {
 	  AMap.plugin('AMap.Geolocation', function() {
 		  	//map.removeControl(geolocation);
-			  
-		    var geolocation = new AMap.Geolocation(options);
+			map.removeControl(geolocation);
+		    geolocation = new AMap.Geolocation(options);
 		    map.addControl(geolocation);
 		    geolocation.getCurrentPosition(function(status,result){
 		      if(status=='complete'){		    	  
@@ -361,8 +362,8 @@
 	    setTimeout(function () {
 	  	  AMap.plugin('AMap.Geolocation', function() {
 	  			//map.removeControl(geolocation);
-			  	  
-	  		    var geolocation = new AMap.Geolocation(options);
+			  	map.removeControl(geolocation);
+	  		    geolocation = new AMap.Geolocation(options);
 	  		    map.addControl(geolocation);
 	  		    geolocation.getCurrentPosition(function(status,result){
 	  		      if(status=='complete'){
@@ -373,7 +374,7 @@
 	  		      }
 	  		    });
 	  		  });
-	    },30000);
+	    },10000);
 	  }
   //解析定位错误信息
   function onError(data) {

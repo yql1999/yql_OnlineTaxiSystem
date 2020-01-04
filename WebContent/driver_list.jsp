@@ -72,7 +72,7 @@
 							<td id="<%="td1"+idNum%>"><s:property value="#object.driverID" /></td>
 						    <td id="<%="div1"+idNum%>"><s:property value="#object.car.carID" /></td>
 							<td><s:property value="#object.name" /></td>
-							<td><s:property value="#object.gender" /></td>
+							<td><!--<s:property value="#object.gender" />--><s:if test="#object.gender > 0">男</s:if><s:elseif test="#object.gender < 1">女</s:elseif></td>
 							<td><s:property value="#object.age" /></td>
 							<td><s:property value="#object.idnumber" /></td>
 							<td><s:property value="#object.license" /></td>
@@ -89,8 +89,8 @@
 						<% idNum++; %>
 					</s:iterator>
 					<s:form action="managerdeletedriver" >
-							<input id="inp" type="hidden" name="driv.driverID" >
-							<input id="car" type="hidden" name="car.carID" >
+							要删除的司机ID:<input id="inp"  name="driv.driverID" >
+							要删除的车辆ID:<input id="car"  name="car.carID" >
 								<button type="submit" id="bt" value="删除" ></button>
 					</s:form>
 				</tbody>
@@ -100,7 +100,9 @@
 		/*用户-停用*/
 		function member_stop(obj, id) {
 			layer.confirm('确认要更改吗？', function(index) {
+
 				if ($(obj).attr('title') == '停用') {
+
 					//发异步把用户状态进行更改
 					$(obj).attr('title', '启用')
 					$(obj).find('i').html('&#xe62f;');
@@ -111,9 +113,11 @@
 						icon : 5,
 						time : 1000
 					});
+
 				} else {
 					$(obj).attr('title', '停用')
 					$(obj).find('i').html('&#xe601;');
+
 					$(obj).parents("tr").find(".td-status").find('span')
 							.removeClass('layui-btn-disabled').html('已启用');
 					layer.msg('已启用!', {
@@ -121,8 +125,10 @@
 						time : 1000
 					});
 				}
+
 			});
 		}
+
 	</script>
 </body>
 </html>
