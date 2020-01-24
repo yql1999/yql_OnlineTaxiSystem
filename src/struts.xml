@@ -19,7 +19,7 @@
 			<result name="success">/passenger_currOrder.jsp</result>
 		</action>
 		<action name="driverInformation" class="passengerAction" method="driverInformation">
-			<result name="success"></result>
+			<result name="success">/passenger_currentorder.jsp</result>
 		</action>
 		<action name="passengerlogin" class="passengerAction" method="login">
 			<result name="success">/passenger_index.jsp</result>

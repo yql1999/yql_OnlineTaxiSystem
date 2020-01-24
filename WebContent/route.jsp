@@ -112,7 +112,7 @@ html, body, #container {
 			} else {
 				log.error('获取驾车数据失败:' + result)
 			}
-		});
+		})
     
     //定时发送action请求
    /* $(function(){

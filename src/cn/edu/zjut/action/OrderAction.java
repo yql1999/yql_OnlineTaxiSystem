@@ -19,7 +19,7 @@ import cn.edu.zjut.service.IDriverService;
 import cn.edu.zjut.service.ManagerService;
 
 public class OrderAction {
-	//private int testid;
+	// private int testid;
 	private Passenger loginUser;
 	private Order order;
 	private IOrderService orderService;
@@ -32,6 +32,7 @@ public class OrderAction {
 	private int orderID;
 	private Double estimatedtop;
 	private Boolean flag;
+
 	public Double getLength() {
 		return length;
 	}
@@ -44,273 +45,280 @@ public class OrderAction {
 		orderService.save(order);
 		return "success";
 	}
-	
+
 	public String ordertake() {
-		//System.out.println(order.getPassenger());
-		//System.out.println("ordertake  "+order.getPassenger().getPassengerID());
-		//int i=order.getDriver().getDriverID()
-		Driver p=new Driver();
-		p=driverService.findbyId(order.getDriver());
-		order=orderService.findbyId(order);
+		// System.out.println(order.getPassenger());
+		// System.out.println("ordertake "+order.getPassenger().getPassengerID());
+		// int i=order.getDriver().getDriverID()
+		Driver p = new Driver();
+		p = driverService.findbyId(order.getDriver());
+		order = orderService.findbyId(order);
 		order.setDriver(p);
 		order.setIsCompleted(1);
 		orderService.update(order);
-		//System.out.println("ordertake"+" "+order.getPassenger().getNickname());
+		// System.out.println("ordertake"+" "+order.getPassenger().getNickname());
 		return "success";
 	}
-	
+
 	public String findorders() {
-		//System.out.println(order.getDriver().getDriverID());
+		// System.out.println(order.getDriver().getDriverID());
 		System.out.println("findorders method start");
-		orders=orderService.findorders();
+		orders = orderService.findorders();
 		System.out.println("Item Action executed!");
-		
-		Iterator<List> it=orders.iterator();
-		Order t=new Order();
-		while(it.hasNext()) {
-			t=(Order)it.next();
-			if(t.getIsCompleted()!=0) {
+
+		Iterator<List> it = orders.iterator();
+		Order t = new Order();
+		while (it.hasNext()) {
+			t = (Order) it.next();
+			if (t.getIsCompleted() != 0) {
 				it.remove();
-				
-			}
-			else {
-			System.out.println(t.getSlat());
-			if(getDistance(latitude,longitude,t.getSlat(),t.getSlng())/1000>10) {
-				it.remove();
-			}
+
+			} else {
+				System.out.println(t.getSlat());
+				if (getDistance(latitude, longitude, t.getSlat(), t.getSlng()) / 1000 > 10) {
+					it.remove();
+				}
 			}
 		}
 		return "success";
 	}
-	
+
 	public String getpassenger() {
-		//仔细想了想，好像不用改什么，先放着
-		order=orderService.findbyId(order);
-		Date date=new Date();
+		// 仔细想了想，好像不用改什么，先放着
+		order = orderService.findbyId(order);
+		Date date = new Date();
 		Calendar calendar = Calendar.getInstance();
-        date = calendar.getTime();
-        System.out.println(date);
+		date = calendar.getTime();
+		System.out.println(date);
 		order.setStarttime(date);
 		orderService.update(order);
 		return "success";
 	}
+
 	public String cancelorder() {
-		order=orderService.findbyId(order);
+		order = orderService.findbyId(order);
 		order.setIsCompleted(0);
 		orderService.update(order);
-		orders=orderService.findorders();
-		for(Order a:(List<Order>)orders) {
+		orders = orderService.findorders();
+		for (Order a : (List<Order>) orders) {
 			System.out.println(a.getIsCompleted());
 		}
 		return "success";
 	}
+
 	public String findbyId() {
-		//System.out.println(testid);
-		//为ajax试验多的代码，可删去
-		//order=new Order();
-		//order.setOrderID(testid);
-		//到此为止
-		order=orderService.findbyId(order);
+		// System.out.println(testid);
+		// 为ajax试验多的代码，可删去
+		// order=new Order();
+		// order.setOrderID(testid);
+		// 到此为止
+		order = orderService.findbyId(order);
 		System.out.println(order.getDriver().getDriverID());
 		return "success";
 	}
-	
+
 	public String arrive() {
 		System.out.println(order.getOrderID());
-		int iscomplete=order.getIsCompleted();
-		order=orderService.findbyId(order);
+		int iscomplete = order.getIsCompleted();
+		order = orderService.findbyId(order);
 		order.setIsCompleted(iscomplete);
-		double sum,nowsum;
-		Date date=new Date();
+		double sum, nowsum;
+		Date date = new Date();
 		Calendar calendar = Calendar.getInstance();
-        date = calendar.getTime();
-        System.out.println(date);
+		date = calendar.getTime();
+		System.out.println(date);
 		order.setEndtime(date);
-		int time = (int)(order.getEndtime().getTime() - order.getStarttime().getTime())/(1000*60);
+		int time = (int) (order.getEndtime().getTime() - order.getStarttime().getTime()) / (1000 * 60);
 		System.out.println("经过总时长:" + time);
-		length=length/1000;
-		if(order.getType().equals("优享")) {
-			double startsum=13.00;
-			if(length<=20) {
-				nowsum=2.3*length + 0.6*time;
-				if(nowsum>=startsum)
-					sum=nowsum;
-				else sum = startsum;
+		length = length / 1000;
+		if (order.getType().equals("优享")) {
+			double startsum = 13.00;
+			if (length <= 20) {
+				nowsum = 2.3 * length + 0.6 * time;
+				if (nowsum >= startsum)
+					sum = nowsum;
+				else
+					sum = startsum;
+			} else {
+				nowsum = 2.3 * 20 + 0.6 * time + 3.3 * (length - 20);
+				sum = nowsum;
 			}
-			else {
-				nowsum=2.3*20+0.6*time+3.3*(length-20);
-				sum=nowsum;
-			}
-		}
-		else {
-			double startsum=13.00;
-			if(length<=20) {
-				nowsum=1.6*length+0.5*time;
-				if(nowsum>=startsum)
-					sum=nowsum;
-				else sum = startsum;
-			}
-			else {
-				nowsum=1.6*20+0.5*time+2.4*(length-20);
-				sum=nowsum;
+		} else {
+			double startsum = 13.00;
+			if (length <= 20) {
+				nowsum = 1.6 * length + 0.5 * time;
+				if (nowsum >= startsum)
+					sum = nowsum;
+				else
+					sum = startsum;
+			} else {
+				nowsum = 1.6 * 20 + 0.5 * time + 2.4 * (length - 20);
+				sum = nowsum;
 			}
 		}
 
 		System.out.println("总价格:" + sum);
 		order.setSum(sum);
 		orderService.update(order);
-		orders=orderService.findorders();
-		Iterator<List> it=orders.iterator();
-		Order t=new Order();
-		while(it.hasNext()) {
-			t=(Order)it.next();
-			if(t.getDriver()==null)
-			{
+		orders = orderService.findorders();
+		Iterator<List> it = orders.iterator();
+		Order t = new Order();
+		while (it.hasNext()) {
+			t = (Order) it.next();
+			if (t.getDriver() == null) {
 				it.remove();
 				continue;
 			}
-			if(t.getDriver().getDriverID()!=order.getDriver().getDriverID()) {
+			if (t.getDriver().getDriverID() != order.getDriver().getDriverID()) {
 				it.remove();
-			}
-			else {
-			System.out.println(t.getSlat());
+			} else {
+				System.out.println(t.getSlat());
 			}
 		}
 		return "success";
 	}
-	
-	public String driverEstimate(){
+
+	public String driverEstimate() {
 		Double b;
-		b=order.getEstimatedtop();
-		order=orderService.findbyId(order);
+		b = order.getEstimatedtop();
+		order = orderService.findbyId(order);
 		order.setIsEstimatedD(true);
-		System.out.println("pingjiapingfen"+estimatedtop);
+		System.out.println("pingjiapingfen" + estimatedtop);
 		order.setEstimatedtop(b);
 		orderService.update(order);
-		orders=orderService.findorders();
+		orders = orderService.findorders();
 		orderService.appraise2(order);
 		return "success";
 	}
-	
+
 	public String findestimate() {
-		orders=orderService.findorders();
-		Iterator<List> it=orders.iterator();
-		Order t=new Order();
-		while(it.hasNext()) {
-			t=(Order)it.next();
-			if(t.getIsCompleted()!=2) {
+		orders = orderService.findorders();
+		Iterator<List> it = orders.iterator();
+		Order t = new Order();
+		while (it.hasNext()) {
+			t = (Order) it.next();
+			if (t.getIsCompleted() != 2) {
 				it.remove();
 				continue;
 			}
-			if(t.getDriver().getDriverID()!=order.getDriver().getDriverID()) {
+			if (t.getDriver().getDriverID() != order.getDriver().getDriverID()) {
 				it.remove();
-				
-			}
-			else {
-			System.out.println(t.getSlat());
+
+			} else {
+				System.out.println(t.getSlat());
 			}
 		}
 		return "success";
 	}
-	
+
 	public String setlocation() {
-		Order s=new Order();
+		Order s = new Order();
 		s.setOrderID(orderID);
 		try {
-		order=orderService.findbyId(s);		
-		order.setDriver(driverService.findbyId(order.getDriver()));
-		//order.setDriver(driverService.findbyId(order.getDriver()));
-		order.getDriver().setLatitude(latitude);
-		order.getDriver().setLongitude(longitude);
-		System.out.println(order.getDriver().getAccount());
-		driverService.update(order.getDriver());
-		return "success";
-		}
-		catch(Exception e){
-			flag=true;
+			order = orderService.findbyId(s);
+			order.setDriver(driverService.findbyId(order.getDriver()));
+			// order.setDriver(driverService.findbyId(order.getDriver()));
+			order.getDriver().setLatitude(latitude);
+			order.getDriver().setLongitude(longitude);
+			System.out.println(order.getDriver().getAccount());
+			driverService.update(order.getDriver());
+			return "success";
+		} catch (Exception e) {
+			flag = true;
 			return "fail";
 		}
 	}
+
 	public String getlocation() {
-		Order s=new Order();
+		Order s = new Order();
 		s.setOrderID(orderID);
-		order=orderService.findbyId(s);
+		order = orderService.findbyId(s);
 		System.out.println(order.getSlat());
 		return "success";
 	}
+
 	public String addorder() {
 		System.out.println("action");
 		Date t = new Date();
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		java.sql.Date sqld=new java.sql.Date(t.getTime());
+		java.sql.Date sqld = new java.sql.Date(t.getTime());
 		order.setStarttime(sqld);
 		order.setIsEstimatedP(false);
-		order.setIsEstimatedD(false);		orderService.save(order);
-		return"success";
+		order.setIsEstimatedD(false);
+		orderService.save(order);
+		return "success";
 	}
+
 	public String deleteorder() {
 		System.out.println("deleteaction");
 		orderService.deleteorder(order);
 		return "success";
 	}
+
 	public String appraise() {
 		System.out.println("appraise action");
 		orderService.appraise(order);
-		order=orderService.findbyId(order);
+		order = orderService.findbyId(order);
 		return "success";
 	}
+
 	public String toappraise() {
 		System.out.println(order.getOrderID());
-		order=orderService.findbyId(order);
+		order = orderService.findbyId(order);
 		return "success";
 	}
+
 	public String torun() {
-		order=orderService.findbyId(order);
+		order = orderService.findbyId(order);
 		return "success";
 	}
+
 	public String cancel() {
-		loginUser=passengerService.findbyId(order.getPassenger().getPassengerID());
+		loginUser = passengerService.findbyId(order.getPassenger().getPassengerID());
 		orderService.cancel(order);
 		return "success";
 	}
-	
+
 	public String finish() {
-	return "success";
+		return "success";
 	}
+
 	public String driverhistory() {
-		orders=orderService.finddriverhistoryorders(order);
-		Iterator<List> it=orders.iterator();
-		Order t=new Order();
-		while(it.hasNext()) {
-			t=(Order)it.next();
-			if(t.getIsCompleted()!=2) {
+		orders = orderService.finddriverhistoryorders(order);
+		Iterator<List> it = orders.iterator();
+		Order t = new Order();
+		while (it.hasNext()) {
+			t = (Order) it.next();
+			if (t.getIsCompleted() != 2) {
 				it.remove();
 				continue;
 			}
-			if(t.getDriver().getDriverID()!=order.getDriver().getDriverID()) {
+			if (t.getDriver().getDriverID() != order.getDriver().getDriverID()) {
 				it.remove();
-				
-			}
-			else {
-			System.out.println(t.getSlat());
+
+			} else {
+				System.out.println(t.getSlat());
 			}
 		}
 		return "success";
 	}
-	 public double getDistance(double lat1, double lng1,double  lat2,double lng2) {
-			double earthRadius = 6367000;
-			lat1 = (lat1 * Math.PI) / 180;
-			lng1 = (lng1 * Math.PI) / 180;
-			lat2 = (lat2 * Math.PI) / 180;
-			lng2 = (lng2 * Math.PI) / 180;
-			double calcLongitude = lng2 - lng1;
-			double calcLatitude = lat2 - lat1;
-			double stepOne = Math.pow(Math.sin(calcLatitude / 2), 2) + Math.cos(lat1) * Math.cos(lat2) * Math.pow(Math.sin(calcLongitude / 2), 2);
-			double stepTwo = 2 * Math.asin(Math.min(1, Math.sqrt(stepOne)));
-			double calculatedDistance = earthRadius * stepTwo;
-			System.out.println(Math.round(calculatedDistance));
-			return Math.round(calculatedDistance);
+
+	public double getDistance(double lat1, double lng1, double lat2, double lng2) {
+		double earthRadius = 6367000;
+		lat1 = (lat1 * Math.PI) / 180;
+		lng1 = (lng1 * Math.PI) / 180;
+		lat2 = (lat2 * Math.PI) / 180;
+		lng2 = (lng2 * Math.PI) / 180;
+		double calcLongitude = lng2 - lng1;
+		double calcLatitude = lat2 - lat1;
+		double stepOne = Math.pow(Math.sin(calcLatitude / 2), 2)
+				+ Math.cos(lat1) * Math.cos(lat2) * Math.pow(Math.sin(calcLongitude / 2), 2);
+		double stepTwo = 2 * Math.asin(Math.min(1, Math.sqrt(stepOne)));
+		double calculatedDistance = earthRadius * stepTwo;
+		System.out.println(Math.round(calculatedDistance));
+		return Math.round(calculatedDistance);
 	}
+
 	public Order getOrder() {
 		return order;
 	}
@@ -342,7 +350,7 @@ public class OrderAction {
 	public void setPassengerService(IPassengerService passengerService) {
 		this.passengerService = passengerService;
 	}
-	
+
 	public IDriverService getDriverService() {
 		return driverService;
 	}
@@ -382,7 +390,7 @@ public class OrderAction {
 	public void setOrderID(int orderID) {
 		this.orderID = orderID;
 	}
-	
+
 	public Double getEstimatedtop() {
 		return estimatedtop;
 	}
@@ -398,5 +406,5 @@ public class OrderAction {
 	public void setFlag(Boolean flag) {
 		this.flag = flag;
 	}
-	
+
 }

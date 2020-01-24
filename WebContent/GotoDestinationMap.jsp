@@ -1,58 +1,70 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
-<!DOCTYPE html>
-<link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css" />
-<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.15&key=a008fd73a62e235f98ff8247f00db18c&plugin=AMap.Driving"></script>
-<script src="https://a.amap.com/jsapi_demos/static/demo-center/js/demoutils.js"></script>
-<script type="text/javascript" src="https://cache.amap.com/lbs/static/addToolbar.js"></script>
- <script type="text/javascript" src="js/jquery-3.0.0.min.js"></script>
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
+	pageEncoding="utf-8"%>
+
+<link rel="stylesheet"
+	href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css" />
+<script type="text/javascript"
+	src="https://webapi.amap.com/maps?v=1.4.15&key=a008fd73a62e235f98ff8247f00db18c&plugin=AMap.Driving"></script>
+<script
+	src="https://a.amap.com/jsapi_demos/static/demo-center/js/demoutils.js"></script>
+<script type="text/javascript"
+	src="https://cache.amap.com/lbs/static/addToolbar.js"></script>
+<script type="text/javascript" src="js/jquery-3.0.0.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="./css/xadmin.css">
- <script src="https://cdn.bootcss.com/jquery/3.4.1/core.js"></script>
- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/core.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+	src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML-full"></script>
 <style type="text/css">
-  html,
-  body,
-  #container {
-    width: 100%;
-    height: 100%;
-  }
+html, body, #container {
+	width: 100%;
+	height: 100%;
+}
 </style>
 <style type="text/css">
-  #panel {
-    position: fixed;
-    background-color: white;
-    max-height: 90%;
-    overflow-y: auto;
-    top: 10px;
-    right: 10px;
-    width: 280px;
-  }
-  #panel .amap-call {
-    background-color: #009cf9;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
-  }
-  #panel .amap-lib-driving {
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-    overflow: hidden;
-  }
-  .info{
-    width:26rem;
-  }
-  .connection{
-  	position:absolute;
-  	bottom:40px;
-  	right:10px;
-  }
-  .alert1{
-  position:absolute;
-  	bottom:40px;
-  	left:10px;
-  }
+#panel {
+	position: fixed;
+	background-color: white;
+	max-height: 90%;
+	overflow-y: auto;
+	top: 10px;
+	right: 10px;
+	width: 280px;
+}
+
+#panel .amap-call {
+	background-color: #009cf9;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+}
+
+#panel .amap-lib-driving {
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+	overflow: hidden;
+}
+
+.info {
+	width: 26rem;
+}
+
+.connection {
+	position: absolute;
+	bottom: 40px;
+	right: 10px;
+}
+
+.alert1 {
+	position: absolute;
+	bottom: 40px;
+	left: 10px;
+}
 </style>
-<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -70,88 +82,104 @@
 </head>
 <body>
 	<div id="container" onmouseup="test()"></div>
-<div id="panel"></div>
-<div class="info" style="visibility:hidden">
-  <h4 id='status'style="visibility:hidden"></h4><hr>
-  <p id='result' style="visibility:hidden"></p><hr>
-  <p style="visibility:hidden">由于众多浏览器已不再支持非安全域的定位请求，为保位成功率和精度，请升级您的站点到HTTPS。</p>
-</div>
-<!-- <form style="absolute">
+	<div id="panel"></div>
+	<div class="info" style="visibility: hidden">
+		<h4 id='status' style="visibility: hidden"></h4>
+		<hr>
+		<p id='result' style="visibility: hidden"></p>
+		<hr>
+		<p style="visibility: hidden">由于众多浏览器已不再支持非安全域的定位请求，为保位成功率和精度，请升级您的站点到HTTPS。</p>
+	</div>
+	<!-- <form style="absolute">
 	<input type="text" id="minute" name="minute">
 	<input type="text" id="distance" name="distance">
 	<input type="submit" value="提交">
 </form> -->
-<table>
-	<tr>
-		<td id="td1"><s:property value="order.passenger.nickname"/></td>
-		<td id="td2"><s:property value="order.passenger.telephone"/></td>
-		<td id="td3"><s:property value="order.start"/></td>
-		<td id="td4"><s:property value="order.destination"/></td>
-		<td id="td5"></td>
-		<td id="td6"></td>
-		<td id="td7"><s:property value="order.orderID"/></td>
-	</tr>
-</table>
-<form action="warning" method="post">
-	<input type="text" id="location" name="location" style="visibility:hidden">
-	<input type="text" id="destination1" name="destination" style="visibility:hidden">
-	<button type="submit" id="btn1" class="alert1 layui-btn layui-btn-danger">报警</button>
-</form>
+	<table>
+		<tr>
+			<td id="td1"><s:property value="order.passenger.nickname" /></td>
+			<td id="td2"><s:property value="order.passenger.telephone" /></td>
+			<td id="td3"><s:property value="order.start" /></td>
+			<td id="td4"><s:property value="order.destination" /></td>
+			<td id="td5"></td>
+			<td id="td6"></td>
+			<td id="td7"><s:property value="order.orderID" /></td>
+		</tr>
+	</table>
+	<form action="warning" method="post">
+		<input type="text" id="location" name="location"
+			style="visibility: hidden"> <input type="text"
+			id="destination1" name="destination" style="visibility: hidden">
+		<button type="submit" id="btn1"
+			class="alert1 layui-btn layui-btn-danger">报警</button>
+	</form>
 
-<button type="button" id="btn2" class="layui-btn  connection" data-toggle="modal" data-target="#myModal">
-确认送达
-</button>
- 
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-        <h4 class="modal-title" id="myModalLabel">确认送达客户?<br>擅自结束订单可能会收到低星评价！</h4>
-      </div>
-      <div class="modal-body">
-                <s:form id="updateform" action="arrive" >
-                    <div class="form-group">
-                        <label for="loginname" class="control-label">用户名:</label>
-                        <input type="text" class="form-control" id="nickname" name="nickname" readonly="readonly">
-                    </div>
-                    <div class="form-group">
-                        <label for="email" class="control-label">联系方式:</label>
-                        <input type="text" class="form-control" id="telephone" name="telephone" readonly="readonly">
-                    </div>
-                    <div class="form-group">
-                        <label for="phone" class="control-label">起点:</label>
-                        <input type="text" class="form-control" id="start" name="start" readonly="readonly">
-                    </div>
-                    <div class="form-group">
-                        <label for="address" class="control-label">终点:</label>
-                        <input class="form-control" id="destination" name="destination" readonly="readonly">
-                    </div>
-                    <div class="form-group">
-                        <label for="distance" class="control-label">经过路程:</label>
-                        <input class="form-control" id="distance" name="length" readonly="readonly">
-                    </div>
-                   	<div class="form-group" style="visibility: hidden; display: none;">
-                   		<input class="form-control" id="isCompleted" name="order.isCompleted" value="2">
-                   	</div> 
-                   	<div class="form-group" style="visibility: hidden; display: none;">
-                   		<input class="form-control" id="orderID" name="order.orderID">
-                   	</div> 
-                    <div class="text-right">
-                        <span id="returnMessage" class="glyphicon"> </span>
-                        <button type="button" class="btn btn-default right" data-dismiss="modal">关闭</button>
-                        <button id="submitBtn" type="submit" class="btn btn-primary" >已送达乘客</button>
-                    </div>
-                </s:form>
-      </div>
-    </div>
-  </div>
-</div>
+	<button type="button" id="btn2" class="layui-btn  connection"
+		data-toggle="modal" data-target="#myModal">确认送达</button>
 
- 
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">
+						确认送达客户?<br>擅自结束订单可能会收到低星评价！
+					</h4>
+				</div>
+				<div class="modal-body">
+					<s:form id="updateform" action="arrive">
+						<div class="form-group">
+							<label for="loginname" class="control-label">用户名:</label> <input
+								type="text" class="form-control" id="nickname" name="nickname"
+								readonly="readonly">
+						</div>
+						<div class="form-group">
+							<label for="email" class="control-label">联系方式:</label> <input
+								type="text" class="form-control" id="telephone" name="telephone"
+								readonly="readonly">
+						</div>
+						<div class="form-group">
+							<label for="phone" class="control-label">起点:</label> <input
+								type="text" class="form-control" id="start" name="start"
+								readonly="readonly">
+						</div>
+						<div class="form-group">
+							<label for="address" class="control-label">终点:</label> <input
+								class="form-control" id="destination" name="destination"
+								readonly="readonly">
+						</div>
+						<div class="form-group">
+							<label for="distance" class="control-label">经过路程:</label> <input
+								class="form-control" id="distance" name="length"
+								readonly="readonly">
+						</div>
+						<div class="form-group" style="visibility: hidden; display: none;">
+							<input class="form-control" id="isCompleted"
+								name="order.isCompleted" value="2">
+						</div>
+						<div class="form-group" style="visibility: hidden; display: none;">
+							<input class="form-control" id="orderID" name="order.orderID">
+						</div>
+						<div class="text-right">
+							<span id="returnMessage" class="glyphicon"> </span>
+							<button type="button" class="btn btn-default right"
+								data-dismiss="modal">关闭</button>
+							<button id="submitBtn" type="submit" class="btn btn-primary">已送达乘客</button>
+						</div>
+					</s:form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
 </body>
- 
+
 <script>
     function add_info()
     {
